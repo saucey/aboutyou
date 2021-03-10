@@ -1,0 +1,70 @@
+@import '../../../..//common/styles/index';
+
+.product-item {
+  padding-top: 16px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  img {
+    width: 80px;
+  }
+  .product-detail {
+    padding-left: 35px;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    color: COLOR(grey-600);
+    .first {
+      margin-bottom: 15px;
+
+      .name {
+        min-height: 20px;
+        font-size: FONT_SIZES(medium);
+        font-weight: normal;
+        line-height: 1.43;
+      }
+      .size {
+        min-height: 16px;
+        font-size: FONT_SIZES(small);
+        font-weight: 300;
+        line-height: 1.33;
+      }
+      .energy-flag {
+        margin-top: 4px;
+        min-height: 25px;
+      }
+    }
+    .second {
+      min-height: 42px;
+      font-size: FONT_SIZES(extraSmall);
+      font-weight: 300;
+      line-height: 1.4;
+      position: relative;
+
+      .product-price {
+        position: absolute;
+        min-width: 108px;
+        bottom: 0;
+        right: 0;
+        min-height: 20px;
+        font-size: FONT_SIZES(medium);
+        font-style: normal;
+        line-height: 1.43;
+        text-align: right;
+        .discount-prices {
+          font-size: FONT_SIZES(small);
+          font-weight: 300;
+          line-height: 1.7;
+        }
+        .sale {
+          color: COLOR(cherry);
+        }
+      }
+    }
+  }
+}
+
+mat-divider {
+  height: 1px;
+  background-color: COLOR(grey-150);
+  margin-bottom: 12px;
+}

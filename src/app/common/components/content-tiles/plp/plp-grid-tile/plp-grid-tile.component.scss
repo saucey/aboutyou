@@ -1,0 +1,105 @@
+@import '../../../../styles';
+
+:host {
+  display: flex;
+  width: 100%;
+}
+::ng-deep {
+  .grid-tile {
+    display: flex;
+    height: 100%;
+    min-height: 330px;
+    position: relative;
+    width: 100%;
+    padding-bottom: 1rem;
+
+    .element-group {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      app-button {
+        z-index: $z-plp-grid-tile-app-button;
+        padding: 1rem;
+      }
+
+      app-text {
+        z-index: $z-plp-grid-tile-app-text;
+        width: 100%;
+        padding: 0.5rem;
+        font-size: 2em;
+        word-break: break-word;
+
+        h1 {
+          font-size: 1em;
+        }
+        h2 {
+          font-size: 0.9em;
+        }
+        h4 {
+          font-size: 0.5em;
+        }
+
+        @include MEDIA_QUERY(lg) {
+          padding: 1rem;
+
+          h1 {
+            font-size: 2em;
+          }
+          h2 {
+            font-size: 1.3em;
+          }
+          h4 {
+            font-size: 0.8em;
+          }
+        }
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        object-fit: cover;
+        z-index: $z-plp-grid-tile-img;
+        display: flex;
+        position: absolute;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+
+    .single_tile,
+    .double_tile {
+      display: flex;
+      position: absolute;
+      flex: 1;
+      width: 100%;
+      height: 100%;
+    }
+
+    .grid_of_two_aligned {
+      display: flex;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      flex: 1;
+
+      .left-section {
+        flex: 1;
+        width: 50%;
+        height: 100%;
+        position: relative;
+      }
+
+      .right-section {
+        position: relative;
+        width: 50%;
+        flex: 1;
+      }
+    }
+  }
+}

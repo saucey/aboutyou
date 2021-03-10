@@ -1,0 +1,298 @@
+image: node:latest
+
+stages:
+  - .pre
+  - lint-test-verify
+  - deploy-coverage-repot
+  - build
+  - deploy
+
+variables:
+  DOCKER_TLS_CERTDIR: ''
+
+.assume_role: &assume_role |
+  sts=$(aws sts assume-role \
+  --role-arn ${AWS_ROLE} \
+  --role-session-name gitlabci \
+  --output json)
+  export AWS_ACCESS_KEY_ID=$(echo $sts | jq -r .Credentials.AccessKeyId)
+  export AWS_SECRET_ACCESS_KEY=$(echo $sts | jq -r .Credentials.SecretAccessKey)
+  export AWS_SESSION_TOKEN=$(echo $sts | jq -r .Credentials.SessionToken)
+
+.docker_build: &docker_build |
+  if ! $(aws ecr get-login --no-include-email --region=eu-west-1) | grep -q "Login Succeeded"; then
+  exit 1
+  fi
+  docker build --build-arg ENVIRONMENT=${ENVIRONMENT} -t sfa-web -f ./Dockerfile ./
+  docker tag sfa-web "${REPOSITORY_URL}:${ENVIRONMENT}"
+  docker push "${REPOSITORY_URL}:${ENVIRONMENT}"
+
+.install_awscli: &install_awscli |
+  apk add --no-cache curl jq python py-pip
+  pip install awscli --upgrade
+
+.write_env: &write_env |
+  .gitlab-ci/write-env.sh
+
+.release_staging_to_production: &release_staging_to_production |
+  MANIFEST=$(aws ecr batch-get-image --repository-name ${REPOSITORY_NAME} --image-ids imageTag=staging --query 'images[].imageManifest' --output text)
+  aws ecr put-image --repository-name ${REPOSITORY_NAME} --image-tag production --image-manifest "$MANIFEST"
+
+.verify_role: &verify_role |
+  aws sts get-caller-identity
+
+# --- Shared-p Deployment Service Roles
+.not_protected_deployment_service_role: &not_protected_deployment_service_role |
+  AWS_ROLE="arn:aws:iam::736335200020:role/ca-not-protected-DeploymentServiceRole"
+
+.protected_deployment_service_role: &protected_deployment_service_role |
+  AWS_ROLE="arn:aws:iam::736335200020:role/ca-protected-DeploymentServiceRole"
+
+# --- Target Accounts Deployment Service Roles
+# -- Protected Roles
+.p_ay360_cm_deployment_service_role: &p_ay360_cm_deployment_service_role |
+  AWS_ROLE="arn:aws:iam::649763453660:role/CaDeploymentServiceRole"
+
+.p_depot_cm_deployment_service_role: &p_depot_cm_deployment_service_role |
+  AWS_ROLE="arn:aws:iam::007489027129:role/CaDeploymentServiceRole"
+
+.s_ay360_cm_deployment_service_role: &s_ay360_cm_deployment_service_role |
+  AWS_ROLE="arn:aws:iam::901632640936:role/CaDeploymentServiceRole"
+
+.s_mt1_cm_deployment_service_role: &s_mt1_cm_deployment_service_role |
+  AWS_ROLE="arn:aws:iam::415406482197:role/CaDeploymentServiceRole"
+
+# -- Not Protected Roles
+.i_ay360_cm_deployment_service_role: &i_ay360_cm_deployment_service_role |
+  AWS_ROLE="arn:aws:iam::612245271971:role/CaDeploymentServiceRole"
+
+.i_mt1_cm_deployment_service_role: &i_mt1_cm_deployment_service_role |
+  AWS_ROLE="arn:aws:iam::456320116560:role/CaDeploymentServiceRole"
+
+.p_job_template: &p_job_definition
+  tags:
+    - ay-shared-runner
+  image: docker:19.03.5
+  services:
+    - docker:dind
+  before_script:
+    - *install_awscli
+    - export AWS_ACCESS_KEY_ID=${SHARED_P_AWS_ACCESS_KEY_ID}
+    - export AWS_SECRET_ACCESS_KEY=${SHARED_P_AWS_SECRET_ACCESS_KEY}
+    - *protected_deployment_service_role
+    - *assume_role
+
+.job_template: &job_definition
+  tags:
+    - ay-shared-runner
+  image: docker:19.03.5
+  services:
+    - docker:dind
+  before_script:
+    - *install_awscli
+    - export AWS_ACCESS_KEY_ID=${SHARED_P_AWS_ACCESS_KEY_ID}
+    - export AWS_SECRET_ACCESS_KEY=${SHARED_P_AWS_SECRET_ACCESS_KEY}
+    - *not_protected_deployment_service_role
+    - *assume_role
+
+cache: &npm-cache # one cache for each branch
+  key: npm-cache-${CI_COMMIT_REF_SLUG}
+  paths:
+    - node_modules/
+  # we set the default to read and only override the cache in install-deps
+  policy: pull
+
+# --- .PRE (CI/CD)
+install-deps:
+  stage: .pre
+  tags:
+    - ay-shared-runner
+  cache:
+    # inherit all global cache settings
+    <<: *npm-cache
+    # after installing we update the cache
+    policy: pull-push
+  script:
+    - yarn install
+  allow_failure: false
+  only:
+    - merge_requests
+    - develop
+    - integration-depot
+    - staging-depot
+    - production-depot
+
+# --- TEST ----
+lint:
+  stage: lint-test-verify
+  tags:
+    - ay-shared-runner
+  image: trion/ng-cli
+  script:
+    - yarn lint
+  only:
+    - develop
+    - merge_requests
+  except:
+    - tags
+  allow_failure: false
+
+test:
+  stage: lint-test-verify
+  image: trion/ng-cli-karma
+  tags:
+    - ay-shared-runner
+  allow_failure: false
+  script:
+    - yarn test:ci
+  coverage: '/Branches \W+: (\d+\.\d+)%.*/'
+  artifacts:
+    paths:
+      - coverage/
+    reports:
+      junit:
+        - test-results/TESTS.xml
+  only:
+    - develop
+    - merge_requests
+  except:
+    - tags
+
+#verify-ssr:
+#  stage: lint-test-verify
+#  script:
+#    - yarn verify:ssr
+#  only:
+#    - develop
+#    - develop-depot
+#    - develop-lascana
+#    - merge_requests
+#  except:
+#    - tags
+#  allow_failure: true
+
+# --- STAGES ----
+deploy-coverage-report-on-gitlab-pages:
+  cache: {}
+  stage: deploy-coverage-repot
+  tags:
+    - ay-shared-runner
+  dependencies:
+    - test
+  script:
+    - mv coverage/ public/
+  artifacts:
+    paths:
+      - public
+    expire_in: 30 days
+  only:
+    - develop
+    # --- INTEGRATION (CI/CD)
+build-depot-integration:
+  <<: *job_definition
+  stage: build
+  variables:
+    ENVIRONMENT: integration
+    TENANT: depot
+    SHOP_IDS: '1,3,3031,3032'
+    REPOSITORY_URL: 736335200020.dkr.ecr.eu-west-1.amazonaws.com/ca/storefront/depot
+    AWS_DEFAULT_REGION: eu-west-1
+  script:
+    - *write_env
+    - *docker_build
+  environment:
+    name: integration
+  only:
+    - develop
+    - integration-depot
+
+deploy-depot-integration:
+  <<: *job_definition
+  cache: {}
+  stage: deploy
+  variables:
+    ENVIRONMENT: integration
+    TENANT: depot
+    REPOSITORY_URL: 736335200020.dkr.ecr.eu-west-1.amazonaws.com/ca/storefront/depot
+    AWS_DEFAULT_REGION: eu-west-1
+  script:
+    - *i_mt1_cm_deployment_service_role
+    - *assume_role
+    - aws ecs update-service --cluster=base --force-new-deployment --region=${AWS_DEFAULT_REGION} --service=depot-sfa-web
+  environment:
+    name: integration
+  only:
+    - develop
+    - integration-depot
+
+# --- STAGING (CI/CD)
+build-depot-staging:
+  <<: *p_job_definition
+  stage: build
+  variables:
+    ENVIRONMENT: staging
+    TENANT: depot
+    SHOP_IDS: '1,3,3031,3032'
+    REPOSITORY_URL: 736335200020.dkr.ecr.eu-west-1.amazonaws.com/ca/storefront/depot
+    AWS_DEFAULT_REGION: eu-west-1
+  script:
+    - *write_env
+    - *docker_build
+  environment:
+    name: staging
+  only:
+    - staging-depot
+
+deploy-depot-staging:
+  <<: *p_job_definition
+  cache: {}
+  stage: deploy
+  variables:
+    ENVIRONMENT: staging
+    TENANT: depot
+    REPOSITORY_URL: 736335200020.dkr.ecr.eu-west-1.amazonaws.com/ca/storefront/depot
+    AWS_DEFAULT_REGION: eu-west-1
+  script:
+    - *s_mt1_cm_deployment_service_role
+    - *assume_role
+    - aws ecs update-service --cluster=base --force-new-deployment --region=${AWS_DEFAULT_REGION} --service=depot-sfa-web
+  environment:
+    name: staging
+  only:
+    - staging-depot
+
+# --- PRODUCTION (CI/CD)
+build-depot-production:
+  <<: *p_job_definition
+  stage: build
+  variables:
+    ENVIRONMENT: production
+    TENANT: depot
+    SHOP_IDS: '1,3,3031,3032'
+    REPOSITORY_URL: 736335200020.dkr.ecr.eu-west-1.amazonaws.com/ca/storefront/depot
+    AWS_DEFAULT_REGION: eu-west-1
+  script:
+    - *write_env
+    - *docker_build
+  environment:
+    name: production
+  only:
+    - production-depot
+
+deploy-depot-production:
+  <<: *p_job_definition
+  cache: {}
+  stage: deploy
+  variables:
+    ENVIRONMENT: production
+    TENANT: depot
+    REPOSITORY_URL: 736335200020.dkr.ecr.eu-west-1.amazonaws.com/ca/storefront/depot
+    AWS_DEFAULT_REGION: eu-west-1
+  script:
+    - *p_depot_cm_deployment_service_role
+    - *assume_role
+    - aws ecs update-service --cluster=base --force-new-deployment --region=${AWS_DEFAULT_REGION} --service=depot-sfa-web
+  environment:
+    name: production
+  only:
+    - production-depot

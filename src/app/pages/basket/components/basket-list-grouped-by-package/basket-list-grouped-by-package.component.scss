@@ -1,0 +1,31 @@
+@import '../../../..//common/styles/index';
+
+.basket-list {
+  margin-right: 0;
+  @include MEDIA_QUERY(lg) {
+    margin-right: 60px;
+  }
+
+  app-basket-package-info {
+    margin-top: 2rem;
+  }
+
+  .package-info-footer {
+    margin-top: 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    color: COLOR(grey-600);
+
+    .title {
+      flex: 1 0 100%;
+      font-size: FONT_SIZES(extraLarge);
+      letter-spacing: -0.8px;
+      line-height: 32px;
+    }
+    app-basket-package-info {
+      width: 180px;
+      height: 6rem;
+    }
+  }
+}

@@ -1,0 +1,25 @@
+<div class="row" *ngIf="showHeadline">
+  <div class="col-12">
+    <ngx-skeleton-loader
+      count="1"
+      appearance="lines"
+      [theme]="{ height: '20px', marginTop: '15px', width: '100%' }"
+    ></ngx-skeleton-loader>
+  </div>
+</div>
+<div class="row products">
+  <div *ngFor="let i of productsCount | range" class="col-6 col-md-4">
+    <ngx-skeleton-loader
+      count="1"
+      appearance="lines"
+      [theme]="{ height: '275px', marginBottom: '10px', marginTop: '10px' }"
+    ></ngx-skeleton-loader>
+    <div *ngFor="let i of 3 | range">
+      <ngx-skeleton-loader
+        count="1"
+        appearance="lines"
+        [theme]="{ height: '5px', width: '40%', margin: '5px 30%' }"
+      ></ngx-skeleton-loader>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,72 @@
+@import 'src/app/common/styles';
+
+.stage-container {
+  height: 360px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  position: relative;
+  background-image: url(https://depot.dam.staging.aboutyou.cloud/images/b2944bb3911cbe16a389efde78ae0261);
+  background-size: cover;
+  margin-bottom: 32px;
+  padding-bottom: 48px;
+
+  @include MEDIA_QUERY(md) {
+    height: 780px;
+    margin-bottom: 80px;
+    align-items: center;
+    justify-content: flex-start;
+    padding-bottom: 0;
+    background-image: url(https://depot.dam.staging.aboutyou.cloud/images/274e2f77f53388b8dd7db128c5b2560e);
+  }
+
+  .overlay {
+    opacity: 0.8;
+    background-image: linear-gradient(
+      to right,
+      COLOR(black),
+      rgba(0, 0, 0, 0.39) 57%,
+      rgba(255, 255, 255, 0) 92%,
+      rgba(0, 0, 0, 0) 92%
+    );
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+  }
+
+  .container {
+    padding-top: 0;
+    position: relative;
+    z-index: 2;
+
+    h1 {
+      font-size: FONT_SIZES(doubleBase);
+      line-height: 1.06;
+      letter-spacing: -0.5px;
+      color: COLOR(white);
+      margin-bottom: 16px;
+      text-align: center;
+
+      @include MEDIA_QUERY(md) {
+        font-size: FONT_SIZES(superLarge);
+        text-align: left;
+      }
+    }
+
+    p {
+      font-family: Montserrat;
+      font-size: FONT_SIZES(base);
+      line-height: 1.5;
+      color: COLOR(white);
+      text-align: center;
+
+      @include MEDIA_QUERY(md) {
+        text-align: left;
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+<ng-container>
+  <app-product-content-tabs *ngIf="loaded" [isMobile]="isMobile">
+    <app-product-content-tab
+      *ngIf="product.custom.description"
+      [label]="'PRODUCT_DETAIL.descriptionTitle' | translate"
+      [isMobile]="isMobile"
+    >
+      <div [innerHTML]="product.custom.description"></div>
+    </app-product-content-tab>
+    <app-product-content-tab [label]="'PRODUCT_DETAIL.detailsTitle' | translate" [default]="true" [isMobile]="isMobile">
+      <h1>
+        {{ product.custom.productTitle
+        }}<span testid="variantNotSelectableInfo" *ngIf="product.custom.variantNotSelectableInfo"
+          >, {{ product.custom.variantNotSelectableInfo }}</span
+        >
+      </h1>
+
+      <app-product-detail-bundle
+        *ngIf="bundleItemsPopulated && bundleItemsPopulated.length > 0"
+        [bundleItems]="bundleItemsPopulated"
+        [currency]="currency"
+      ></app-product-detail-bundle>
+
+      <app-product-detail-content-details
+        [isBundle]="product.custom.bundleItems && product.custom.bundleItems.length > 0"
+        [product]="product"
+      ></app-product-detail-content-details>
+    </app-product-content-tab>
+    <app-product-content-tab [label]="'PRODUCT_DETAIL.hintsTitle' | translate" [isMobile]="isMobile">
+      <app-product-detail-content-hints [product]="product"></app-product-detail-content-hints>
+    </app-product-content-tab>
+  </app-product-content-tabs>
+
+  <app-skeleton-details *ngIf="!loaded"></app-skeleton-details>
+
+  <div class="article-number">{{ 'PRODUCT_DETAIL.articleNumber' | translate }}: {{ product.custom.articleNumber }}</div>
+</ng-container>

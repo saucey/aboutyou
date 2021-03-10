@@ -1,0 +1,187 @@
+<ng-container>
+  <div appStickyOverview class="app-sticky-overview-wrapper">
+    <div class="categories" *ngIf="product.custom.sortedPromotionTags && product.custom.sortedPromotionTags.length > 0">
+      <ul>
+        <li *ngFor="let promotionTag of product.custom.sortedPromotionTags | slice: 0:3">
+          <ng-container [ngSwitch]="promotionTag.value">
+            <app-promotion-flag *ngSwitchCase="'sale'" type="sale"></app-promotion-flag>
+            <app-promotion-flag *ngSwitchCase="'neu'" type="new"></app-promotion-flag>
+            <span *ngSwitchDefault>{{ promotionTag.label }}</span>
+          </ng-container>
+        </li>
+      </ul>
+    </div>
+
+    <div class="teaser-container">
+      <h1 class="product-title">
+        {{ product.custom.productTitle
+        }}<span *ngIf="product.custom.variantNotSelectableInfo">, {{ product.custom.variantNotSelectableInfo }}</span>
+      </h1>
+      <div class="rating">
+        <app-rating [rating]="product.custom.rating" [displayRating]="true" [ratingCount]="product.custom.ratingCount">
+        </app-rating>
+      </div>
+    </div>
+
+    <div class="price-container">
+      <label class="price new" *ngIf="product.oldPrice">{{ product.currentPrice | currency: currency }}</label>
+      <label class="price" *ngIf="product.currentPrice && !product.oldPrice">{{
+        product.currentPrice | currency: currency
+      }}</label>
+      <label class="striked-price" *ngIf="product.oldPrice">{{ product.oldPrice | currency: currency }}</label>
+      <span class="base-price" *ngIf="product.referenceLabel && !product.custom.pricePerItem">
+        {{ product.referenceLabel }}</span
+      >
+      <span class="base-price" *ngIf="product.custom.packSize">
+        {{ product.currentPrice / product.custom.packSize | currency: currency }} /
+        {{ 'PRODUCT_DETAIL.hints.perItem' | translate }}</span
+      >
+    </div>
+
+    <div class="discounts-container" *ngIf="product.percentageDiscount || product.custom.packSize">
+      <div *ngIf="product.percentageDiscount">
+        <app-product-tag-box variant="primary">- {{ product.percentageDiscount * 100 | number }} %</app-product-tag-box>
+      </div>
+      <div *ngIf="product.custom.packSize">
+        <app-product-tag-box>
+          {{ 'PRODUCT_DETAIL.packSizeLabel' | translate: { value: product.custom.packSize } }}
+        </app-product-tag-box>
+      </div>
+    </div>
+
+    <div class="additional-information-container">
+      <div class="energy-flag" *ngIf="product.custom.energyLabel">
+        <app-energy-flag [type]="product.custom.energyLabel"></app-energy-flag>
+      </div>
+
+      <ul>
+        <li>
+          {{ 'PRODUCT_DETAIL.includingVAT' | translate }}
+        </li>
+        <li>
+          <b *ngIf="product.custom.freeShipping">{{ 'PRODUCT_DETAIL.freeShipping' | translate }}</b>
+          <b *ngIf="!product.custom.freeShipping">{{ 'PRODUCT_DETAIL.withShippingCosts' | translate }}</b>
+        </li>
+      </ul>
+    </div>
+
+    <div class="selected-color mb-2" *ngIf="product.custom.color">
+      <label>{{ 'PRODUCT_DETAIL.colorLabel' | translate }}:</label>
+      <span class="value">
+        {{ product.custom.color }}
+      </span>
+    </div>
+
+    <div
+      class="siblings"
+      *ngIf="product.choosableSiblings && product.choosableSiblings.length > 0"
+      appSiblingsAccordion
+    >
+      <div class="arrow-handle">
+        <i>
+          <app-icon icon="chevron-down" scale="1.3"></app-icon>
+        </i>
+      </div>
+      <div class="items">
+        <div class="sibling-item" *ngFor="let sibling of product.choosableSiblings">
+          <a *ngIf="sibling.getPreviewImageSrc()" [routerLink]="'/p/' + sibling.id + '' | localize">
+            <app-product-thumbnail [active]="sibling.id === product.id" [image]="sibling.getPreviewImageSrc()">
+            </app-product-thumbnail>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="product.availableQuantities > 0" class="quantity-picker">
+      <div class="label">{{ 'PRODUCT_DETAIL.quantityLabel' | translate }}:</div>
+      <app-quantity-picker
+        (valueChange)="handleQuantityChange($event)"
+        [limit]="product.availableQuantities"
+        [value]="quantity"
+      ></app-quantity-picker>
+    </div>
+
+    <div class="availability-container">
+      <app-product-availability-badge *ngIf="product.availableQuantities <= 0" type="unavailable">
+        {{ 'PRODUCT_DETAIL.noAvailability' | translate }}
+      </app-product-availability-badge>
+      <app-product-availability-badge
+        *ngIf="product.availableQuantities <= 10 && product.availableQuantities > 0"
+        type="rare"
+      >
+        {{ 'PRODUCT_DETAIL.limitedAvailability' | translate: { value: product.availableQuantities } }}
+      </app-product-availability-badge>
+    </div>
+
+    <div class="cta">
+      <app-button *ngIf="product.availableQuantities <= 0" variant="primary">
+        {{ 'PRODUCT_DETAIL.ctaNotAvailable' | translate }}
+      </app-button>
+      <app-add-to-basket
+        class="basket btn"
+        *ngIf="product.availableQuantities > 0"
+        [variantId]="selectedVariant.id"
+        [quantity]="quantity"
+        [customData]="customData"
+      >
+      </app-add-to-basket>
+      <app-click-reserve-button
+        [product]="product"
+        [variantId]="selectedVariant.id"
+        class="clickReserve btn"
+      ></app-click-reserve-button>
+      <span class="clickReserve info">{{ 'CLICK_AND_RESERVE.information.content' | translate }}</span>
+    </div>
+
+    <div class="hints" *ngIf="product.custom.showClickReserve || product.custom.showOnlineHint">
+      <div *ngIf="product.custom.showClickReserve" class="hint">
+        <div class="icon">
+          <app-icon icon="local" scale="1.5"></app-icon>
+        </div>
+        <label>
+          {{ 'PRODUCT_DETAIL.clickReserve' | translate }}
+        </label>
+      </div>
+
+      <div *ngIf="product.custom.showOnlineHint" class="hint light">
+        <div class="icon">
+          <app-icon icon="web" scale="1.5"></app-icon>
+        </div>
+        <label>
+          {{ 'PRODUCT_DETAIL.onlyOnline' | translate }}
+        </label>
+      </div>
+    </div>
+    <div class="reservation-message-popup-wrapper" *ngIf="(isMobile$ | async) && reservationSuccess">
+      <div class="reservation-message-popup-wrapper-inner">
+        <span class="more-info-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path
+              fill="#52df84"
+              fill-rule="nonzero"
+              d="M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18zm0 1.241a7.759 7.759 0 1 0 0 15.518 7.759 7.759 0 0 0 0-15.518zm4.854 3.42a.62.62 0 0 1 .158.788l-.056.084-5.835 7.382a1.402 1.402 0 0 1-2.189.057l-.084-.113-1.824-2.59a.62.62 0 0 1 .95-.792l.064.077 1.834 2.602a.16.16 0 0 0 .22.046l.024-.02.024-.027 5.842-7.391a.62.62 0 0 1 .872-.102z"
+            />
+          </svg>
+        </span>
+        <span class="reservation-message-popup-wrapper__text-wrapper">
+          <span class="reservation-message-popup-wrapper__text-wrapper--text">
+            <span>Artikel wurde zur vorläufigen</span>
+            <span>Reservierungsliste hinzugefugt</span>
+          </span>
+          <span class="reservation-message-popup-wrapper__text-wrapper--action">
+            Zur Reservierungsliste
+          </span>
+        </span>
+        <span class="cross-icon" (click)="removeReservationSuccess()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="4 4 16 16">
+            <path
+              fill="#000"
+              fill-rule="evenodd"
+              d="M5.845 5.844c.293-.293.767-.293 1.06 0L12 10.938l5.095-5.094c.266-.266.683-.29.976-.072l.084.072c.293.293.293.768 0 1.06L13.061 12l5.094 5.095c.267.266.29.683.073.977l-.073.084c-.293.293-.767.293-1.06 0L12 13.06l-5.095 5.095c-.266.266-.683.29-.976.072l-.084-.072c-.293-.293-.293-.768 0-1.06L10.939 12 5.845 6.904c-.267-.266-.29-.683-.073-.977z"
+            />
+          </svg>
+        </span>
+      </div>
+    </div>
+  </div>
+</ng-container>

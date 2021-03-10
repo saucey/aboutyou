@@ -1,0 +1,264 @@
+@import '../../../styles/index';
+
+.trisection ::ng-deep {
+  .main-headline h4 {
+    text-align: center;
+    font-weight: 600;
+    margin: 64px 0 24px 0;
+  }
+  cursor: pointer;
+  // specific styles
+  .mobile {
+    display: block;
+  }
+  .desktop {
+    display: none;
+  }
+  @include MEDIA_QUERY(md) {
+    .mobile {
+      display: none;
+    }
+    .desktop {
+      display: block;
+    }
+  }
+
+  img {
+    object-fit: cover;
+  }
+
+  // dekstop
+  .desktop {
+    .grid-tile {
+      display: flex;
+      height: 100%;
+      min-height: 392px;
+      position: relative;
+      width: 100%;
+      padding-bottom: 0rem;
+    }
+    .carousel-item {
+      height: 392px;
+    }
+    img.element {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      justify-content: center;
+      align-items: center;
+    }
+    .element-group {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .grid_of_three {
+      display: flex;
+      position: relative;
+      flex: 1;
+
+      .element {
+        width: 100%;
+      }
+      .left-section,
+      .right-section,
+      .center-section {
+        flex: 1;
+        height: 100%;
+        position: relative;
+      }
+      h4 {
+        font-size: 14px;
+      }
+
+      @include MEDIA_QUERY(md) {
+        h2 {
+          font-size: 48px;
+        }
+        .right-section {
+          display: none;
+        }
+      }
+      @include MEDIA_QUERY(lg) {
+        h2 {
+          font-size: 64px;
+        }
+
+        .right-section {
+          display: inherit;
+        }
+      }
+    }
+  }
+
+  // mobile
+  .mobile {
+    .content-wrapper .text-content {
+      width: 100%;
+      position: relative;
+      top: -1px;
+    }
+    img {
+      height: 392px;
+      width: 100%;
+    }
+    .carousel-caption {
+      position: relative;
+    }
+    .carousel-indicators {
+      top: 370px;
+    }
+    .carousel-control-prev,
+    .carousel-control-next {
+      display: none;
+    }
+    .content-wrapper {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+  }
+
+  .element {
+    word-break: break-word;
+  }
+
+  .single .carousel-indicators {
+    display: none;
+  }
+
+  .element_text {
+    margin: 16px 0;
+  }
+
+  .element_cta {
+    &button,
+    &link {
+      min-width: 178px;
+      width: auto;
+      margin: 16px 0;
+    }
+    &.center {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    &.right {
+      margin-left: 0;
+      margin-right: auto;
+    }
+    &.left {
+      margin-left: 0;
+      margin-right: auto;
+    }
+  }
+
+  .carousel-inner,
+  .carousel-indicators {
+    overflow: hidden;
+  }
+
+  .carousel-item {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1.2s ease-in-out, visibility 1.2s;
+    z-index: $z-teasers-carousel-item;
+    display: flex;
+  }
+
+  .carousel-caption {
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    color: black;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    .element-group {
+      padding: 40px;
+    }
+
+    &.desktop {
+      @include MEDIA_QUERY(md) {
+        visibility: inherit;
+      }
+      visibility: hidden;
+    }
+    &.mobile {
+      visibility: inherit;
+
+      @include MEDIA_QUERY(md) {
+        visibility: hidden;
+      }
+    }
+  }
+
+  .carousel-item.active {
+    opacity: 1;
+    visibility: visible;
+    z-index: $z-teasers-carousel-item-active;
+  }
+
+  .carousel-control-prev,
+  .carousel-control-next {
+    z-index: $z-teasers-carousel-control;
+    width: 40px;
+    opacity: 0.7;
+
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+      width: 32px;
+      height: 32px;
+      border: solid 1px COLOR(grey-300);
+      background-color: COLOR(white);
+      opacity: 1;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .carousel-control-prev-icon {
+      background-image: ASSETS_URL('icons/chevron-left.svg');
+      background-position-x: -1px;
+      background-position-y: 0.5px;
+    }
+    .carousel-control-next-icon {
+      background-image: ASSETS_URL('icons/chevron-right.svg');
+      background-position-x: 0px;
+      background-position-y: 0px;
+    }
+  }
+
+  .carousel-indicators {
+    z-index: $z-teasers-carousel-indicators;
+    li {
+      width: 8px;
+      border: none;
+      height: 8px;
+      border: solid 1px COLOR(grey-150);
+      background: COLOR(white);
+      border-radius: 50%;
+      margin: 0 4px;
+      box-sizing: inherit;
+      opacity: 1;
+      &.active {
+        background: COLOR(grey-600);
+      }
+    }
+  }
+}

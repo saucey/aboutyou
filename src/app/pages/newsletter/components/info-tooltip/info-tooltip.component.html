@@ -1,0 +1,13 @@
+<div class="info-tooltip">
+  <div class="bubble" *ngIf="toggled">
+    <div class="text">
+      <ng-content></ng-content>
+    </div>
+    <div class="icon-handle" (click)="toggled = false">
+      <app-icon type="icon" icon="close" scale="1.7"></app-icon>
+    </div>
+  </div>
+  <div class="icon" (click)="toggled = !toggled">
+    <app-icon type="icon" icon="info" scale="2"></app-icon>
+  </div>
+</div>

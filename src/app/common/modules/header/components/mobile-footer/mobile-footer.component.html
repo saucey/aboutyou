@@ -1,0 +1,20 @@
+<div class="header-footer">
+  <ul class="list-unstyled">
+    <li>
+      <a [routerLink]="getLink('storefinder')" (click)="onLinkClick()"><span
+          class="lang-name">{{'FOOTER.storefinder' | translate}}</span></a>
+    </li>
+    <li>
+      <a [routerLink]="getLink('basket')" (click)="onLinkClick()"><span
+          class="lang-name">{{'FOOTER.basket' | translate}}</span></a>
+    </li>
+    <li>
+      <a [routerLink]="getLink('newsletter')" (click)="onLinkClick()"><span
+          class="lang-name">{{'FOOTER.newsletter' | translate}}</span></a>
+    </li>
+    <li>
+      <a [routerLink]="getLink('contact')" (click)="onLinkClick()"><span
+          class="lang-name">{{'FOOTER.contact' | translate}}</span></a>
+    </li>
+  </ul>
+</div>

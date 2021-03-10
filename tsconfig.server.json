@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/app-server",
+    "module": "commonjs",
+    "types": ["node"],
+    "target": "es5",
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "files": ["server.ts"],
+  "include": ["./src/server/**/*.ts", "src/**/*.d.ts"],
+  "exclude": ["src/**/*.spec.ts"]
+}

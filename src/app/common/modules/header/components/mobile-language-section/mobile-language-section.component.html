@@ -1,0 +1,25 @@
+<div class="language-section">
+  <ng-container *ngIf="opened; else overview">
+    <div class="top-row">
+      <a class="reset-link" (click)="setOpenedState(false)">
+        <app-icon icon="chevron-left" [scale]="1.5"></app-icon>
+        {{ 'GLOBAL.sidebar.user.goBackLabel' | translate }}
+      </a>
+      <div class="lang-label" [innerHTML]="'GLOBAL.sidebar.language.label' | translate"></div>
+    </div>
+
+    <div class="child-row" *ngFor="let item of languages" (click)="onLanguageSelection(item)">
+      <app-icon class="flag" [icon]="item.locale" width="18px" type="flag" ext="png"></app-icon>
+      <span class="lang-name" *ngIf="selectedLanguage">{{ item.language }}</span>
+      <app-icon icon="checkmark-styled" *ngIf="item === selectedLanguage" [scale]="1.5"></app-icon>
+    </div>
+  </ng-container>
+
+  <ng-template #overview>
+    <div class="overview" (click)="setOpenedState(true)">
+      <app-icon class="flag" [icon]="selectedLanguage.locale" width="18px" type="flag" ext="png"></app-icon>
+      <span class="lang-name" *ngIf="selectedLanguage">{{ selectedLanguage.language }}</span>
+      <app-icon icon="chevron-right" [scale]="1.5"></app-icon>
+    </div>
+  </ng-template>
+</div>

@@ -1,0 +1,22 @@
+@import '../../styles/index.scss';
+
+:host {
+  width: 100%;
+  .select {
+    width: 100%;
+    overflow: auto;
+    display: flex;
+    flex-direction: row;
+    background: white;
+
+    @include MEDIA_QUERY(lg) {
+      flex-wrap: wrap;
+    }
+
+    app-button {
+      margin-right: 0.5rem !important;
+      margin-bottom: 0.5rem !important;
+      flex-shrink: 0;
+    }
+  }
+}

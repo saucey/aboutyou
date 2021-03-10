@@ -1,0 +1,102 @@
+@import 'src/app/common/styles';
+
+.container {
+  padding-top: 0;
+}
+
+h3 {
+  font-size: FONT_SIZES(extraMedium);
+  text-align: center;
+  color: COLOR(black);
+
+  @include MEDIA_QUERY(md) {
+    font-size: FONT_SIZES(extraLarge);
+    font-weight: 500;
+    line-height: 1.33;
+    letter-spacing: -0.8px;
+    color: COLOR(grey-600);
+    margin-bottom: 16px;
+    text-align: left;
+  }
+}
+
+p {
+  font-size: FONT_SIZES(medium);
+  font-weight: 300;
+  line-height: 1.43;
+  text-align: center;
+  color: COLOR(grey-600);
+  margin-bottom: 32px;
+
+  @include MEDIA_QUERY(md) {
+    margin-bottom: 47px;
+    text-align: left;
+  }
+}
+
+.input-row {
+  margin-bottom: 24px;
+
+  &.radio-group {
+    padding-top: 16px;
+  }
+
+  input {
+    border: solid 1px COLOR(grey-150);
+    padding: 10px 16px;
+    translate: all 0.2s;
+    font-size: FONT_SIZES(small);
+    width: 100%;
+    box-sizing: border-box;
+
+    &.error {
+      border-color: COLOR(red-orange);
+    }
+  }
+
+  .error-message {
+    font-size: FONT_SIZES(extraSmall);
+    color: COLOR(red-orange);
+    margin-top: 4px;
+  }
+}
+
+.info {
+  font-size: FONT_SIZES(small);
+  font-weight: 300;
+  line-height: 1.33;
+  color: COLOR(grey-600);
+  margin-top: 24px;
+  text-align: center;
+
+  @include MEDIA_QUERY(md) {
+    text-align: left;
+  }
+
+  a {
+    color: COLOR(black);
+    font-weight: 500;
+  }
+}
+
+::ng-deep {
+  mat-radio-button {
+    margin-right: 48px;
+  }
+
+  .mat-radio-label-content {
+    font-size: FONT_SIZES(medium);
+    font-weight: 300;
+    line-height: 1.43;
+    color: COLOR(grey-600);
+    padding-left: 14px;
+  }
+
+  .mat-radio-button.mat-accent .mat-radio-inner-circle {
+    background: COLOR(black);
+  }
+
+  .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: COLOR(black);
+  }
+}

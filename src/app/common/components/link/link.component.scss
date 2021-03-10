@@ -1,0 +1,41 @@
+@import "../../styles/index.scss";
+
+a {
+  font-size: FONT_SIZES(medium);
+  color: COLOR(grey-600);
+  min-height: 20px;
+  font-weight: 500;
+  &:hover {
+    text-decoration: none;
+  }
+
+  &.primary,
+  &.secondary {
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+  &.secondary {
+    &:hover {
+      opacity: 0.6;
+      text-decoration: none;
+    }
+  }
+  &.secondary-green,
+  &.primary-green {
+    color: COLOR(bermuda-green-400);
+    &:hover {
+      color: COLOR(grey-600);
+    }
+  }
+
+  ::ng-deep app-icon {
+    margin-left: 14px;
+
+    svg {
+      position: relative;
+      font-size: 22px;
+      top: 5px;
+    }
+  }
+}

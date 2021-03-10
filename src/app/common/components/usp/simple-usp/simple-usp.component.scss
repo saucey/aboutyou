@@ -1,0 +1,15 @@
+@import 'src/app/common/styles/index.scss';
+@import '../../../styles/styleguide/fonts.css';
+
+:host {
+  display: flex;
+
+  .icon {
+    margin-right: 16px;
+  }
+
+  .titles {
+    top: 10px;
+    padding-right: 32px;
+  }
+}

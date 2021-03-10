@@ -1,0 +1,23 @@
+@import '../../../../common/styles/index';
+
+.seo-text {
+  @include MEDIA_QUERY(lg) {
+    padding-left: 130px;
+    padding-right: 130px;
+  }
+
+  h1,
+  h2 {
+    font-size: FONT_SIZES(base);
+    margin-bottom: 16px;
+    font-weight: 900;
+  }
+  h2,
+  .text-block {
+    font-size: FONT_SIZES(small);
+  }
+
+  .text-block {
+    margin-bottom: 24px;
+  }
+}

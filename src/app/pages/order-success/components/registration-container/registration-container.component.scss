@@ -1,0 +1,67 @@
+@import '../../../..//common/styles/';
+
+.registration-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  border: 1px solid COLOR(grey-600);
+  max-width: 576px;
+  margin-top: 40px;
+  margin-bottom: 70px;
+  padding: 32px 100px 48px;
+
+  .headline {
+    color: COLOR(grey-600);
+    font-size: FONT_SIZES(medium);
+    line-height: 20px;
+    letter-spacing: 1.25px;
+    text-transform: uppercase;
+
+    margin-bottom: 32px;
+  }
+
+  .sub-headline {
+    color: COLOR(black);
+    font-size: FONT_SIZES(extraMedium);
+    font-weight: bold;
+
+    margin-bottom: 16px;
+  }
+
+  li {
+    display: flex;
+    justify-content: flex-start;
+
+    color: COLOR(grey-600);
+    font-size: FONT_SIZES(medium);
+
+    app-icon {
+      margin-right: 12px;
+    }
+
+    & + li:not(:first-of-type) {
+      margin-top: 10px;
+    }
+  }
+
+  app-button {
+    width: 210px;
+    height: 40px;
+
+    margin-top: 20px;
+
+    ::ng-deep button {
+      font-weight: bold;
+    }
+  }
+
+  @include MEDIA_QUERY_MAX(sm) {
+    margin: 24px 16px;
+    padding: 24px 16px 40px;
+
+    app-button {
+      width: 100%;
+    }
+  }
+}

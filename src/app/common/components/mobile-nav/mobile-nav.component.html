@@ -1,0 +1,31 @@
+<div class="category-tree">
+  <div class="top-row">
+    <ng-container *ngIf="!!parent; then parentLink; else resetLink"></ng-container>
+    <ng-template #parentLink>
+      <a class="parent-link" [routerLink]="parent.path | localize" (click)="onParentRowClick($event)">
+        <app-icon icon="chevron-left" [scale]="1.5"></app-icon>
+        {{ parent.shortSlug }}
+      </a>
+    </ng-template>
+    <ng-template #resetLink>
+      <a *ngIf="selectedItem" class="parent-link" (click)="onResetLinkClick($event)">
+        <app-icon icon="chevron-left" [scale]="1.5"></app-icon>
+        {{ goBackLabel }}
+      </a>
+    </ng-template>
+    <div *ngIf="selectedItem" class="sub-category">{{ selectedItem.shortSlug }}</div>
+  </div>
+
+  <div class="child-row" *ngIf="selectedItem">
+    <a class="child-link" [routerLink]="selectedItem.path | localize" (click)="onShowAllClick($event, selectedItem)"
+      >{{ showAllLabel }}
+    </a>
+  </div>
+
+  <div [ngClass]="getRowClass(category)" *ngFor="let category of selectedItem ? children : items">
+    <a class="child-link" [routerLink]="category.path | localize" (click)="onChildRowClick($event, category)"
+      >{{ category.shortSlug }}
+    </a>
+    <app-icon *ngIf="category.children.length" icon="chevron-right" [scale]="1.5"></app-icon>
+  </div>
+</div>

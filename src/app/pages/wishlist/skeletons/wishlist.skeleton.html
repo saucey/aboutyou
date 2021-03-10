@@ -1,0 +1,9 @@
+<div class="row products">
+  <div *ngFor="let i of (productsCount===0?4:productsCount) | range" class="col-6 col-md-3">
+    <ngx-skeleton-loader
+      count="1"
+      appearance="lines"
+      [theme]="{ height: '200px', marginBottom: '10px', marginTop: '10px' }"
+    ></ngx-skeleton-loader>
+  </div>
+</div>

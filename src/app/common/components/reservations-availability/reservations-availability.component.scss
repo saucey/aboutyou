@@ -1,0 +1,38 @@
+@import 'src/app/themes/storefront/common/styles';
+::ng-deep {
+  .availability {
+    margin-top: 10px;
+    font-size: FONT_SIZES(small);
+    display: flex;
+    .checkmark {
+      path[fill],
+      path[stroke] {
+        fill: COLOR(shamrock);
+      }
+    }
+    .text {
+      margin-left: 10px;
+    }
+    .close {
+      path[fill],
+      path[stroke] {
+        fill: COLOR(red-orange);
+      }
+    }
+    .info {
+      path[fill],
+      path[stroke] {
+        fill: COLOR(mango);
+      }
+    }
+    .tick {
+      color: COLOR(shamrock);
+    }
+    .cross {
+      color: COLOR(red-orange);
+    }
+    .info {
+      color: COLOR(mango);
+    }
+  }
+}

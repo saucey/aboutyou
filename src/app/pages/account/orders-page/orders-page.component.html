@@ -1,0 +1,26 @@
+<div class="container">
+  <app-header [title]="'ACCOUNT.pages.orders.title' | translate"></app-header>
+
+  <div *ngIf="orders">
+    <div class="row">
+      <div class="col-md-4">
+        <app-orders-list
+          [label]="'ACCOUNT.pages.orders.title' | translate"
+          [isMobile]="isMobile$ | async"
+          [orders]="orders"
+        ></app-orders-list>
+      </div>
+
+      <div class="col-7 offset-md-1" *ngIf="(isMobile$ | async) === false">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!orders && !isLoading">
+    <app-no-order
+      [title]="'ACCOUNT.pages.orders.noOrder.title' | translate"
+      [subTitle]="'ACCOUNT.pages.orders.noOrder.noOrderText' | translate"
+    ></app-no-order>
+  </div>
+  <app-skeleton-overview-list *ngIf="isLoading"></app-skeleton-overview-list>
+</div>

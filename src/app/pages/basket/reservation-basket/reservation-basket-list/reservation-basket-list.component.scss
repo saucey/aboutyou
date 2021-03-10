@@ -1,0 +1,37 @@
+@import 'src/app/common/styles/index';
+
+.basket-list {
+  margin-right: 0px;
+  @include MEDIA_QUERY(lg) {
+    margin-right: 60px;
+  }
+
+  .header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: stretch;
+    align-items: flex-start;
+
+    .info {
+      .item-count-label {
+        margin-right: 2rem;
+      }
+      .actions {
+        font-size: FONT_SIZES(small) !important;
+        display: flex;
+        flex-direction: row;
+        .icon-link {
+          span {
+            vertical-align: top;
+            padding-left: 0.5rem;
+          }
+        }
+      }
+    }
+    .dates {
+      font-weight: 500;
+    }
+  }
+}

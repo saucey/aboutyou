@@ -1,0 +1,8 @@
+@import './common/styles/index';
+
+.container {
+  padding-top: $header-desktop-reduced-height + $header-desktop-language-switch-height;
+  @include MEDIA_QUERY(lg) {
+    padding-top: $header-desktop-height + $header-desktop-language-switch-height;
+  }
+}

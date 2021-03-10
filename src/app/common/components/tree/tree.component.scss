@@ -1,0 +1,86 @@
+@import '../../styles/index';
+
+:host {
+  display: flex;
+  width: 100%;
+}
+
+.category-tree {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-start;
+
+  .bottom-border {
+    border-bottom: solid 1px COLOR(grey-150);
+  }
+
+  .parent-link {
+    margin-top: 0.5rem;
+    color: COLOR(grey-600);
+    font-size: FONT_SIZES(medium);
+    cursor: pointer;
+    text-decoration: none;
+
+    .back-icon {
+      background-image: ASSETS_URL('icons/chevron-left.svg');
+      background-repeat: no-repeat;
+      width: 1.5rem;
+      height: 1.5rem;
+      transform: scale(0.7);
+      display: inline-block;
+    }
+    span {
+      vertical-align: super;
+    }
+
+    &:hover {
+      box-shadow: 0 1px 0 0px;
+    }
+  }
+
+  .child-link {
+    margin-bottom: 1rem;
+    color: COLOR(grey-600);
+    font-size: FONT_SIZES(medium);
+    display: block;
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover {
+      span {
+        box-shadow: 0 1px 0 0px;
+      }
+    }
+  }
+
+  .sub-category {
+    font-weight: bold;
+    font-size: FONT_SIZES(base);
+    line-height: 3rem;
+  }
+
+  .current-category {
+    text-align: center;
+    font-weight: 300;
+    font-size: FONT_SIZES(extraLarge);
+    line-height: 3rem;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .horizontalScrollList {
+    width: 100%;
+    overflow: auto;
+    display: flex;
+    padding: 0.5rem;
+
+    app-button {
+      margin-right: 0.5rem !important;
+      flex-shrink: 0;
+    }
+  }
+  div[class^='d-'] {
+    width: 100%;
+  }
+}

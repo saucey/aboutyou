@@ -1,0 +1,42 @@
+@import '../../../../common/styles/index';
+
+::ng-deep {
+  .load-more {
+    width: 80%;
+
+    @include MEDIA_QUERY(lg) {
+      width: 350px;
+    }
+
+    .progress-text {
+      color: COLOR(grey-600);
+      font-size: FONT_SIZES(small);
+      text-align: center;
+    }
+    .progress-bar {
+      height: 4px;
+      margin: 8px 0 23px 0;
+      transition: all 0.5s ease-in-out;
+      background: COLOR(grey-150);
+
+      .progress-current {
+        height: 4px;
+        transition: all 0.5s ease-in-out;
+        background: COLOR(bermuda-green-300);
+      }
+    }
+    button {
+      height: 40px;
+      &:disabled {
+        background-color: COLOR(white) !important;
+      }
+    }
+  }
+}
+
+:host {
+  display: flex;
+  margin: 2rem auto;
+  width: 100%;
+  justify-content: center;
+}

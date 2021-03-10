@@ -1,0 +1,163 @@
+<a href="#" *ngIf="current" [routerLink]="'/p/' + product.productId | localize">
+  <div class="product-tile" @enterAnimation>
+    <div class="product-preview">
+      <div
+        [ngClass]="[
+          'squared-image-container',
+          (product.choosableSiblings && product.choosableSiblings.length > 1) || product.custom.rating
+            ? 'with-hover'
+            : ''
+        ]"
+      >
+        <div class="sold-out">
+          {{ 'BASKET.outOfStock' | translate }}
+        </div>
+        <div class="squared-image">
+          <img
+            *ngIf="!(product.choosableSiblings && product.choosableSiblings.length > 1) && current.previewImageSrc"
+            [src]="current.previewImageSrc"
+          />
+          <ng-container *ngFor="let colorVariation of product.choosableSiblings; index as i">
+            <div
+              [ngClass]="[
+                'entry',
+                i === currentHoveredColor || (i === currentColorVariation && !currentHoveredColor) ? 'active' : '',
+                i === currentHoveredColor ? 'hovered' : '',
+                colorVariation.custom.moodImageSrc ? 'contains-mood' : ''
+              ]"
+            >
+              <img
+                *ngIf="colorVariation.custom?.moodImageSrc"
+                src="{{ colorVariation.custom.moodImageSrc }}"
+                class="mood-image"
+              />
+              <img
+                *ngIf="colorVariation.previewImageSrc"
+                src="{{ colorVariation.previewImageSrc }}"
+                class="main-image"
+              />
+            </div>
+          </ng-container>
+        </div>
+
+        <div class="in-basket d-none d-flex" *ngIf="isWishlistItemInBasket$ | async">
+          <app-icon [icon]="'checkmark'" [scale]="1"></app-icon>
+          {{ 'GLOBAL.header.icons.basket.navigation.inBasket' | translate }}
+        </div>
+
+        <div
+          class="toolbox d-none d-lg-flex"
+          *ngIf="(product.choosableSiblings && product.choosableSiblings.length > 1) || current.custom.rating"
+        >
+          <div *ngIf="product.choosableSiblings && product.choosableSiblings.length > 1" class="colors">
+            <ng-container *ngFor="let colorVariation of product.choosableSiblings | slice: 0:3; index as i">
+              <app-color-switch
+                (mouseover)="currentHoveredColor = i"
+                (mouseout)="currentHoveredColor = null"
+                (click)="switchColor($event, i)"
+                [active]="currentColorVariation === i"
+                [color]="colorVariation.custom.colorHex"
+              ></app-color-switch>
+            </ng-container>
+
+            <app-color-switch
+              class="more"
+              *ngIf="product.choosableSiblings.length > 3"
+              color="#FFFFFF"
+              borderColor="#d7d7d7"
+              >+</app-color-switch
+            >
+          </div>
+
+          <div *ngIf="current.custom.rating" class="rating">
+            <app-rating [rating]="current.custom.rating"></app-rating>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-toolbox d-lg-none">
+      <div class="colors">
+        <ng-container *ngFor="let colorVariation of product.choosableSiblings | slice: 0:3; index as i">
+          <app-color-switch
+            (click)="switchColor($event, i)"
+            [active]="currentColorVariation === i"
+            [color]="colorVariation.custom.colorHex"
+          ></app-color-switch>
+        </ng-container>
+
+        <app-color-switch
+          class="more"
+          *ngIf="product.choosableSiblings && product.choosableSiblings.length > 4"
+          color="#FFFFFF"
+          borderColor="#d7d7d7"
+          >+</app-color-switch
+        >
+      </div>
+    </div>
+
+    <div *ngIf="current.custom.productTitle" class="product-title">{{ current.custom.productTitle }}</div>
+
+    <div *ngIf="current.custom.isNew || current.custom.isSale || current.custom.tagLabel" class="product-tag-container">
+      <app-promotion-flag *ngIf="current.custom.isNew" type="new"></app-promotion-flag>
+      <app-promotion-flag *ngIf="current.custom.isSale" type="sale"></app-promotion-flag>
+      <div *ngIf="current.custom.tagLabel" class="tag">
+        {{ 'GLOBAL.product_title.' + current.custom.tagLabel | translate }}
+      </div>
+    </div>
+
+    <div *ngIf="current.custom.additionalInformationLabel" class="additional-information">
+      {{ current.custom.additionalInformationLabel }}
+    </div>
+
+    <div *ngIf="current.oldPrice" class="updated-price-container">
+      <div *ngIf="current.currentPrice" class="new-price-label">
+        {{ current.currentPrice | currency: current.currency }}
+      </div>
+      <div *ngIf="current.oldPrice" class="striked-price-label">
+        {{ current.oldPrice | currency: current.currency }}
+      </div>
+    </div>
+
+    <div class="energy-flag-and-price">
+      <div *ngIf="current.custom.energyLabel" class="energy-flag-container">
+        <app-energy-flag [type]="current.custom.energyLabel"></app-energy-flag>
+      </div>
+      <div *ngIf="current.currentPrice && !current.oldPrice" class="price-label">
+        {{ current.currentPrice | currency: current.currency }}
+      </div>
+    </div>
+
+    <div class="flag-container">
+      <div *ngIf="current.percentageDiscount" class="flag cherry">
+        - {{ current.percentageDiscount * 100 | number }} %
+      </div>
+      <div *ngIf="current.custom.packSize" class="flag grey">
+        {{ 'GLOBAL.product_title.packSizeLabel' | translate: { value: current.custom.packSize } }}
+      </div>
+    </div>
+
+    <div *ngIf="current.referenceLabel" class="base-price-label">
+      {{ current.referenceLabel }}
+    </div>
+
+    <div class="floating-actions-container">
+      <span *ngIf="isItemInWishlist$ | async" class="pt-wlp">
+        <app-circle-button (click)="onHandleAddBasketItem($event)">
+          <app-icon icon="bag"></app-icon>
+        </app-circle-button>
+
+        <app-circle-button
+          class="close"
+          (click)="isItemSoldOut ? onHandleDeleteWishlistItem($event) : openDialogBeSureDelete($event)"
+        >
+          <app-icon icon="close"></app-icon>
+        </app-circle-button>
+      </span>
+
+      <app-circle-button (click)="onHandleAddWishlistItem($event)" class="pt-plp">
+        <app-icon icon="{{ wishlistIcon$ | async }}"></app-icon>
+      </app-circle-button>
+    </div>
+  </div>
+</a>

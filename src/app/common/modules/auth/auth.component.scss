@@ -1,0 +1,34 @@
+@import '../../styles/index';
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 50;
+}
+
+.login-box {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 50vw;
+  padding: 16px;
+  background: COLOR(white);
+  height: 580px;
+  z-index: 100;
+}
+
+.mobile-overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  top: $header-desktop-reduced-height;
+  background: rgba(0, 0, 0, 0.29);
+}

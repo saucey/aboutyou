@@ -1,0 +1,15 @@
+<div class="price-range">
+  <app-range-slider
+    [value]="{ min: value.min, max: value.max }"
+    [floor]="floor"
+    [ceil]="ceil"
+    [onChange]="onChangeHandler"
+    [onChangeCommit]="onChangeCommitHandler"
+  ></app-range-slider>
+
+  <div class="value-display">
+    <input type="text" [value]="minValSet | currency: currency" disabled />
+    <span>{{ 'PRODUCT_LISTING.filters.toLabel' | translate }}</span>
+    <input type="text" [value]="maxValSet | currency: currency" disabled />
+  </div>
+</div>

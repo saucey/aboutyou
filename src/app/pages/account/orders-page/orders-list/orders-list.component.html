@@ -1,0 +1,54 @@
+<!-- title for desktop only-->
+<div class="d-none d-md-block title">{{ label }}</div>
+<div class="content">
+  <!-- side nav desktop-->
+  <div class="list-group" *ngIf="!isMobile">
+    <ng-container *ngFor="let order of ordersList">
+      <app-orders-list-item
+        [isMobile]="isMobile"
+        [isActive]="isActive(order)"
+        [isCancelled]="isCancelled(order)"
+        [type]="'orders'"
+        [date]="order.confirmedAt"
+        [id]="order.id"
+        [referenceKey]="order.referenceKey"
+        [total]="order.itemCount"
+        [status]="getOrderStatus(order.status)"
+      ></app-orders-list-item>
+    </ng-container>
+  </div>
+  <div class="d-none d-md-block pagination">
+    <app-pagination
+      [totalRecords]="ordersCount"
+      [recordsPerPage]="recordsPerPage"
+      [activePage]="activePage"
+      (pageChange)="displayActivePage($event)"
+    ></app-pagination>
+  </div>
+
+  <!-- side nav mobile-->
+  <ng-container *ngIf="isMobile">
+    <div class="list-group">
+      <ng-container *ngFor="let ordersGroup of groupedOrders | keyvalue">
+        <div class="orderTitle">
+          <div class="month">{{ ordersGroup.key }}</div>
+          <mat-divider></mat-divider>
+        </div>
+
+        <ng-container *ngFor="let order of ordersGroup.value">
+          <app-orders-list-item
+            [isMobile]="isMobile"
+            [isActive]="isActive(order)"
+            [isCancelled]="isCancelled(order)"
+            [type]="'orders'"
+            [date]="order.confirmedAt"
+            [id]="order.id"
+            [referenceKey]="order.referenceKey"
+            [total]="order.itemCount"
+            [status]="getOrderStatus(order.status)"
+          ></app-orders-list-item>
+        </ng-container>
+      </ng-container>
+    </div>
+  </ng-container>
+</div>

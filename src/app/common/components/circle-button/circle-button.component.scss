@@ -1,0 +1,46 @@
+@import '../../styles/index';
+
+button {
+  width: 32px;
+  height: 32px;
+  border: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  .tooltip {
+    flex-wrap: nowrap;
+    z-index: $z-circle-button-tooltip;
+    justify-content: center;
+    width: 220px;
+    margin-top: -40px;
+    position: absolute;
+    display: flex;
+    background: COLOR(white);
+    border: 1px solid COLOR(grey-150);
+    padding: 8px 12px;
+    opacity: 0;
+    transform: scale(0);
+    transform-origin: bottom center;
+    transition: all 0.2s;
+    font-size: 12px;
+    line-height: 1.33;
+    color: COLOR(grey-600);
+  }
+
+  &:hover {
+    @include MEDIA_QUERY(md) {
+      .tooltip {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  }
+
+  span {
+    margin-top: 7px;
+  }
+}

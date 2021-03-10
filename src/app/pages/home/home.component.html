@@ -1,0 +1,86 @@
+<ng-container *ngFor="let elem of contentElements">
+  <ng-container [ngSwitch]="elem.type">
+    <div *ngSwitchCase="'grid_slider'" class="grid_slider">
+      <app-stage-module [slides]="elem.data"></app-stage-module>
+    </div>
+
+    <div *ngSwitchCase="'grid_usp'" class="container pt-5 pb-2 grid_usp">
+      <app-responsive-usp-list
+        [usps]="[
+          {
+            iconName: 'speechbubbles',
+            headline: 'HOME.USP.customerservice.headline' | translate,
+            short: 'HOME.USP.customerservice.short' | translate,
+            long: 'HOME.USP.customerservice.long' | translate
+          },
+          {
+            iconName: 'bill',
+            headline: 'HOME.USP.bill.headline' | translate,
+            short: 'HOME.USP.bill.short' | translate,
+            long: 'HOME.USP.bill.long' | translate,
+            link: 'HOME.USP.bill.link' | translate
+          },
+          {
+            iconName: 'click-and-collect',
+            headline: 'HOME.USP.clickAndCollect.headline' | translate,
+            short: 'HOME.USP.clickAndCollect.short' | translate,
+            long: 'HOME.USP.clickAndCollect.long' | translate
+          },
+          {
+            iconName: 'local-pin',
+            headline: 'HOME.USP.store.headline' | translate,
+            short: 'HOME.USP.store.short' | translate,
+            long: 'HOME.USP.store.long' | translate,
+            link: 'HOME.USP.store.link' | translate
+          }
+        ]"
+      ></app-responsive-usp-list>
+    </div>
+
+    <div *ngSwitchCase="'grid_double_teaser'" class="container pt-5 grid_double_teaser">
+      <app-double-teaser
+        [teasers]="elem.data"
+        [headline]="'HOME.DOUBLETEASER.headline' | translate"
+      ></app-double-teaser>
+    </div>
+
+    <div *ngSwitchCase="'grid_product_slider'" class="container pt-3 grid_product_sliders">
+      <app-recommendations-slider
+        [products]="elem.data.products"
+        [headline]="elem.data.headline"
+      ></app-recommendations-slider>
+    </div>
+
+    <div *ngSwitchCase="'grid_popular_categories'" class="container pt-2 pb-2 grid_popular_categories">
+      <app-favorite-categories [headline]="elem.data.headline" [categories]="elem.data.categories">
+      </app-favorite-categories>
+    </div>
+
+    <div *ngSwitchCase="'grid_seo_text'" class="container pt-5 grid_seo_text">
+      <app-seo-text></app-seo-text>
+    </div>
+
+    <div *ngSwitchCase="'grid_slider_trisection'" class="container pt-5 pb-2 grid_slider_trisection">
+      <app-trisection
+        [headline]="elem.headline"
+        [trisectionSlides]="elem.data"
+        [callback]="navigateIfPossible"
+      ></app-trisection>
+    </div>
+
+    <div *ngSwitchCase="'grid_tiles'" class="container grid_tiles">
+      <app-grid-tiles [tiles]="elem" [defaultButtonText]="'HOME.discover' | translate"></app-grid-tiles>
+    </div>
+
+    <div *ngSwitchCase="'grid_newsletter'" class="container pt-5 pb-4 grid_newsletter">
+      <app-subscribe-newsletter
+        [subline]="'HOME.NEWSLETTER.subline' | translate"
+        [headline]="'HOME.NEWSLETTER.headline' | translate"
+        [placeholder]="'HOME.NEWSLETTER.placeholder' | translate"
+        [submit]="'HOME.NEWSLETTER.submit' | translate"
+        [disclaimer]="'HOME.NEWSLETTER.disclaimer' | translate"
+        [source]="'Footer'"
+      ></app-subscribe-newsletter>
+    </div>
+  </ng-container>
+</ng-container>

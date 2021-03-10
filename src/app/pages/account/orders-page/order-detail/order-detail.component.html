@@ -1,0 +1,154 @@
+<app-skeleton-detail-list *ngIf="isLoading"></app-skeleton-detail-list>
+
+<div [ngClass]="{ container: isMobile }" *ngIf="isCurrentOrder()">
+  <app-header
+    [title]="
+      (currentOrder.referenceKey ? 'ACCOUNT.pages.orders.order.detail.orderId' : '')
+        | translate: { id: currentOrder.referenceKey }
+    "
+    *ngIf="isMobile"
+  ></app-header>
+  <div class="order-title" *ngIf="!isMobile">
+    <span>
+      {{ 'ACCOUNT.pages.orders.order.title' | translate: { date: currentOrder.confirmedAt | date: 'dd.MM.yyyy' } }}
+    </span>
+  </div>
+
+  <div class="detail-container">
+    <div class="d-none d-md-block order-id" *ngIf="currentOrder.referenceKey">
+      <span>
+        {{ 'ACCOUNT.pages.orders.order.detail.orderId' | translate: { id: currentOrder.referenceKey } }}
+      </span>
+    </div>
+
+    <div class="bill" *ngIf="!isMobile || isSingleAddress">
+      <div class="address">
+        <div class="address-card">
+          <div class="address-card-title" *ngIf="!isSingleAddress">
+            {{ 'ACCOUNT.pages.orders.order.detail.address.delivery.title' | translate }}
+          </div>
+          <div class="address-card-title" *ngIf="isSingleAddress">
+            {{ 'ACCOUNT.pages.orders.order.detail.address.combinedTitle' | translate }}
+          </div>
+          <div class="address-card-body">
+            <div>
+              {{ currentOrder.address.shipping.recipient.firstName }}
+              {{ currentOrder.address.shipping.recipient.lastName }}
+            </div>
+            <div>{{ currentOrder.address.shipping.street }} {{ currentOrder.address.shipping.houseNumber }}</div>
+            <div>
+              <span>{{ currentOrder.address.shipping.zipCode }} {{ currentOrder.address.shipping.city }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="address" *ngIf="!isSingleAddress">
+        <div class="address-card">
+          <div class="address-card-title">
+            {{ 'ACCOUNT.pages.orders.order.detail.address.billing.title' | translate }}
+          </div>
+          <div class="address-card-body">
+            <div>
+              {{ currentOrder.address.billing.recipient.firstName }}
+              {{ currentOrder.address.billing.recipient.lastName }}
+            </div>
+            <div>{{ currentOrder.address.billing.street }} {{ currentOrder.address.billing.houseNumber }}</div>
+            <div>
+              <span>{{ currentOrder.address.billing.zipCode }} {{ currentOrder.address.billing.city }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="address tab-group" *ngIf="!isSingleAddress && isMobile">
+      <div class="address-card">
+        <mat-tab-group mat-align-tabs="start">
+          <mat-tab [label]="'ACCOUNT.pages.orders.order.detail.address.delivery.title' | translate">
+            <div class="address-card-body tab">
+              <div>
+                {{ currentOrder.address.shipping.recipient.firstName }}
+                {{ currentOrder.address.shipping.recipient.lastName }}
+              </div>
+              <div>{{ currentOrder.address.shipping.street }} {{ currentOrder.address.shipping.houseNumber }}</div>
+              <div>
+                <span>{{ currentOrder.address.shipping.zipCode }} {{ currentOrder.address.shipping.city }}</span>
+              </div>
+            </div>
+          </mat-tab>
+          <mat-tab [label]="'ACCOUNT.pages.orders.order.detail.address.billing.title' | translate">
+            <div class="address-card-body tab">
+              <div>
+                {{ currentOrder.address.billing.recipient.firstName }}
+                {{ currentOrder.address.billing.recipient.lastName }}
+              </div>
+              <div>{{ currentOrder.address.billing.street }} {{ currentOrder.address.billing.houseNumber }}</div>
+              <div>
+                <span>{{ currentOrder.address.billing.zipCode }} {{ currentOrder.address.billing.city }}</span>
+              </div>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+    </div>
+
+    <div class="products-lists">
+      <div class="products-list-container" *ngFor="let package of currentOrder.packages">
+        <div class="products-title">
+          {{
+            'ACCOUNT.pages.orders.order.detail.product.deliveryText'
+              | translate
+                : {
+                    deliveryDay: package.deliveryDate.minimum | date: 'EEEEEE',
+                    deliveryDate:
+                      (package.deliveryDate.minimum | date: 'dd.MM.') +
+                      ' - ' +
+                      (package.deliveryDate.maximum | date: 'dd.MM.')
+                  }
+          }}
+          <ng-container *ngIf="!isMobile">
+            {{ 'ACCOUNT.pages.orders.order.detail.product.withPrefix' | translate }} {{ package.carrierKey }}
+          </ng-container>
+          <app-icon
+            class="carrier-icon"
+            *ngIf="isMobile"
+            [icon]="package.carrierKey | lowercase"
+            width="52"
+            height="20"
+          ></app-icon>
+        </div>
+        <div class="status" *ngIf="isMobile">
+          {{ 'ACCOUNT.status' | translate }}
+          <span [ngClass]="{ cancelled: isCancelled(package) }"> {{ getOrderStatus(package.deliveryStatus) }}</span>
+        </div>
+        <ng-container *ngFor="let product of getProductsByPackageId(package.id)">
+          <app-product-item [product]="product" [currency]="currency"></app-product-item>
+        </ng-container>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="total-price">
+      <div>
+        <div class="total-price-label">
+          <div>
+            {{ 'ACCOUNT.pages.orders.order.detail.totalPrice' | translate }}
+          </div>
+        </div>
+        <div class="tax-label">
+          <span>
+            {{ 'ACCOUNT.pages.orders.order.detail.tax' | translate }}
+          </span>
+        </div>
+      </div>
+      <div class="sum">
+        <span>
+          {{ currentOrder.payment[0]?.amount | currency: currency }}
+        </span>
+      </div>
+    </div>
+
+    <div class="invoice">
+      <app-invoice [currentOrder]="currentOrder" [currency]="currency"></app-invoice>
+    </div>
+  </div>
+</div>

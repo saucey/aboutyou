@@ -1,0 +1,19 @@
+<div [ngClass]="['icon-dropdown', customClass]">
+  <div
+    class="icon-link"
+    (click)="iconClick.emit()"
+    [matBadge]="badgeCount ? badgeCount.toString() : null"
+    matBadgePosition="above before"
+    matBadgeColor="primary"
+    matBadgeSize="small"
+  >
+    <app-icon [icon]="icon" [scale]="0.8"></app-icon>
+    <span class="icon-label">{{ label }}</span>
+  </div>
+
+  <div *ngIf="opened">
+    <div class="dropdown" @enterAnimation *ngIf="dropdownVisible">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>

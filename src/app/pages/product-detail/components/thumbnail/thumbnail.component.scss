@@ -1,0 +1,99 @@
+@import '../../../../common/styles';
+
+.image {
+  width: 64px;
+  height: 64px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  cursor: pointer;
+
+  @include MEDIA_QUERY(md) {
+    width: 72px;
+    height: 72px;
+  }
+
+  .handle-indicator {
+    border: 1px solid transparent;
+    transition: all 0.2s;
+    width: 12px;
+    height: 12px;
+    position: absolute;
+
+    &.top {
+      top: 0;
+      border-bottom: none;
+
+      &.left {
+        left: 0;
+        border-right: none;
+      }
+
+      &.right {
+        right: 0;
+        border-left: none;
+      }
+    }
+
+    &.bottom {
+      bottom: 0;
+      border-top: none;
+
+      &.left {
+        left: 0;
+        border-right: none;
+      }
+
+      &.right {
+        right: 0;
+        border-left: none;
+      }
+    }
+  }
+
+  &.active {
+    .handle-indicator {
+      border-color: COLOR(grey-600);
+    }
+  }
+
+  &:hover {
+    .handle-indicator {
+      border-color: COLOR(grey-300);
+    }
+  }
+
+  &.large {
+    width: 112px;
+    height: 112px;
+
+    .handle-indicator {
+      width: 16px;
+      height: 16px;
+
+      &.top {
+        top: -3px;
+
+        &.left {
+          left: -3px;
+        }
+
+        &.right {
+          right: -3px;
+        }
+      }
+
+      &.bottom {
+        bottom: -3px;
+
+        &.left {
+          left: -3px;
+        }
+
+        &.right {
+          right: -3px;
+        }
+      }
+    }
+  }
+}

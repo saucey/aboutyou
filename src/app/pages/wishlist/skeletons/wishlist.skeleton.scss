@@ -1,0 +1,8 @@
+@import '../../../common/styles/index';
+
+.options {
+  @include MEDIA_QUERY(md) {
+    display: flex;
+    margin: 40px 0;
+  }
+}

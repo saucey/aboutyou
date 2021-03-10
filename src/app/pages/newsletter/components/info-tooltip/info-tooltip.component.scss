@@ -1,0 +1,54 @@
+@import 'src/app/common/styles';
+
+.info-tooltip {
+  position: relative;
+
+  .bubble {
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 20px;
+    padding: 20px;
+    background: COLOR(white);
+    border: 1px solid COLOR(black);
+    display: flex;
+    align-items: center;
+    transition: all 0.2s;
+
+    .icon-handle {
+      margin-left: auto;
+      padding-left: 5px;
+      cursor: pointer;
+    }
+
+    .text {
+      font-size: FONT_SIZES(small);
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      bottom: -8px;
+      right: 22px;
+      transform: rotate(45deg);
+      border-right: 1px solid COLOR(black);
+      border-bottom: 1px solid COLOR(black);
+      background: COLOR(white);
+    }
+  }
+
+  .icon {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    bottom: -45px;
+    right: 10px;
+    cursor: pointer;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

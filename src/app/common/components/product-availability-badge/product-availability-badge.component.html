@@ -1,0 +1,6 @@
+<ng-container>
+  <div [ngClass]="['wrapper', type ? type : '']">
+    <span [style.background-color]="color" class="circle"></span>
+    <span><ng-content></ng-content></span>
+  </div>
+</ng-container>

@@ -1,0 +1,58 @@
+@import 'src/app/common/styles';
+
+h3 {
+  font-size: FONT_SIZES(base);
+  font-weight: normal;
+  line-height: 1.5;
+  color: COLOR(grey-600);
+  margin-bottom: 16px;
+}
+
+p {
+  font-size: FONT_SIZES(medium);
+  font-weight: 300;
+  line-height: 1.43;
+  color: COLOR(grey-600);
+  margin-bottom: 16px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.with-icon {
+  img {
+    width: 32px;
+    margin-right: 6px;
+  }
+}
+
+.section {
+  margin-bottom: 48px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.warning-signs {
+  display: flex;
+  align-items: center;
+
+  .sign {
+    background-size: contain;
+    background-position: center;
+    width: 56px;
+    height: 56px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+
+    &.inflammable {
+      background-image: ASSETS_URL('pictos/danger-inflammation.svg');
+    }
+
+    &.environment {
+      background-image: ASSETS_URL('pictos/danger-environment.svg');
+    }
+  }
+}

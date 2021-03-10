@@ -1,0 +1,34 @@
+<div class="select">
+  <ng-container [ngSwitch]="true">
+    <!-- color-picker -->
+    <ng-container *ngSwitchCase="type === 'color'">
+      <app-color-bubble
+        *ngFor="let item of displayedItems"
+        [selected]="isSelected(item)"
+        (click)="onClickHandler(item)"
+        [item]="item"
+      ></app-color-bubble>
+    </ng-container>
+
+    <!-- checkbox-list -->
+    <ng-container *ngSwitchCase="type === 'checkbox'">
+      <app-checkbox
+        *ngFor="let item of displayedItems"
+        [selected]="isSelected(item)"
+        [label]="item.name"
+        (click)="onClickHandler(item)"
+      ></app-checkbox>
+    </ng-container>
+
+    <!-- buttons-list -->
+    <ng-container *ngSwitchCase="type === 'button'">
+      <app-button
+        *ngFor="let item of displayedItems"
+        [selected]="isSelected(item)"
+        variant="default"
+        (click)="onClickHandler(item)"
+        >{{ item.name }}
+      </app-button>
+    </ng-container>
+  </ng-container>
+</div>

@@ -1,0 +1,4 @@
+<span [ngClass]="['color-bubble', selected ? 'selected' : '']" [ngStyle]="{ background: getColor(item.id) }">
+  <i class="checkMark" *ngIf="selected"></i>
+  <span class="label">{{ item.name }}</span>
+</span>

@@ -1,0 +1,16 @@
+<div class="dropdown">
+  <div class="heading" (click)="toggleExpanded()">
+    <span class="sort-by">{{ sortByLabel }}:</span>
+    <span class="sort-by-value" *ngIf="selectedValue">{{ selectedValue.name }}</span>
+    <i [ngClass]="['expander-icon', expanded ? 'expanded' : '']"></i>
+  </div>
+  <div class="content" *ngIf="expanded">
+    <div
+      [ngClass]="['item', isSelected(item) ? 'selected' : '']"
+      *ngFor="let item of items"
+      (click)="onClickHandler(item)"
+    >
+      {{ item.name }}
+    </div>
+  </div>
+</div>

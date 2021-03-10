@@ -1,0 +1,41 @@
+@import '../../styles/';
+
+.wrapper {
+  display: inline-flex;
+  align-items: center;
+  font-size: FONT_SIZES(small);
+  line-height: 1.67;
+
+  span.circle {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    border-radius: 50%;
+    background-color: COLOR(moss-green-300);
+    margin-right: 8px;
+  }
+
+  &.available {
+    color: COLOR(moss-green-300);
+
+    span.circle {
+      background-color: COLOR(moss-green-300);
+    }
+  }
+
+  &.unavailable {
+    color: COLOR(red-orange);
+
+    span.circle {
+      background-color: COLOR(red-orange);
+    }
+  }
+
+  &.rare {
+    color: COLOR(grey-600);
+
+    span.circle {
+      background-color: COLOR(mango);
+    }
+  }
+}

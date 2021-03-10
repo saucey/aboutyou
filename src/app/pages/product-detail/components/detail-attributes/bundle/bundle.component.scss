@@ -1,0 +1,74 @@
+@import 'src/app/common/styles';
+
+.bundle {
+  margin-bottom: 24px;
+}
+
+.consists {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.43;
+  color: COLOR(grey-600);
+  margin-bottom: 20px;
+}
+
+.products {
+  .product-item {
+    display: flex;
+    align-items: center;
+    padding-bottom: 6px;
+    margin-bottom: 9px;
+    border-bottom: 1px solid COLOR(grey-150);
+    text-decoration: none;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    .preview {
+      width: 76px;
+      height: 76px;
+      background-size: contain;
+      background-position: center;
+
+      .sold-out {
+        text-align: center;
+        margin-top: 40%;
+        background: COLOR(grey-300);
+        color: COLOR(black);
+        width: 100%;
+        font-size: FONT_SIZES(extraSmall);
+        text-transform: uppercase;
+      }
+    }
+
+    .description {
+      padding-left: 24px;
+
+      .product-name {
+        margin-bottom: 4px;
+
+        .qty {
+          font-size: 14px;
+          font-weight: normal;
+          line-height: 1.43;
+          color: COLOR(grey-600);
+          margin-right: 4px;
+        }
+
+        .label {
+          font-weight: 300;
+          line-height: 1.43;
+          color: COLOR(grey-600);
+        }
+      }
+
+      .dimensions {
+        font-size: FONT_SIZES(small);
+        font-weight: 300;
+        line-height: 1.33;
+        color: COLOR(grey-600);
+      }
+    }
+  }
+}

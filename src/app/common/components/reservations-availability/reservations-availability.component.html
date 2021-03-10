@@ -1,0 +1,32 @@
+<div class="availability">
+  <app-icon
+    *ngIf="currentStock > 9 && quantity <= currentStock"
+    class="checkmark"
+    [icon]="'checkmark2'"
+    [scale]="isStoreDetail === true ? 1.3 : 1.1"
+  ></app-icon>
+  <app-icon
+    *ngIf="currentStock === 0 || (currentStock < quantity && currentStock > 0)"
+    class="close"
+    [icon]="'close2'"
+    [scale]="isStoreDetail === true ? 1.3 : 1.1"
+  ></app-icon>
+  <app-icon
+    *ngIf="currentStock > 0 && currentStock <= 9 && quantity <= currentStock"
+    class="info"
+    [icon]="'info'"
+    [scale]="isStoreDetail === true ? 1.3 : 1.1"
+  ></app-icon>
+
+  <span class="text cross" *ngIf="currentStock === 0">{{ 'LOCAL_RESERVATION_DIALOG.fewItemsFound' | translate }}</span>
+
+  <span class="text cross" *ngIf="currentStock < quantity && currentStock > 0">{{
+    'LOCAL_RESERVATION_DIALOG.fewItemsFound' | translate
+  }}</span>
+  <span class="text tick" *ngIf="currentStock > 9 && quantity <= currentStock">{{
+    'LOCAL_RESERVATION_DIALOG.sufficientItemsFound' | translate
+  }}</span>
+  <span class="text info" *ngIf="currentStock > 0 && currentStock <= 9 && quantity <= currentStock">{{
+    'LOCAL_RESERVATION_DIALOG.fewItemsFound' | translate
+  }}</span>
+</div>

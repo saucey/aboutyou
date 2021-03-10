@@ -1,0 +1,76 @@
+<div class="grid-tile">
+  <ng-container [ngSwitch]="type">
+    <!-- single_tile -->
+    <div *ngSwitchCase="'single_tile'" class="single_tile">
+      <ng-container
+        *ngFor="let elementGroup of elementGroups"
+        [ngTemplateOutlet]="renderElementGroup"
+        [ngTemplateOutletContext]="{ elementGroup: elementGroup }"
+      ></ng-container>
+    </div>
+
+    <!-- double_tile -->
+    <div *ngSwitchCase="'double_tile'" class="double_tile">
+      <ng-container
+        *ngFor="let elementGroup of elementGroups"
+        [ngTemplateOutlet]="renderElementGroup"
+        [ngTemplateOutletContext]="{ elementGroup: elementGroup }"
+      ></ng-container>
+    </div>
+
+    <!-- grid_of_two_aligned -->
+    <div *ngSwitchCase="'grid_of_two_aligned'" class="grid_of_two_aligned">
+      <div class="left-section" [style.background]="getElementGroupForArea('left').attributes.backgroundColor">
+        <ng-container
+          [ngTemplateOutlet]="renderElementGroup"
+          [ngTemplateOutletContext]="{ elementGroup: getElementGroupForArea('left') }"
+        ></ng-container>
+      </div>
+      <div class="right-section" [style.background]="getElementGroupForArea('right').attributes.backgroundColor">
+        <ng-container
+          [ngTemplateOutlet]="renderElementGroup"
+          [ngTemplateOutletContext]="{ elementGroup: getElementGroupForArea('right') }"
+        ></ng-container>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-template #renderElementGroup let-elementGroup="elementGroup">
+    <div class="element-group">
+      <ng-container *ngFor="let element of elementGroup.elements">
+        <ng-container [ngSwitch]="element.type">
+          <app-text
+            *ngSwitchCase="'element_headline'"
+            [tag]="getTextTag(element.attributes.size)"
+            [label]="element.attributes.text"
+            [style.textAlign]="getTextboxAlign(elementGroup.attributes.textboxAlign)"
+            [style.color]="element.attributes.color"
+          ></app-text>
+
+          <ng-container *ngIf="element.attributes.text">
+            <app-text
+              *ngSwitchCase="'element_subline'"
+              [tag]="getTextTag(element.attributes.size)"
+              [label]="element.attributes.text"
+              [style.textAlign]="getTextboxAlign(elementGroup.attributes.textboxAlign)"
+              [style.color]="element.attributes.color"
+            ></app-text>
+          </ng-container>
+
+          <ng-container *ngSwitchCase="'element_cta'" [ngSwitch]="element.attributes.tag">
+            <app-button
+              *ngSwitchCase="'button'"
+              [variant]="element.attributes.style ? element.attributes.style : 'default'"
+              (click)="navigateIfPossible(element)"
+            >
+              {{ element.attributes.text }}
+            </app-button>
+            <a *ngSwitchCase="'anchor'" href="element.attributes.link.href">{{ element.attributes.text }}</a>
+          </ng-container>
+
+          <img *ngSwitchCase="'element_image'" [src]="element.attributes | cdn: { size: 'medium' }" />
+        </ng-container>
+      </ng-container>
+    </div>
+  </ng-template>
+</div>

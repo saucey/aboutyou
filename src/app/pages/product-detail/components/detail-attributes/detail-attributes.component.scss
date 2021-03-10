@@ -1,0 +1,49 @@
+@import 'src/app/common/styles';
+
+::ng-deep {
+  h3 {
+    font-size: FONT_SIZES(base);
+    line-height: 1.5;
+    color: COLOR(grey-600);
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-size: FONT_SIZES(base);
+    line-height: 1.5;
+    font-weight: normal;
+    color: COLOR(grey-600);
+    margin-bottom: 8px;
+  }
+
+  p {
+    font-size: FONT_SIZES(medium);
+    font-weight: 300;
+    line-height: 1.43;
+    color: COLOR(grey-600);
+    margin-bottom: 16px;
+  }
+
+  .tab-content,
+  .content {
+    white-space: pre-line;
+    font-size: FONT_SIZES(medium);
+    font-weight: 300;
+    line-height: 1.43;
+    color: COLOR(grey-600);
+    padding-bottom: 35px;
+
+    @include MEDIA_QUERY(md) {
+      padding-bottom: 50px;
+    }
+  }
+}
+
+.article-number {
+  font-size: FONT_SIZES(medium);
+  font-weight: 300;
+  line-height: 1.43;
+  color: COLOR(grey-600);
+  margin-bottom: 48px;
+}

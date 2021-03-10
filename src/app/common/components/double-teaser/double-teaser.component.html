@@ -1,0 +1,96 @@
+<div class="double-teasers pt-4" *ngIf="teasers">
+  <div class="row">
+    <div class="text-center col-12 component-headline">
+      <app-text [label]="headline" [tag]="'h2'"></app-text>
+    </div>
+    <div class="col-12 col-md-6 teaser mb-4">
+      <img
+        class="element"
+        [style.background]="teasers[0].elementGroups[0].attributes.bgColor"
+        [src]="teasers[0].elementGroups[0].elements[3].attributes | cdn: { size: 'medium' }"
+      />
+      <div
+        class="text-content"
+        [style.textAlign]="getTextboxAlign(teasers[0].elementGroups[0].attributes.textboxAlign)"
+      >
+        <ng-container
+          [ngTemplateOutlet]="renderElementGroup"
+          [ngTemplateOutletContext]="{ elementGroup: teasers[0].elementGroups[0] }"
+        ></ng-container>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 teaser mb-4">
+      <img
+        class="element"
+        [style.background]="teasers[0].elementGroups[1].attributes.bgColor"
+        [src]="teasers[0].elementGroups[1].elements[3].attributes | cdn: { size: 'medium' }"
+      />
+      <div
+        class="text-content"
+        [style.textAlign]="getTextboxAlign(teasers[0].elementGroups[1].attributes.textboxAlign)"
+      >
+        <ng-container
+          [ngTemplateOutlet]="renderElementGroup"
+          [ngTemplateOutletContext]="{ elementGroup: teasers[0].elementGroups[1] }"
+        ></ng-container>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #renderElementGroup let-elementGroup="elementGroup">
+  <div
+    class="element-group"
+    [ngClass]="'padding-align-' + getTextboxAlign(teasers[0].elementGroups[0].attributes.textboxAlign)"
+  >
+    <ng-container *ngFor="let element of elementGroup.elements" class="element">
+      <ng-container [ngSwitch]="element.type">
+        <app-text
+          class="element"
+          *ngSwitchCase="'element_headline'"
+          [tag]="getTextTag(element.attributes.size)"
+          [label]="element.attributes.text"
+          [style.textAlign]="getTextboxAlign(elementGroup.attributes.textboxAlign)"
+          [style.color]="element.attributes.color"
+        ></app-text>
+
+        <app-text
+          class="element"
+          *ngSwitchCase="'element_subline'"
+          [tag]="getTextTag(element.attributes.size)"
+          [label]="element.attributes.text"
+          [style.textAlign]="getTextboxAlign(elementGroup.attributes.textboxAlign)"
+          [style.color]="element.attributes.color"
+        ></app-text>
+
+        <span
+          class="element_text"
+          *ngSwitchCase="'element_text'"
+          [style.color]="element.attributes.color"
+          [style.textAlign]="getTextboxAlign(elementGroup.attributes.textboxAlign)"
+        >
+          {{ element.attributes.text }}
+        </span>
+
+        <ng-container *ngSwitchCase="'element_cta'" [ngSwitch]="element.attributes.tag">
+          <app-button
+            class="element_cta"
+            *ngSwitchCase="'button'"
+            [variant]="element.attributes.style ? element.attributes.style : 'default'"
+            (click)="navigateIfPossible(element)"
+            [ngClass]="getTextboxAlign(elementGroup.attributes.textboxAlign)"
+          >
+            {{ element.attributes.text }}
+          </app-button>
+          <a
+            *ngSwitchCase="'anchor'"
+            class="element_cta"
+            [ngClass]="getTextboxAlign(elementGroup.attributes.textboxAlign)"
+            href="element.attributes.link.href"
+            >{{ element.attributes.text }}</a
+          >
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </div>
+</ng-template>

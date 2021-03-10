@@ -1,0 +1,17 @@
+<ng-container>
+  <div class="wrapper">
+    <button (click)="decrement()" class="decrement" [disabled]="value <= 1 || disabled">
+      <app-icon icon="minus"></app-icon>
+    </button>
+    <input
+      class="value"
+      [value]="value"
+      type="text"
+      [disabled]="!editable || disabled"
+      (input)="handleInputChange($event)"
+    />
+    <button (click)="increment()" class="increment" [disabled]="value === limit || disabled">
+      <app-icon icon="plus"></app-icon>
+    </button>
+  </div>
+</ng-container>

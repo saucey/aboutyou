@@ -1,0 +1,104 @@
+@import '../../common/styles';
+
+.wishlist-header {
+  padding: 20px 0px 20px 0px;
+  margin-bottom: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+
+  @include MEDIA_QUERY(md) {
+    display: block;
+  }
+
+  .backlink {
+    position: absolute;
+    display: none;
+    padding-top: 15px;
+
+    a {
+      font-size: FONT_SIZES(medium);
+      font-weight: 300;
+      line-height: 1.43;
+      text-decoration: none;
+      color: COLOR(grey-600);
+    }
+
+    label {
+      position: absolute;
+      width: 150px;
+      margin-top: -2px;
+      margin-left: 5px;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    @include MEDIA_QUERY(md) {
+      display: block;
+    }
+  }
+
+  .info-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 70px;
+    font-size: FONT_SIZES(medium);
+  }
+}
+
+.empty-wishlist {
+  margin-top: 100px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  div {
+    margin-top: 30px;
+  }
+}
+
+h3 {
+  font-size: FONT-SIZES(large);
+  margin-top: 100px;
+  margin-bottom: 25px;
+}
+
+.wlp-grid {
+  display: grid;
+  width: 100%;
+  grid-gap: 30px;
+  grid-template-rows: auto;
+  grid-template-columns: repeat(2, 1fr);
+
+  @include MEDIA_QUERY(md) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  ::ng-deep app-product-tile {
+    .toolbox,
+    .product-tag-container,
+    .additional-information,
+    .mobile-toolbox {
+      display: none !important;
+    }
+  }
+}
+
+.sold-out {
+  ::ng-deep app-product-tile {
+    .product-tile {
+      .sold-out {
+        display: block !important;
+      }
+      .squared-image {
+        opacity: 0.5;
+      }
+      .pt-wlp {
+        flex-direction: row;
+        app-circle-button:first-of-type {
+          display: none;
+        }
+      }
+    }
+  }
+}

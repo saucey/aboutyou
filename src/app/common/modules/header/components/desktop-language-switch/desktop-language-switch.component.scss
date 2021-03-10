@@ -1,0 +1,94 @@
+@import "../../../../styles/index.scss";
+
+::ng-deep {
+  .desktop-language-switch {
+    position: fixed;
+    width: 100%;
+    height: 24px;
+    background-color: COLOR(grey-075);
+    z-index: $z-header-row-0;
+
+    .container {
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex-direction: row;
+    }
+
+    .switch {
+      width: 134px;
+      transition: all 0.1s ease-out;
+      position: relative;
+
+      .heading {
+        display: flex;
+        align-items: center;
+        font-size: FONT_SIZES(extraSmall);
+        color: COLOR(grey-600);
+        cursor: default;
+        display: flex;
+        padding: 0 0.7rem;
+        height: 24px;
+
+        .selected-value {
+          font-size: FONT_SIZES(extraSmall);
+          font-weight: bold;
+          margin-right: 0.3rem;
+          cursor: pointer;
+        }
+
+        app-icon {
+          .chevron-down {
+            cursor: pointer;
+            height: 30px;
+            width: 30px;
+            transition: all 0.1s ease-out;
+            transform: scale(0.7) !important;
+          }
+          &.expanded {
+            .chevron-down {
+              transform: scale(-0.7) !important;
+            }
+          }
+        }
+      }
+
+      .content {
+        position: absolute;
+        z-index: $z-dropdown-content;
+        background: COLOR(grey-075);
+        right: 0;
+        min-width: 134px;
+
+        .item {
+          transition: all 0.1s ease-in-out;
+          cursor: pointer;
+          height: 30px;
+          display: flex;
+          align-items: center;
+          padding: 0 0.7rem;
+          justify-content: flex-start;
+          font-size: FONT_SIZES(extraSmall);
+
+          &:hover {
+            background: COLOR(grey-100);
+          }
+
+          &.selected {
+            font-weight: bold;
+          }
+        }
+      }
+
+      app-icon.flag {
+        margin: 0 0.2rem;
+      }
+    }
+
+    app-icon .close {
+      margin: 0 0.5rem;
+      cursor: pointer;
+    }
+  }
+}

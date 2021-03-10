@@ -1,0 +1,79 @@
+@import 'src/app/common/styles/index.scss';
+
+.newsletter {
+  background-color: COLOR(bermuda-green-200);
+  padding: 40px 17px;
+  position: relative;
+  overflow: hidden;
+
+  .subline {
+    font-size: FONT_SIZES(medium);
+  }
+
+  input {
+    width: 100%;
+    height: 40px;
+    margin-top: 30px;
+    margin-bottom: 12px;
+    padding: 16px 10px;
+  }
+  ::ng-deep {
+    h3 {
+      font-size: FONT_SIZES(extraLarge);
+      font-weight: 300;
+      b {
+        font-weight: 900;
+      }
+    }
+    button {
+      font-size: FONT_SIZES(medium);
+      font-weight: 900;
+    }
+    .letter {
+      display: none;
+    }
+    i {
+      display: block;
+      position: absolute;
+      right: -33px;
+      top: 72px;
+    }
+  }
+  .disclaimer {
+    padding-top: 24px;
+    font-size: FONT_SIZES(extraSmall);
+  }
+
+  @include MEDIA_QUERY(md) {
+    input {
+      width: 70%;
+      margin-right: 16px;
+      margin-top: 14px;
+    }
+    .disclaimer {
+      padding-top: 0;
+    }
+    ::ng-deep {
+      .letter-rotated {
+        top: 10px;
+      }
+      button {
+        width: 25%;
+        display: inline-block;
+      }
+    }
+  }
+  @include MEDIA_QUERY(lg) {
+    ::ng-deep {
+      .letter {
+        display: block;
+        position: absolute;
+        left: 5%;
+        top: 20px;
+      }
+      .letter-rotated {
+        display: none;
+      }
+    }
+  }
+}

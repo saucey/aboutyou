@@ -1,0 +1,22 @@
+@import '../../styles/index';
+
+::ng-deep {
+  svg {
+    width: 100%;
+  }
+
+  i {
+    width: 1rem;
+    height: 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    &.active {
+      path[fill],
+      path[stroke] {
+        fill: COLOR(bermuda-green-300);
+      }
+    }
+  }
+}

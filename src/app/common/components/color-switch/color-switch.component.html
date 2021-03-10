@@ -1,0 +1,8 @@
+<div
+  (mouseover)="hovered = true"
+  (mouseout)="hovered = false"
+  [style.border-color]="hovered || active ? color : borderColor ? borderColor : 'transparent'"
+  class="color-switch"
+>
+  <span [ngStyle]="{ background: color }" class="inner-container"><ng-content></ng-content></span>
+</div>

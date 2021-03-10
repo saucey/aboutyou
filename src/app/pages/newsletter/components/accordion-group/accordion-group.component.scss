@@ -1,0 +1,12 @@
+@import './src/app/common/styles/index.scss';
+
+.accordion-group {
+  display: flex;
+  overflow: hidden;
+  overflow-x: scroll;
+
+  @include MEDIA_QUERY(md) {
+    display: block;
+    overflow: visible;
+  }
+}

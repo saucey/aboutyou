@@ -1,0 +1,114 @@
+@import '../../../../..//common/styles/_index.scss';
+@import '~bootstrap/scss/mixins';
+
+$reduced-max-width: 960px;
+
+.footer-bar-wrapper {
+  background-color: COLOR(black);
+  padding: 0 0px;
+
+  > .footer-bar {
+    padding-top: 0;
+
+    > .row {
+      margin-right: 0;
+      margin-left: 0;
+      // flexbox
+      align-items: center;
+
+      color: COLOR(white);
+      font-size: FONT_SIZES(small);
+      line-height: 16px;
+      letter-spacing: normal;
+
+      div[class*='col'] {
+        padding: 6px 0;
+      }
+
+      ul {
+        list-style-type: none;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        margin-bottom: 0;
+
+        li {
+          margin-right: 24px;
+
+          a {
+            color: inherit;
+            font: inherit;
+          }
+        }
+      }
+
+      .copyright-star-wrapper {
+        display: flex;
+        flex-direction: column;
+
+        opacity: 0.6;
+        text-align: right;
+        white-space: nowrap;
+
+        a {
+          color: inherit;
+        }
+      }
+
+      @include media-breakpoint-down(md) {
+        height: auto;
+        min-height: 80px;
+        padding-top: 16px;
+        padding-bottom: 20px;
+        justify-content: space-between;
+
+        ul {
+          flex: 0 0;
+          flex-flow: row wrap;
+          justify-content: center;
+
+          li {
+            padding-bottom: 7px;
+          }
+        }
+
+        div.copyright-star-wrapper {
+          display: flex;
+          flex-flow: row wrap;
+          justify-content: center;
+          align-items: flex-end;
+
+          > :first-child::after {
+            content: '|';
+            margin-left: 12px;
+            margin-right: 12px;
+          }
+        }
+      }
+
+      @include media-breakpoint-down(xs) {
+        div.menu {
+          padding-bottom: 16px;
+        }
+
+        div.copyright-star-wrapper {
+          padding-top: 16px;
+          border-top: 1px solid COLOR(grey-600);
+
+          > :first-child::after {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  &.reduced {
+    > .footer-bar {
+      max-width: $reduced-max-width;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}

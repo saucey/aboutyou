@@ -1,0 +1,177 @@
+<div class="container">
+  <div class="row headline-row">
+    <div class="search-label">
+      {{ 'SEARCH_PAGE.yourSearch' | translate }} <b>{{ searchTerm }}</b>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-lg-3">
+      <div class="sidebar">
+        <div class="sticky-block">
+          <div class="category-tree">
+            <ng-container *ngIf="categories.loading; then loadingCategories; else loadedCategories"></ng-container>
+            <ng-template #loadingCategories>
+              <app-skeleton-category-tree></app-skeleton-category-tree>
+            </ng-template>
+
+            <ng-template #loadedCategories>
+              <app-tree
+                [items]="categories.data"
+                [activeCategory]="activeCategory"
+                [subCategoryLabel]="'PRODUCT_LISTING.categoryTree.subCategoryLabel' | translate"
+                [goBackLabel]="'SEARCH_PAGE.goBackLabel' | translate"
+                (selected)="onCategorySelect($event)"
+                [canNavigateToRoot]="true"
+              ></app-tree>
+            </ng-template>
+          </div>
+
+          <!-- FILTERS -->
+          <app-filters
+            [FILTER_CONFIG]="FILTER_CONFIG"
+            [SORT_CONFIG]="SORT_CONFIG"
+            [filters]="filters"
+            [selectedFilters]="selectedFilters"
+            [isDesktop]="isDesktop"
+            [isBrowser]="isBrowser"
+            [activeCategory]="activeCategory"
+            [currentPath]="currentPath"
+            [availablePrice]="availablePrice"
+            [currency]="currency"
+            [products]="products"
+            #FILTERS
+          ></app-filters>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-lg-9">
+      <div class="row">
+        <ng-container *ngIf="products.loading; then loadingProducts; else loadedProducts"></ng-container>
+
+        <ng-template #loadingProducts>
+          <app-skeleton-products showHeadline="true" [productsCount]="24"></app-skeleton-products>
+        </ng-template>
+
+        <ng-template #loadedProducts>
+          <ng-container *ngIf="products.data.length; then showProducts; else showNoProducts"></ng-container>
+
+          <ng-template #showProducts>
+            <div class="row-above-products">
+              <span
+                class="productsCount"
+                [translate]="'PRODUCT_LISTING.products.articles'"
+                [translateParams]="{ total: products.pagination.total | number }"
+              ></span>
+
+              <button class="filters-sort-button" (click)="FILTERS.toggleFiltersVisibility()">
+                <app-icon [ngClass]="{ active: FILTERS.showClearAllFilters() }" icon="filter" scale="1.8"></app-icon>
+                {{ 'PRODUCT_LISTING.sorting.buttonLabel' | translate }}
+              </button>
+
+              <!-- DESKTOP SORTING -->
+              <app-dropdown
+                class="sorting-desktop"
+                [items]="SORT_CONFIG"
+                [sortByLabel]="'PRODUCT_LISTING.sorting.sortByLabel' | translate"
+                [onChange]="FILTERS.handleFilterChange(FILTER_CONFIG.SORTING.urlParam)"
+                [value]="FILTERS.getSelectedSortValue()"
+              >
+              </app-dropdown>
+            </div>
+
+            <div class="plp-grid">
+              <!-- PRODUCTS GRID -->
+              <app-product-tile
+                *ngFor="let entry of products.data | slice: 0:displayTiles.productsToDisplay"
+                [product]="entry"
+              ></app-product-tile>
+
+              <!-- CONTENT TILES -->
+              <ng-container *ngFor="let row of displayTiles.tiles">
+                <ng-container [ngSwitch]="row.type">
+                  <!-- BUNDLE TILES -->
+                  <app-content-plp-bundle-tile
+                    *ngSwitchCase="'single_bundle_tile'"
+                    [ngStyle]="{ gridArea: row.gridArea }"
+                    [type]="row.type"
+                    [elements]="row.item.elements"
+                    [shopTheLookLabel]="'PRODUCT_LISTING.content.shopTheLook' | translate"
+                    [discoverLabel]="'PRODUCT_LISTING.content.discover' | translate"
+                    [onClick]="goToDetailPage"
+                    [showWishlistButton]="true"
+                  ></app-content-plp-bundle-tile>
+                  <app-content-plp-bundle-tile
+                    *ngSwitchCase="'double_bundle_tile'"
+                    [ngStyle]="{ gridArea: row.gridArea }"
+                    [type]="row.type"
+                    [elements]="row.item.elements"
+                    [shopTheLookLabel]="'PRODUCT_LISTING.content.shopTheLook' | translate"
+                    [discoverLabel]="'PRODUCT_LISTING.content.discover' | translate"
+                    [onClick]="goToDetailPage"
+                  ></app-content-plp-bundle-tile>
+
+                  <!-- OTHER TILES -->
+                  <app-content-plp-grid-tile
+                    *ngSwitchDefault
+                    [ngStyle]="{ gridArea: row.gridArea }"
+                    [type]="row.type"
+                    [elementGroups]="row.item.elementGroups"
+                  ></app-content-plp-grid-tile>
+                </ng-container>
+              </ng-container>
+            </div>
+
+            <app-load-more
+              *ngIf="shouldShowLoadMore()"
+              (click)="loadMore()"
+              [loading]="products.loadingMore"
+              [buttonLabel]="'PRODUCT_LISTING.products.loadMore.buttonLabel' | translate"
+              [progressText]="'PRODUCT_LISTING.products.loadMore.progressText' | translate: getPageProgress()"
+              [progress]="getPageProgress()"
+            ></app-load-more>
+            <app-skeleton-products *ngIf="products.loadingMore" [productsCount]="6"></app-skeleton-products>
+          </ng-template>
+
+          <ng-template #showNoProducts>
+            <div class="no-products-found">
+              <ng-container *ngIf="FILTERS.showClearAllFilters(); then withFilters; else withoutFilters"></ng-container>
+              <ng-template #withFilters>
+                <div class="message">
+                  <span [innerHTML]="'SEARCH_PAGE.products.noResults.withFilters.message' | translate"></span>
+                </div>
+                <app-button class="clear-filters" (click)="FILTERS.clearAllFilters()" variant="secondary">{{
+                  'PRODUCT_LISTING.filters.clearAll' | translate
+                }}</app-button>
+              </ng-template>
+
+              <ng-template #withoutFilters>
+                <div class="message">
+                  <span [innerHTML]="'SEARCH_PAGE.products.noResults.withoutFilters.message' | translate"></span>
+                  <span
+                    class="tip"
+                    [innerHTML]="'SEARCH_PAGE.products.noResults.withoutFilters.tip' | translate"
+                  ></span>
+                </div>
+              </ng-template>
+
+              <div class="pt-8" *ngFor="let slider of contentTiles.productSliders">
+                <app-recommendations-slider
+                  [products]="slider.products"
+                  [headline]="slider.headline"
+                ></app-recommendations-slider>
+              </div>
+            </div>
+          </ng-template>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+  <app-subscribe-newsletter
+    [subline]="'HOME.NEWSLETTER.subline' | translate"
+    [headline]="'HOME.NEWSLETTER.headline' | translate"
+    [placeholder]="'HOME.NEWSLETTER.placeholder' | translate"
+    [submit]="'HOME.NEWSLETTER.submit' | translate"
+    [disclaimer]="'HOME.NEWSLETTER.disclaimer' | translate"
+    [source]="'Footer'"
+  ></app-subscribe-newsletter>
+</div>

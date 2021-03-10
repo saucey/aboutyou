@@ -1,0 +1,58 @@
+@import '../../styles/index';
+
+.expander {
+  margin-bottom: 1rem;
+  transition: all 0.1s ease-out;
+
+  > mat-divider {
+    margin-top: 0.5rem;
+  }
+
+  .heading {
+    display: flex;
+    margin-bottom: 0.8rem;
+    align-items: center;
+    font-size: FONT_SIZES(medium);
+    color: COLORS(grey-600);
+    cursor: default;
+
+    .title {
+      width: 100%;
+      font-size: FONT_SIZES(medium);
+      font-weight: bold;
+    }
+
+    .expander-icon {
+      cursor: pointer;
+      background-image: ASSETS_URL('icons/chevron-down.svg');
+      height: 24px;
+      background-repeat: no-repeat;
+      width: 26px;
+      transition: all 0.1s ease-out;
+
+      &.expanded {
+        transform: scale(-1);
+      }
+    }
+  }
+  .content-block {
+    visibility: hidden;
+    overflow: hidden;
+    height: 0;
+
+    &.expanded {
+      visibility: visible;
+      height: initial;
+      animation: fadeIn 0.3s;
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

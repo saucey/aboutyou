@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-12 d-block d-sm-none">
+    <ngx-skeleton-loader
+      count="1"
+      appearance="lines"
+      [theme]="{
+        height: '35px',
+        width: '70%',
+        marginBottom: '25px',
+        marginTop: '90px',
+        marginLeft: '15%',
+        marginRight: '15%'
+      }"
+    ></ngx-skeleton-loader>
+  </div>
+  <div class="col-12 d-none d-sm-block">
+    <ngx-skeleton-loader count="1" appearance="lines" [theme]="{ height: '35px', width: '50%' }"></ngx-skeleton-loader>
+  </div>
+  <div class="col-12">
+    <div class="d-none d-sm-block">
+      <ngx-skeleton-loader
+        count="1"
+        appearance="lines"
+        [theme]="{ height: '20px', width: '30%', marginBottom: '5px', marginTop: '10px' }"
+      ></ngx-skeleton-loader>
+    </div>
+    <ngx-skeleton-loader
+      count="1"
+      appearance="lines"
+      [theme]="{ height: '175px', marginBottom: '20px', marginTop: '10px' }"
+    ></ngx-skeleton-loader>
+    <ngx-skeleton-loader
+      count="1"
+      appearance="lines"
+      [theme]="{ height: '20px', width: '40%', marginBottom: '5px', marginTop: '10px' }"
+    ></ngx-skeleton-loader>
+    <ngx-skeleton-loader count="1" appearance="lines" [theme]="{ height: '125px' }"></ngx-skeleton-loader>
+  </div>
+</div>

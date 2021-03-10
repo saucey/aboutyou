@@ -1,0 +1,16 @@
+<div class="form-group row" [formGroup]="profileForm">
+  <div class="form-group col-md-12 teaser">
+    {{ 'ACCOUNT.pages.newsletter.teaser' | translate }}
+  </div>
+  <div class="form-group col-md-12 checkbox">
+    <input
+      type="checkbox"
+      id="newsletter"
+      formControlName="newsletter"
+      class="form-control"
+      [attr.disabled]="newsletter.value ? '' : null"
+    />
+    <label for="newsletter"></label>
+    <span>{{ 'ACCOUNT.pages.newsletter.checkbox' | translate }}</span>
+  </div>
+</div>

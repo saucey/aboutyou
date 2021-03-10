@@ -1,0 +1,61 @@
+@import '../../styles/';
+
+.items {
+  display: flex;
+  align-items: center;
+}
+
+ul {
+  display: flex;
+  margin: 0;
+  padding: 0;
+
+  li {
+    list-style: none;
+  }
+}
+
+.star {
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+
+  &.empty {
+    background-image: ASSETS_URL('icons/star-inactive.svg');
+  }
+
+  &.full {
+    background-image: ASSETS_URL('icons/star-active.svg');
+  }
+
+  &.half {
+    &:after,
+    &:before {
+      width: 6px;
+      height: 12px;
+      display: inline-block;
+      content: ' ';
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    &:before {
+      background-image: ASSETS_URL('icons/star-active.svg');
+    }
+
+    &:after {
+      background-image: ASSETS_URL('icons/star-inactive.svg');
+      background-position: right;
+    }
+  }
+}
+
+.rating-display,
+.rating-count {
+  color: COLOR(grey-600);
+  font-size: FONT_SIZES(small);
+  font-weight: 300;
+  margin-left: 8px;
+}

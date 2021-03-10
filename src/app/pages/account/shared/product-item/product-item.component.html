@@ -1,0 +1,52 @@
+<div *ngIf="product">
+  <mat-divider></mat-divider>
+  <div class="row product-item">
+    <div class="col-2 icon">
+      <img [src]="product.mappedProduct.previewImageSrc" />
+    </div>
+    <div class="col-10 product-detail">
+      <div class="first">
+        <div class="name">{{ product.mappedProduct.custom.productTitle }}</div>
+        <div class="size" *ngIf="product.mappedProduct.custom.additionalInformationLabel">
+          {{ product.mappedProduct.custom.additionalInformationLabel }}
+        </div>
+        <div class="energy-flag" *ngIf="product.mappedProduct.custom.energyLabel">
+          <app-energy-flag [type]="product.mappedProduct.custom.energyLabel"></app-energy-flag>
+        </div>
+      </div>
+
+      <div class="row second">
+        <div class="col-4">
+          <div>
+            {{ 'ACCOUNT.pages.reservations.order.detail.product.quantity' | translate: { quantity: product.quantity } }}
+          </div>
+          <div>
+            {{
+              'ACCOUNT.pages.reservations.order.detail.product.color'
+                | translate: { color: product.mappedProduct.custom.color }
+            }}
+          </div>
+          <div>
+            {{
+              'ACCOUNT.pages.reservations.order.detail.product.articleNumber'
+                | translate: { Nr: product.mappedProduct.custom.articleNumber }
+            }}
+          </div>
+        </div>
+        <div class="col-8 product-price" *ngIf="product.unitPrice">
+          <div>
+            {{ sumAmountUnitPrice() | currency: currency }}
+          </div>
+        </div>
+        <div class="col-8 product-price" *ngIf="!product.unitPrice">
+          <div class="discount-prices" *ngIf="product.mappedProduct.percentageDiscount">
+            <s>{{ sumAmountOldPrice() | currency: currency }}</s>
+          </div>
+          <div [ngClass]="{ sale: product.mappedProduct.percentageDiscount }">
+            {{ sumAmountDiscountPrice() | currency: currency }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

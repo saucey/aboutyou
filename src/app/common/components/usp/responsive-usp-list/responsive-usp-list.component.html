@@ -1,0 +1,13 @@
+<ng-container>
+  <div class="usp-desktop d-none d-lg-block d-xl-block pt-3">
+    <div class="row">
+      <app-simple-usp *ngFor="let uspItem of usps" class="col-3" [inputs]="uspItem"></app-simple-usp>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container>
+  <ul class="accordion d-block d-xl-none d-lg-none">
+    <app-accordion-usp *ngFor="let uspItem of usps" [inputs]="uspItem"></app-accordion-usp>
+  </ul>
+</ng-container>

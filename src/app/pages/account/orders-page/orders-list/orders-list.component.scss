@@ -1,0 +1,155 @@
+@import '../../../..//common/styles';
+
+.title {
+  font-size: FONT_SIZES(extraLarge);
+  font-weight: 500;
+  color: COLOR(grey-600);
+  line-height: 1.33;
+  height: 32px;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: -0.8px;
+}
+
+.list-group-item {
+  border-radius: unset;
+}
+
+.content {
+  margin-top: -8px;
+
+  @include MEDIA_QUERY(md) {
+    margin-top: 32px;
+  }
+}
+
+.list-group {
+  .orderTitle {
+    margin-top: 32px;
+    .month {
+      color: COLOR(grey-600);
+      opacity: 0.4;
+      font-size: FONT_SIZES(medium);
+      height: 20px;
+      line-height: 1.43;
+      padding-left: 20px;
+      margin-bottom: 16px;
+    }
+  }
+}
+
+.open-reservations {
+  //margin-top: 24px;
+  margin-bottom: 16px;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  border: solid 1px COLOR(grey-150);
+
+  .open-reservations-headline {
+    padding: 18px 15px 19px 16px;
+    padding-right: 15px;
+    padding-bottom: 19px;
+    border-bottom: solid 1px COLOR(grey-150);
+
+    .title {
+      height: 24px;
+      font-size: FONT_SIZES(base);
+      font-weight: normal;
+      line-height: 1.5;
+      color: COLOR(grey-600);
+      margin-bottom: 2px;
+    }
+    .reservation-id {
+      height: 20px;
+      font-size: FONT_SIZES(medium);
+      font-weight: 300;
+      line-height: 1.43;
+      color: COLOR(grey-600);
+    }
+  }
+  .open-reservations-details {
+    padding: 18px 15px 28px 16px;
+    .title {
+      height: 20px;
+      font-size: FONT_SIZES(medium);
+      font-weight: normal;
+      line-height: 1.43;
+      color: COLOR(grey-600);
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      display: flex;
+      justify-content: space-between;
+      height: 20px;
+      font-size: FONT_SIZES(medium);
+      line-height: 1.43;
+      color: COLOR(grey-600);
+      margin-bottom: 16px;
+
+      .count {
+        height: 20px;
+        font-size: FONT_SIZES(medium);
+        font-weight: 300;
+        line-height: 1.43;
+        color: COLOR(grey-600);
+      }
+      .status {
+        font-weight: 300;
+        color: COLOR(grey-600);
+        span {
+          font-weight: normal;
+          line-height: 1.43;
+          color: rgba(34, 34, 34, 0.4);
+        }
+      }
+    }
+    .details-button {
+      min-height: 40px;
+      padding: 9px 16px 11px 16px;
+      border: solid 1px COLOR(grey-600);
+      text-align: center;
+      span {
+        height: 20px;
+        font-size: FONT_SIZES(medium);
+        font-weight: 500;
+        line-height: 1.43;
+        text-align: center;
+        color: COLOR(grey-600);
+      }
+    }
+  }
+}
+
+.pagination {
+  margin: 10px;
+  margin-top: 40px;
+}
+
+.notification {
+  margin-top: 24px;
+  height: 98px;
+  // opacity: 0.25;
+  background-color: COLOR(grey-200);
+  padding: 18px 18px 8px 16px;
+  font-size: FONT_SIZES(small);
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: normal;
+  color: COLOR(grey-600);
+  margin-bottom: 24px;
+
+  .title {
+    font-weight: normal;
+    font-size: FONT_SIZES(small);
+    margin-bottom: 12px;
+  }
+  .close-reservation {
+    font-size: FONT_SIZES(small);
+    height: 16px;
+    font-weight: 500;
+    color: COLOR(grey-600);
+  }
+}

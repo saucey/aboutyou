@@ -1,0 +1,150 @@
+<ng-container>
+  <!-- FILTERS -->
+  <!-- Desktop Filters -->
+  <span class="d-none d-lg-block">
+    <div class="filters">
+      <div class="filters-content">
+        <ng-container *ngIf="shouldShowFilters(false); then filtersPanel; else filtersSkeleton"></ng-container>
+      </div>
+    </div>
+  </span>
+
+  <!-- Mobile Filters -->
+  <span class="d-block d-lg-none">
+    <div class="filters" @filtersAnimation *ngIf="shouldShowFilters(true)" (click)="toggleFiltersVisibility()">
+      <div class="filters-content" (click)="$event.stopPropagation()">
+        <ng-container [ngTemplateOutlet]="filtersPanel"></ng-container>
+      </div>
+    </div>
+  </span>
+
+  <ng-template #filtersPanel>
+    <span class="heading-desktop">
+      <app-text tag="h4" [label]="'PRODUCT_LISTING.filters.heading' | translate"></app-text>
+    </span>
+    <span class="heading-mobile">
+      {{ 'PRODUCT_LISTING.filters.headingMobile' | translate }}
+      <i class="close-icon" (click)="toggleFiltersVisibility()"></i>
+    </span>
+
+    <!-- MOBILE/TABLET SORTING -->
+    <span class="d-block d-lg-none">
+      <app-expander
+        [label]="'PRODUCT_LISTING.sorting.sortByLabel' | translate"
+        [ngClass]="'order-' + FILTER_CONFIG.SORTING.order"
+        [isExpanded]="true"
+      >
+        <app-select
+          [items]="SORT_CONFIG"
+          [value]="[getSelectedSortValue()]"
+          [onChange]="handleFilterChange(FILTER_CONFIG.SORTING.urlParam, true)"
+          [selectedItemsFirst]="true"
+          mode="single"
+          type="button"
+        ></app-select>
+      </app-expander>
+    </span>
+
+    <!-- PRICE -->
+    <app-expander
+      [label]="'PRODUCT_LISTING.filters.price' | translate"
+      [ngClass]="'order-' + FILTER_CONFIG.MAX_PRICE.order"
+      (expandChange)="handlePriceExpandChange($event)"
+    >
+      <app-price-range
+        *ngIf="isBrowser"
+        [value]="getSetPriceValue()"
+        [floor]="availablePrice.min"
+        [ceil]="availablePrice.max"
+        [onChange]="handlePriceChange"
+        [currency]="currency"
+      ></app-price-range>
+    </app-expander>
+
+    <ng-container *ngFor="let filter of filters.data">
+      <ng-container [ngSwitch]="filter.id">
+        <!-- COLORS -->
+        <app-expander
+          *ngSwitchCase="FILTER_CONFIG.COLOR.id"
+          [label]="filter.name"
+          [tags]="getSelectedValue(FILTER_CONFIG.COLOR)"
+          [onTagRemove]="onTagRemoveHandler(FILTER_CONFIG.COLOR)"
+          (expandChange)="onFilterExpandedChange(FILTER_CONFIG.COLOR)($event)"
+          [isExpanded]="filtersExpandedState[FILTER_CONFIG.COLOR.id]"
+          [ngClass]="'order-' + FILTER_CONFIG.COLOR.order"
+        >
+          <app-select
+            [items]="filter.values"
+            [value]="getSelectedValue(FILTER_CONFIG.COLOR)"
+            [onChange]="handleFilterChange(FILTER_CONFIG.COLOR.urlParam)"
+            mode="multiple"
+            type="color"
+          >
+          </app-select>
+        </app-expander>
+
+        <!-- MATERIAL -->
+        <app-expander
+          *ngSwitchCase="FILTER_CONFIG.MATERIAL.id"
+          [label]="filter.name"
+          [tags]="getSelectedValue(FILTER_CONFIG.MATERIAL)"
+          [onTagRemove]="onTagRemoveHandler(FILTER_CONFIG.MATERIAL)"
+          (expandChange)="onFilterExpandedChange(FILTER_CONFIG.MATERIAL)($event)"
+          [isExpanded]="filtersExpandedState[FILTER_CONFIG.MATERIAL.id]"
+          [ngClass]="'order-' + FILTER_CONFIG.MATERIAL.order"
+        >
+          <app-select
+            [items]="filter.values"
+            [value]="getSelectedValue(FILTER_CONFIG.MATERIAL)"
+            [onChange]="handleFilterChange(FILTER_CONFIG.MATERIAL.urlParam)"
+            mode="multiple"
+            [type]="isDesktop ? 'checkbox' : 'button'"
+          >
+          </app-select>
+        </app-expander>
+
+        <!-- FLAGS -->
+        <app-expander
+          *ngSwitchCase="FILTER_CONFIG.FLAGS.id"
+          [label]="filter.name"
+          [tags]="getSelectedValue(FILTER_CONFIG.FLAGS)"
+          [onTagRemove]="onTagRemoveHandler(FILTER_CONFIG.FLAGS)"
+          (expandChange)="onFilterExpandedChange(FILTER_CONFIG.FLAGS)($event)"
+          [isExpanded]="filtersExpandedState[FILTER_CONFIG.FLAGS.id]"
+          [ngClass]="'order-' + FILTER_CONFIG.FLAGS.order"
+        >
+          <app-select
+            [items]="filter.values"
+            [value]="getSelectedValue(FILTER_CONFIG.FLAGS)"
+            [onChange]="handleFilterChange(FILTER_CONFIG.FLAGS.urlParam)"
+            mode="multiple"
+            [type]="isDesktop ? 'checkbox' : 'button'"
+          >
+          </app-select>
+        </app-expander>
+      </ng-container>
+    </ng-container>
+
+    <div class="white-divider"></div>
+
+    <div class="form-handlers">
+      <app-button
+        [loading]="products.loading"
+        [disabled]="products.pagination && !products.pagination.total"
+        class="apply"
+        (click)="toggleFiltersVisibility()"
+        variant="primary"
+        >{{
+          'PRODUCT_LISTING.filters.apply'
+            | translate: { count: products.loading ? '' : (products.pagination.total | number) }
+        }}</app-button
+      >
+      <app-button class="clearAll" *ngIf="showClearAllFilters()" (click)="clearAllFilters()" variant="secondary">{{
+        'PRODUCT_LISTING.filters.clearAll' | translate
+      }}</app-button>
+    </div>
+  </ng-template>
+  <ng-template #filtersSkeleton>
+    <app-skeleton-filters></app-skeleton-filters>
+  </ng-template>
+</ng-container>

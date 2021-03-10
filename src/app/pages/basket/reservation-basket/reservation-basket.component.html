@@ -1,0 +1,16 @@
+<ng-container *ngIf="state$ | async as state">
+  <span class="item-count-label">{{
+    'BASKET.listHeader.itemCount' | translate: { itemCount: (basketItems$ | async).length }
+  }}</span>
+  <app-reservation-basket-list
+    class="basket-list"
+    [isMobile]="isMobile$ | async"
+    [loading]="state.isLoading"
+    [currency]="currency"
+    [disabled]="state.isChangingQuantity"
+    [basketItems]="basketItems$ | async"
+    (basketItemClick)="onBasketItemClick($event)"
+    (handleDeleteItem)="handleDeleteItem($event)"
+    (handleItemQuantityChange)="handleItemQuantityChange($event)"
+  ></app-reservation-basket-list>
+</ng-container>

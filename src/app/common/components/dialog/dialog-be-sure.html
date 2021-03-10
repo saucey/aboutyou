@@ -1,0 +1,11 @@
+<div class="dialog">
+  <div>
+    <app-icon icon="close" (click)="onNoClick()" scale="1.5"></app-icon>
+  </div>
+  <div class="message">
+    <span>{{ data.message }}</span>
+  </div>
+  <app-button class="action" variant="accept" (click)="clickConfirmButton()">
+    {{ data.btnTitle }}
+  </app-button>
+</div>

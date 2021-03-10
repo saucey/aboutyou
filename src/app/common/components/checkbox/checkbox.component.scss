@@ -1,0 +1,32 @@
+@import '../../styles/index';
+
+.checkbox {
+  transition: all 0.1s ease-out;
+  display: flex;
+  align-items: center;
+  line-height: 30px;
+  margin-left: 6px;
+  font-size: FONT_SIZES(medium);
+  cursor: pointer;
+  color: COLOR(grey-600);
+  user-select: none;
+
+  .checked-icon {
+    margin-right: 0.5rem;
+    display: flex;
+    cursor: pointer;
+    background-image: ASSETS_URL('icons/checkbox-inactive.svg');
+    background-repeat: no-repeat;
+    width: 22px;
+    height: 22px;
+    transition: all 0.1s ease-out;
+    transform: scale(0.8);
+
+    &.checked {
+      background-image: ASSETS_URL('icons/checkbox-active.svg');
+    }
+  }
+  &:hover {
+    background: COLOR(grey-050);
+  }
+}

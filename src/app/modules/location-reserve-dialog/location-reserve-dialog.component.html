@@ -1,0 +1,310 @@
+<div id="google-map-wrapper">
+  <div id="wrapper" class="search-google-maps-wrapper">
+    <div class="google-maps-search-bar">
+      <form [formGroup]="availabilitiesSearchForm" (ngSubmit)="submitAvailabilitiesSearch()">
+        <h1 [ngClass]="{ isMobile: isMobile$ | async }" class="google-maps-search-bar__title">
+          <img
+            (click)="locationReservationDialogClose()"
+            *ngIf="storeDetails === undefined && (isMobile$ | async)"
+            class="back-btn"
+            src="/assets/icons/arrow-left.svg"
+            alt="arrow-left"
+          />
+          <img
+            (click)="backToSearch()"
+            *ngIf="storeDetails !== undefined && (isMobile$ | async)"
+            class="back-btn"
+            src="/assets/icons/arrow-left.svg"
+            alt="arrow-left"
+          />
+          {{ 'LOCAL_RESERVATION_DIALOG.title' | translate }}
+          <span (click)="locationReservationDialogClose()" class="close-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="4 4 16 16">
+              <path
+                fill="#000"
+                fill-rule="evenodd"
+                d="M5.845 5.844c.293-.293.767-.293 1.06 0L12 10.938l5.095-5.094c.266-.266.683-.29.976-.072l.084.072c.293.293.293.768 0 1.06L13.061 12l5.094 5.095c.267.266.29.683.073.977l-.073.084c-.293.293-.767.293-1.06 0L12 13.06l-5.095 5.095c-.266.266-.683.29-.976.072l-.084-.072c-.293-.293-.293-.768 0-1.06L10.939 12 5.845 6.904c-.267-.266-.29-.683-.073-.977z"
+              />
+            </svg>
+          </span>
+        </h1>
+        <div class="google-maps-search-bar__flex-container">
+          <div
+            (click)="locationReservationDialogClose()"
+            class="google-maps-search-bar__flex-container--product-details"
+          >
+            <img [src]="productImg" />
+            <div class="product-detail-content-wrapper">
+              <span>{{ productTitle }}</span>
+              <span>{{ productPrice | currency: currency }} </span>
+            </div>
+          </div>
+          <div [ngClass]="{ isMobile: isMobile$ | async }" class="google-maps-search-bar__flex-container--picker">
+            <app-quantity-picker
+              (valueChange)="onHandleQuantityChange($event)"
+              [limit]="10"
+              [value]="quantity"
+              [disabled]="!containsProducts()"
+            >
+            </app-quantity-picker>
+          </div>
+
+          <div
+            [ngClass]="{ isMobile: isMobile$ | async }"
+            id="google-maps-search-bar__flex-container--input"
+            class="google-maps-search-bar__flex-container--input"
+          >
+            <span class="mobile-form-text" *ngIf="(isMobile$ | async) && !searches">
+              {{ 'LOCAL_RESERVATION_DIALOG.preSearchInfo' | translate }}
+            </span>
+            <div class="input-wrapper">
+              <mat-form-field appearance="outline">
+                <mat-label>{{ 'LOCAL_RESERVATION_DIALOG.zipCode' | translate }}</mat-label>
+                <input
+                  (keydown.enter)="submitAvailabilitiesSearch()"
+                  formControlName="zipcode"
+                  matInput
+                  placeholder="Placeholder"
+                />
+                <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+              </mat-form-field>
+              <span class="error" *ngIf="noStoresFound">{{ 'LOCAL_RESERVATION_DIALOG.errorInpt' | translate }}</span>
+              <mat-checkbox
+                *ngIf="(isMobile$ | async) === false"
+                id="productsAvailable"
+                formControlName="productsAvailable"
+                >{{ 'LOCAL_RESERVATION_DIALOG.checkboxInfo' | translate }}</mat-checkbox
+              >
+            </div>
+            <div class="button-wrapper">
+              <app-button id="map-button" variant="primary" [disabled]="">
+                <img *ngIf="isMobile$ | async" src="/assets/icons/compass-arrow.svg" alt="phone" />
+                <span *ngIf="(isMobile$ | async) === false">
+                  Suchen
+                </span>
+              </app-button>
+            </div>
+            <mat-checkbox
+              *ngIf="(isMobile$ | async) && searches"
+              id="productsAvailable"
+              formControlName="productsAvailable"
+              >{{ 'LOCAL_RESERVATION_DIALOG.checkboxInfo' | translate }}</mat-checkbox
+            >
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="google-map-results-wrapper">
+      <google-map
+        height="400px"
+        width="1000"
+        [ngClass]="{
+          isResults: searches && (isMobile$ | async) === false,
+          isStoreDetails: storeDetails !== undefined && noStoresFound !== true
+        }"
+        [options]="{
+          disableDefaultUI: disableDefaultUI,
+          streetViewControl: streetViewControl,
+          zoomControl: zoomControl
+        }"
+        [center]="center"
+        [zoom]="zoom"
+        (mapMousemove)="move($event)"
+      >
+        <!-- <ng-template *ngIf="!isMobile"> -->
+        <div class="search-info-box" *ngIf="!searches">
+          <span *ngIf="(isMobile$ | async) === false">
+            {{ 'LOCAL_RESERVATION_DIALOG.enterZipCodeTextInfo' | translate }}
+          </span>
+        </div>
+        <!-- </ng-template> -->
+        <map-marker
+          #marker
+          *ngFor="let markerOption of markerOptions; let i = index"
+          [options]="markerOption"
+          (mapClick)="openInfoWindow(storeAvailabilities[i], i)"
+        >
+        </map-marker>
+        <map-info-window>Info Window content</map-info-window>
+      </google-map>
+      <div *ngIf="searches">
+        <div
+          class="search-box-results-wrapper"
+          [ngClass]="{ isMobile: isMobile$ | async, storeDetailsActive: storeDetails !== undefined }"
+        >
+          <div *ngIf="noStoresFound" class="search-box-results-wrapper__error-wrapper">
+            <span
+              >{{ 'LOCAL_RESERVATION_DIALOG.noResultsInfo1' | translate }}
+              <strong>{{ 'LOCAL_RESERVATION_DIALOG.noResultsInfo2' | translate }}</strong>
+              {{ 'LOCAL_RESERVATION_DIALOG.noResultsInfo3' | translate }}</span
+            >
+          </div>
+          <div *ngIf="storeAvailabilities.length > 0 && noStoresFound !== true">
+            <div class="search-box-results-wrapper__item" *ngFor="let store of storeAvailabilities; let i = index">
+              <div
+                id="store{{ i }}"
+                (click)="showStoreDetails(store)"
+                class="search-box-results-wrapper__item--inner-item"
+              >
+                <p class="search-box-results-wrapper__item--inner-item--title title">
+                  <svg xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      x="0"
+                      y="0"
+                      d="M18-0c-9.8 0-17.7 7.8-17.7 17.4 0 15.5 17.7 30.6 17.7 30.6s17.7-15.4 17.7-30.6c0-9.6-7.9-17.4-17.7-17.4z"
+                      fill="#19836b"
+                    />
+                    <text x="50%" y="50%" fill="#fff" dominant-baseline="middle" text-anchor="middle">{{ i + 1 }}</text>
+                  </svg>
+                  {{ store.storeName }}
+                </p>
+                <p>{{ store.address }}</p>
+                <p>{{ store.zipcode }} {{ store.city }}</p>
+
+                <app-reservations-availability
+                  [currentStock]="store.currentStock"
+                  [quantity]="quantity"
+                  [isStoreDetail]="false"
+                ></app-reservations-availability>
+
+                <p
+                  (click)="reserveQuick($event, store)"
+                  class="quick-reserve"
+                  *ngIf="!disableReservation(store) && (isMobile$ | async)"
+                >
+                  {{ 'LOCAL_RESERVATION_DIALOG.addToReservation' | translate }}
+
+                  <img class="quick-reserve--chevron" src="/assets/icons/chevron-right.svg" alt="chevron right" />
+                </p>
+
+                <img *ngIf="isMobile$ | async" class="info-icon" src="/assets/icons/info.svg" alt="info" />
+                <img
+                  *ngIf="(isMobile$ | async) === false"
+                  class="chevron-icon"
+                  src="/assets/icons/chevron-right.svg"
+                  alt="chevron right"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          *ngIf="storeDetails !== undefined && noStoresFound !== true"
+          class="search-store-details-wrapper"
+          [ngClass]="{ isMobile: isMobile$ | async }"
+        >
+          <div class="search-store-details-wrapper--title">
+            {{ storeDetails.storeName }}
+            <img src="/assets/icons/compass-arrow.svg" alt="phone" />
+          </div>
+
+          <app-reservations-availability
+            [currentStock]="storeDetails.currentStock"
+            [quantity]="quantity"
+            [isStoreDetail]="true"
+          ></app-reservations-availability>
+
+          <app-button
+            *ngIf="(isMobile$ | async) || getSelectedStoreId === null || getSelectedStoreId === storeDetails.storeId"
+            (click)="makeReservation(storeDetails)"
+            id="map-button"
+            variant="primary"
+            [disabled]="disableReservation(storeDetails)"
+          >
+            {{ 'LOCAL_RESERVATION_DIALOG.addToReservation' | translate }}
+          </app-button>
+
+          <div
+            class="reservation-message-popup-wrapper-desktop__text-wrapper"
+            *ngIf="
+              (isMobile$ | async) === false &&
+              getSelectedStoreId !== null &&
+              getSelectedStoreId !== storeDetails.storeId
+            "
+          >
+            <span>{{ 'LOCAL_RESERVATION_DIALOG.goToReservationListInfo' | translate }} </span>
+            <span class="reservation-message-popup-wrapper-desktop__text-wrapper--action">
+              {{ 'LOCAL_RESERVATION_DIALOG.goToReservationList' | translate }}
+              <img class="goto-list-chevron" src="/assets/icons/chevron-right.svg" alt="chevron right" />
+            </span>
+          </div>
+
+          <div class="search-store-details-wrapper__opening-times-wrapper general-inner-wrapper">
+            <span class="search-store-details-wrapper__opening-times-wrapper--title title">{{
+              'LOCAL_RESERVATION_DIALOG.openHours' | translate
+            }}</span>
+            <div
+              class="search-store-details-wrapper__opening-times-wrapper--openings"
+              *ngFor="let opening of storeDetails.openingHours"
+            >
+              <p class="day">{{ opening.weekDay }}</p>
+              <p class="time">{{ opening.openingHours.from }} - {{ opening.openingHours.until }}</p>
+            </div>
+          </div>
+
+          <div class="search-store-details-wrapper__more-info-wrapper general-inner-wrapper">
+            <span class="search-store-details-wrapper__more-info-wrapper--title title">{{
+              'LOCAL_RESERVATION_DIALOG.additionalInfo' | translate
+            }}</span>
+          </div>
+
+          <div class="search-store-details-wrapper__contact-wrapper general-inner-wrapper contact-wrapper">
+            <span class="search-store-details-wrapper__contact-wrapper--title title general">{{
+              'LOCAL_RESERVATION_DIALOG.contactInfo' | translate
+            }}</span>
+
+            <span class="search-store-details-wrapper__contact-wrapper--email general">
+              <span>
+                {{ 'LOCAL_RESERVATION_DIALOG.email' | translate }}
+              </span>
+              <img src="/assets/icons/email_white.svg" alt="phone" />
+            </span>
+            <span class="search-store-details-wrapper__contact-wrapper--phone general">
+              <span>{{ 'LOCAL_RESERVATION_DIALOG.callUs' | translate }}</span>
+              <a href="tel:{{ storeDetails.phone }}" class="phone-number"
+                >{{ storeDetails.phone }}
+                <img src="/assets/icons/phone.svg" alt="phone" />
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="reservation-message-popup-wrapper" *ngIf="(isMobile$ | async) && multipleStoreDenied">
+    <div class="reservation-message-popup-wrapper-inner">
+      <span class="more-info-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <path
+            fill="#222222"
+            fill-rule="nonzero"
+            d="M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18zm0 1.241a7.759 7.759 0 1 0 0 15.518 7.759 7.759 0 0 0 0-15.518zm4.854 3.42a.62.62 0 0 1 .158.788l-.056.084-5.835 7.382a1.402 1.402 0 0 1-2.189.057l-.084-.113-1.824-2.59a.62.62 0 0 1 .95-.792l.064.077 1.834 2.602a.16.16 0 0 0 .22.046l.024-.02.024-.027 5.842-7.391a.62.62 0 0 1 .872-.102z"
+          />
+        </svg>
+      </span>
+      <span class="reservation-message-popup-wrapper__text-wrapper">
+        <span class="reservation-message-popup-wrapper__text-wrapper--text">
+          <span
+            >Du hast derzeit eine nicht abgeschlossene Reservierung für die Filiale Hamburg Spitaler. Bitte schließe
+            diese zunächst ab, um eine weitere Reservierung für eine andere Filiale durchzuführen.
+          </span>
+        </span>
+        <span class="reservation-message-popup-wrapper__text-wrapper--action">
+          Zur Reservierungsliste
+          <img class="goto-list-chevron" src="/assets/icons/chevron-right.svg" alt="chevron right" />
+        </span>
+      </span>
+      <span (click)="closeReservationFailMessage()" class="cross-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="4 4 16 16">
+          <path
+            fill="#000"
+            fill-rule="evenodd"
+            d="M5.845 5.844c.293-.293.767-.293 1.06 0L12 10.938l5.095-5.094c.266-.266.683-.29.976-.072l.084.072c.293.293.293.768 0 1.06L13.061 12l5.094 5.095c.267.266.29.683.073.977l-.073.084c-.293.293-.767.293-1.06 0L12 13.06l-5.095 5.095c-.266.266-.683.29-.976.072l-.084-.072c-.293-.293-.293-.768 0-1.06L10.939 12 5.845 6.904c-.267-.266-.29-.683-.073-.977z"
+          />
+        </svg>
+      </span>
+    </div>
+  </div>
+</div>

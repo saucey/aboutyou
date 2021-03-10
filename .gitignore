@@ -1,0 +1,64 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+documentation.json
+.cache/
+
+# compiled output
+/dist
+/tmp
+/out-tsc
+# Only exists if Bazel was run
+/bazel-out
+
+# dependencies
+/node_modules
+
+# profiling files
+chrome-profiler-events*.json
+speed-measure-plugin*.json
+
+# IDEs and editors
+/.idea
+*.iml
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# reports
+/coverage
+/test-results
+
+# misc
+/.sass-cache
+/connect.lock
+
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+.history/
+
+# System Files
+.DS_Store
+Thumbs.db
+bin
+package-lock.json
+
+# Temporary angular src
+/temp
+
+# Seo
+/src/assets/sitemap.xml
+/src/assets/robots.txt
+
+# exclude everything
+src/app/themes/custom/*
+
+# exception to the rule
+!src/app/themes/custom/.gitkeep
+.env.local
+.env
+

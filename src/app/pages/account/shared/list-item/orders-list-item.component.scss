@@ -1,0 +1,88 @@
+@import '../../../..//common/styles/index';
+
+li {
+  background: ASSETS_URL('icons/chevron-right.svg') no-repeat scroll right;
+  cursor: pointer;
+  .card-title {
+    font-size: FONT_SIZES(base);
+    min-height: 20px;
+    line-height: 1.5;
+    color: COLOR(grey-600);
+    margin-bottom: 8px;
+
+    @include MEDIA_QUERY(md) {
+      min-height: 24px;
+    }
+  }
+
+  .subtitle {
+    font-size: FONT_SIZES(medium);
+    font-weight: 300;
+    color: COLOR(grey-600);
+    line-height: 1.43;
+    height: 20px;
+
+    &.first {
+      margin-bottom: 4px;
+    }
+
+    &.second {
+      .muted-text {
+        font-weight: normal;
+        color: COLOR(grey-300);
+      }
+      .cancelled {
+        color: COLOR(red-orange);
+      }
+    }
+  }
+
+  @include MEDIA_QUERY(md) {
+    background: none;
+  }
+}
+
+.list-group-item {
+  border-radius: unset;
+  border: none;
+  border-bottom: 1px solid COLOR(grey-150);
+  padding-top: 18px;
+  padding-bottom: 24px;
+
+  @include MEDIA_QUERY(md) {
+    padding: 18px 35px 28px 24px;
+    margin-bottom: -1px;
+    border: solid 1px COLOR(grey-150);
+  }
+}
+
+.arrow_box {
+  position: relative;
+  background: COLOR(white);
+  border: 1px solid #000000;
+  margin-bottom: 0;
+}
+.arrow_box:after,
+.arrow_box:before {
+  left: 100%;
+  top: 50%;
+  border: solid transparent;
+  content: ' ';
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.arrow_box:after {
+  border-color: rgba(255, 255, 255, 0); // styling of orders items border. Not working with transparant.
+  border-left-color: COLOR(white);
+  border-width: 10px;
+  margin-top: -10px;
+}
+.arrow_box:before {
+  border-color: rgba(0, 0, 0, 0);
+  border-left-color: COLOR(black);
+  border-width: 11px;
+  margin-top: -11px;
+}

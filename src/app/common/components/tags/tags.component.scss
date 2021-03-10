@@ -1,0 +1,32 @@
+@import '../../styles/index';
+
+.tags {
+  align-content: center;
+  align-items: center;
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+
+  .tag {
+    font-size: FONT_SIZES(medium);
+    background: COLOR(grey-050);
+    color: COLOR(grey-600);
+    display: inline-flex;
+    align-items: center;
+    font-weight: normal;
+    padding: 0.1em 0.5em;
+    margin-right: 0.5rem;
+    margin-bottom: 0.2rem;
+
+    i.remove-button {
+      cursor: pointer;
+      background-image: ASSETS_URL('icons/close.svg');
+      height: 24px;
+      background-repeat: no-repeat;
+      width: 24px;
+      transform: scale(0.7);
+      transition: all 0.1s ease-out;
+    }
+  }
+}

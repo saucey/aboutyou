@@ -1,0 +1,6 @@
+<app-header></app-header>
+<app-auth></app-auth>
+<div [@routeAnimations]="prepareRouteAnimation(outlet)">
+  <router-outlet #outlet="outlet"></router-outlet>
+</div>
+<app-footer></app-footer>

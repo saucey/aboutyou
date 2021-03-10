@@ -1,0 +1,10 @@
+<span
+  class="delivery-label"
+  [innerText]="'BASKET.listHeader.labelGroupedByPackage' | translate: { count: packageIndex }"
+>
+</span>
+<span
+  class="delivery-date"
+  [textContent]="(minDeliveryDate | date: dateFormat) + '&nbsp;-&nbsp;' + (maxDeliveryDate | date: dateFormat)"
+></span>
+<app-icon *ngIf="mappedIcon != null" class="carrier-icon" [icon]="mappedIcon" width="52px" height="20px"></app-icon>

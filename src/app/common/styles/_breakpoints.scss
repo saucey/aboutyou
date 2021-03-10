@@ -1,0 +1,39 @@
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1280px,
+);
+
+$container-max-widths: (
+  sm: 556px,
+  md: 748px,
+  lg: 1002px,
+  xl: 1260px,
+);
+
+// Respond-To Mixin
+@mixin MEDIA_QUERY($breakpoint) {
+  @if map-has-key($grid-breakpoints, $breakpoint) {
+    $value: map-get($grid-breakpoints, $breakpoint);
+
+    @media only screen and (min-width: $value) {
+      @content;
+    }
+  } @else {
+    @warn "Unknown `#{$breakpoint}` in $grid-breakpoints";
+  }
+}
+
+@mixin MEDIA_QUERY_MAX($breakpoint) {
+  @if map-has-key($grid-breakpoints, $breakpoint) {
+    $value: map-get($grid-breakpoints, $breakpoint);
+
+    @media only screen and (max-width: $value) {
+      @content;
+    }
+  } @else {
+    @warn "Unknown `#{$breakpoint}` in $grid-breakpoints";
+  }
+}

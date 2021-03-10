@@ -1,0 +1,11 @@
+<div class="expander">
+  <div class="heading">
+    <div class="title">{{ label }}</div>
+    <i (click)="toggleExpanded()" [ngClass]="['expander-icon', expanded ? 'expanded' : '']"></i>
+  </div>
+  <div [ngClass]="['content-block', expanded ? 'expanded' : '']">
+    <ng-content></ng-content>
+  </div>
+  <app-tags *ngIf="!expanded && tags && tags.length" [tags]="tags" [onTagRemove]="onTagRemove"></app-tags>
+  <mat-divider></mat-divider>
+</div>

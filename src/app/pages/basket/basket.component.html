@@ -1,0 +1,38 @@
+<div class="container">
+  <nav mat-tab-nav-bar mat-stretch-tabs class="tab-container" *ngIf="showTabHeader$ | async; else basketHeader">
+    <a
+      mat-tab-link
+      *ngFor="let link of basketLinks$ | async"
+      [routerLink]="link.path | localize"
+      routerLinkActive
+      #rla="routerLinkActive"
+      [active]="rla.isActive"
+      class="basket-tab-header"
+      [ngClass]="link.path"
+    >
+      {{ link.labelKey | translate: { itemCount: link.itemCount } }}
+    </a>
+  </nav>
+  <ng-template #basketHeader>
+    <div class="checkout-basket-header">
+      <h2
+        [innerText]="
+          (checkoutBasketItemCount$ | async) < 1
+            ? ('BASKET.yoursEmpty' | translate)
+            : ('BASKET.yours' | translate: { itemCount: checkoutBasketItemCount$ | async })
+        "
+      ></h2>
+    </div>
+  </ng-template>
+  <div class="basket-content">
+    <router-outlet></router-outlet>
+  </div>
+  <app-subscribe-newsletter
+    [subline]="'HOME.NEWSLETTER.subline' | translate"
+    [headline]="'HOME.NEWSLETTER.headline' | translate"
+    [placeholder]="'HOME.NEWSLETTER.placeholder' | translate"
+    [submit]="'HOME.NEWSLETTER.submit' | translate"
+    [disclaimer]="'HOME.NEWSLETTER.disclaimer' | translate"
+    [source]="'Footer'"
+  ></app-subscribe-newsletter>
+</div>

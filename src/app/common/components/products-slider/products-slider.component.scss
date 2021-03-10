@@ -1,0 +1,107 @@
+@import '../../styles/index';
+
+.items {
+  overflow: hidden;
+  position: relative;
+
+  @include MEDIA_QUERY(lg) {
+    padding: 3px 48px;
+  }
+
+  .product {
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-block;
+    width: 176px;
+    min-height: 300px;
+    margin-right: 40px;
+    transition: all 0.5s;
+
+    &:hover {
+      text-decoration: none;
+    }
+
+    @include MEDIA_QUERY(lg) {
+      margin-right: 20px;
+      margin-left: 20px;
+    }
+
+    img {
+      width: 176px;
+      height: 176px;
+    }
+    .title {
+      margin-top: 16px;
+      margin-bottom: 4px;
+      font-size: FONT_SIZES(medium);
+      font-weight: 600;
+      color: #262626;
+    }
+    .subtitle {
+      font-size: FONT_SIZES(medium);
+      color: COLOR(grey-600);
+    }
+  }
+
+  .slider {
+    @include MEDIA_QUERY(lg) {
+      overflow: hidden;
+      width: 1080px;
+    }
+    overflow: scroll;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  ::ng-deep {
+    app-circle-button {
+      position: relative;
+      top: 72px;
+    }
+    app-icon {
+      width: 32px;
+      height: 32px;
+      border: solid 1px COLOR(grey-300);
+      background-color: COLOR(white);
+      opacity: 1;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+  }
+
+  .nav-left {
+    left: 0;
+    width: 44px;
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    background: COLOR(white);
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .nav-right {
+    right: 0;
+    width: 46px;
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    background: COLOR(white);
+    display: flex;
+    justify-content: center;
+  }
+
+  &.no-nav {
+    padding-left: 3px;
+    padding-right: 3px;
+
+    .nav-left,
+    .nav-right {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,195 @@
+<footer>
+  <div class="footer-wrapper mt-3">
+    <div class="container footer" [ngClass]="{'reduced': reduced}">
+      <div class="row" *ngIf="!reduced">
+        <div class="col-md-12 col-lg-3 shopping">
+          <input type="checkbox" id="expander-1" />
+          <label for="expander-1">
+            <span [innerText]="'FOOTER.shoppingLabel' | translate"></span>
+            <span class="chevron">
+              <app-icon icon="chevron-down" height="24px" width="24px"></app-icon>
+            </span>
+          </label>
+          <ul>
+            <li><a [routerLink]="'/faq' | localize" fragment="">Bestellung</a></li>
+            <li><a [routerLink]="'/faq' | localize" fragment="">Versandkosten</a></li>
+            <li><a [routerLink]="'/faq' | localize" fragment="">Lieferung</a></li>
+            <li><a [routerLink]="'/faq' | localize" fragment="">Zahlung</a></li>
+            <li><a [routerLink]="'/faq' | localize" fragment="">Retoure / Reklamation</a></li>
+            <li><a [routerLink]="'/faq' | localize" fragment="">Widerruf</a></li>
+          </ul>
+        </div>
+
+        <div class="col-md-12 col-lg-3 service">
+          <ng-container *ngTemplateOutlet="service"></ng-container>
+        </div>
+
+        <div class="col-md-12 col-lg-3 about">
+          <input type="checkbox" id="expander-3" />
+          <label for="expander-3">
+            <span [innerText]="'FOOTER.aboutLabel' | translate"></span>
+            <span class="chevron">
+              <app-icon icon="chevron-down" height="24px" width="24px"></app-icon>
+            </span>
+          </label>
+          <ul>
+            <li><a href="https://www.gries-deco-company.com/" target="_blank"
+                [innerText]="'FOOTER.company' | translate"></a></li>
+            <li><a href="https://karriere.depot-online.com/" target="_blank"
+                [innerText]="'FOOTER.career' | translate"></a></li>
+          </ul>
+        </div>
+
+        <div class="col-md-12 col-lg-3 contact">
+          <ng-container *ngTemplateOutlet="contact"></ng-container>
+        </div>
+        <div class="col-md-12 col-lg-6 payment">
+          <ng-container *ngTemplateOutlet=payment></ng-container>
+        </div>
+        <div class="col-md-12 col-lg-3 follow" [ngClass]="{'d-none': reduced}">
+          <h2 [innerText]="'FOOTER.followLabel' | translate"></h2>
+          <div class="icon-options">
+            <ul class="list-horizontal">
+              <li>
+                <a href="https://www.facebook.com/DEPOTonline" target="_blank">
+                  <app-icon icon="facebook" height="24px" width="24px"></app-icon>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com/depot_online/" target="_blank">
+                  <app-icon icon="instagram" height="24px" width="24px"></app-icon>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.pinterest.de/depotonline/" target="_blank">
+                  <app-icon icon="pinterest" height="24px" width="24px"></app-icon>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.youtube.com/user/DEPOTonlinechannel" target="_blank">
+                  <app-icon icon="youtube" height="24px" width="24px"></app-icon>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-12 col-lg-3 app" [ngClass]="{'d-none': reduced}">
+          <h2 [innerText]="'FOOTER.appLabel' | translate"></h2>
+          <ul class="list-horizontal">
+            <!-- TODO: Add icons for iOS and Android. -->
+            <li><a [href]="getValueForLanguage('appStore')">
+                <app-icon icon="apple-appstore" height="40px" width="122px"></app-icon>
+              </a>
+            </li>
+            <li class="ml-3">
+              <a href="https://play.google.com/store/apps/details?id=com.gries_deco_company.depot_heimweh">
+                <app-icon icon="google-play" height="40px" width="122px"></app-icon>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-12 d-md-block d-lg-none">
+          <div style="height: 50px;"></div>
+        </div>
+        <div *ngIf="info" class="col-12">
+          <div class="info-text">
+            {{ 'FOOTER.info' | translate}}
+          </div>
+        </div>
+      </div>
+      <div class="row" *ngIf="reduced">
+        <div class="col-12 col-lg-auto contact">
+          <ng-container *ngTemplateOutlet="contact"></ng-container>
+        </div>
+        <div class="col-12 col-lg-auto service">
+          <ng-container *ngTemplateOutlet="service"></ng-container>
+        </div>
+        <div class="col-12 payment">
+          <ng-container *ngTemplateOutlet=payment></ng-container>
+        </div>
+      </div>
+      <div class="loyalty">
+        <div class="customer-additions">
+          <ul class="icon-options">
+            <li class="trusted-shop-wrapper">
+              <app-trusted-shop [type]="trustedShopType.BADGE">
+                <div id="trusted-shop-badge" style="width:88px; height:44px"></div>
+              </app-trusted-shop>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-footer-bar [reduced]="reduced"></app-footer-bar>
+</footer>
+
+<ng-template #service>
+  <input type="checkbox" id="expander-2" />
+  <label for="expander-2">
+    <span [innerText]="'FOOTER.serviceLabel' | translate"></span>
+    <span class="chevron">
+      <app-icon icon="chevron-down" height="24px" width="24px"></app-icon>
+    </span>
+  </label>
+  <ul [ngClass]="{'d-none': reduced}">
+    <li><a [routerLink]="'/faq' | localize" [innerText]="'FOOTER.faq' | translate"></a></li>
+    <li><a [routerLink]="'/fillialfinder' | localize" [innerText]="'FOOTER.storefinder' | translate"></a>
+    </li>
+    <li><a [routerLink]="'/depotgutschein' | localize" [innerText]="'FOOTER.voucher' | translate"></a></li>
+    <li><a [routerLink]="'/newsletter | localize'" [innerText]="'FOOTER.newsletter' | translate"></a></li>
+    <li><a [routerLink]="'/katalog-flyer' | localize" [innerText]="'FOOTER.flyer' | translate"></a></li>
+  </ul>
+  <ul [ngClass]="{'d-none': !reduced}">
+    <li>
+      <app-icon icon="checkmark-styled"></app-icon>
+      <span [innerText]="'FOOTER.purchaseOnInvoice' | translate"></span>
+    </li>
+    <li>
+      <app-icon icon="checkmark-styled"></app-icon>
+      <span [innerText]="'FOOTER.delivery' | translate"></span>
+    </li>
+    <li>
+      <app-icon icon="checkmark-styled"></app-icon>
+      <span [innerText]="'FOOTER.collectInStore' | translate"></span>
+    </li>
+    <li>
+      <app-icon icon="checkmark-styled"></app-icon>
+      <span [innerText]="'FOOTER.freeRetrun' | translate"></span>
+    </li>
+  </ul>
+</ng-template>
+
+<ng-template #contact>
+  <input type="checkbox" id="expander-4" />
+  <label for="expander-4">
+    <span [innerText]="'FOOTER.contactLabel' | translate"></span>
+    <span class="chevron">
+      <app-icon icon="chevron-down" height="24px" width="24px"></app-icon>
+    </span>
+  </label>
+  <ul>
+    <li><a href="https://service.depot-online.com/hc/de/requests/new"
+        target="_blank">{{'FOOTER.contactForm' | translate}}</a></li>
+    <li><span [innerText]="'FOOTER.hotline.text' | translate"></span><a class="hotlineNumber"
+        href="tel:{{getValueForLanguage('hotline')}}" [innerText]="getValueForLanguage('hotline')"></a></li>
+    <li><span [innerText]="'FOOTER.openingTimes' | translate"></span></li>
+  </ul>
+</ng-template>
+
+<ng-template #payment>
+  <input type="checkbox" id="expander-5" />
+  <label for="expander-5">
+    <span [innerText]="'FOOTER.paymentLabel' | translate"></span>
+    <span class="chevron">
+      <app-icon icon="chevron-down" height="24px" width="24px"></app-icon>
+    </span>
+  </label>
+  <div class="icon-options">
+    <!-- TODO: Add correct payment icons. -->
+    <app-icon icon="amazon-pay" height="24px" width="64px"></app-icon>
+    <app-icon icon="klarna" height="24px" width="64px"></app-icon>
+    <app-icon icon="amazon-pay" height="24px" width="64px"></app-icon>
+    <app-icon icon="amazon-pay" height="24px" width="64px"></app-icon>
+  </div>
+</ng-template>

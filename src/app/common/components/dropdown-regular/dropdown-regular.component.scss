@@ -1,0 +1,26 @@
+@import '../../styles/index';
+
+.dropdown .content {
+  position: absolute;
+  z-index: $z-dropdown-content;
+  border: solid 1px COLOR(grey-150);
+  background: COLOR(white);
+  right: 0;
+  min-width: 260px;
+  padding-bottom: 0;
+}
+
+:host ::ng-deep .item {
+  transition: all 0.1s ease-in-out;
+  cursor: pointer;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  justify-content: flex-end;
+  font-size: FONT_SIZES(medium);
+
+  &:hover {
+    background: COLOR(grey-075);
+  }
+}

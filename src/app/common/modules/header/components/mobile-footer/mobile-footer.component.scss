@@ -1,0 +1,28 @@
+@import '../../../../..//common/styles/index';
+
+.header-footer {
+  position: relative;
+  width: 100%;
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-color: COLOR(grey-075);
+    margin-bottom: 0;
+
+    li {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 48px;
+      padding: 0 1rem 0 2rem;
+      border-bottom: solid 1px COLOR(grey-150);
+
+      a {
+        color: inherit;
+      }
+    }
+  }
+}

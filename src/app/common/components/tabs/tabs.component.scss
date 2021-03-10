@@ -1,0 +1,53 @@
+@import '../../styles';
+
+.tabs {
+  margin-bottom: 35px;
+
+  @include MEDIA_QUERY(md) {
+    display: flex;
+    align-items: center;
+  }
+}
+
+::ng-deep {
+  app-product-content-tab {
+    li {
+      border-top: 1px solid COLOR(grey-600);
+
+      @include MEDIA_QUERY(md) {
+        border-top: none;
+        border-bottom: none;
+
+        &:after {
+          display: inline-block;
+          content: '|';
+          color: COLOR(grey-150);
+          margin: 0 5px;
+        }
+      }
+
+      @include MEDIA_QUERY(lg) {
+        &:after {
+          display: inline-block;
+          content: '|';
+          color: COLOR(grey-150);
+          margin: 0 24px;
+        }
+      }
+    }
+
+    &:last-child {
+      li {
+        border-bottom: 1px solid COLOR(grey-600);
+
+        @include MEDIA_QUERY(md) {
+          border-bottom: none;
+
+          &:after {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,140 @@
+@import '../../../../..//common/styles/index.scss';
+
+:host {
+  display: contents;
+
+  ::ng-deep {
+    // override the dropdowns width and position
+    .is-filled .dropdown {
+      width: 316px;
+      @include MEDIA-QUERY(lg) {
+        left: -200px;
+      }
+      @include MEDIA-QUERY(xl) {
+        left: -160%;
+      }
+    }
+  }
+
+  .fly-out-container {
+    display: flex;
+    height: 100%;
+    max-height: 80vh;
+    font-size: FONT_SIZES(small);
+    transition: all 0.2s ease-in;
+    box-sizing: border-box;
+
+    .empty-basket {
+      text-align: center;
+      padding: 0 1rem;
+      color: COLOR(grey-600);
+
+      * {
+        margin: 1rem;
+      }
+    }
+
+    .has-articles-container {
+      flex: 1 1 100%;
+      display: flex;
+      flex-flow: column;
+
+      .fly-out-title {
+        padding: 1rem;
+        line-height: 20px;
+        color: COLOR(bermuda-green-400);
+        font-size: FONT_SIZES(medium);
+        text-align: center;
+
+        mat-divider {
+          margin-top: 1rem;
+          border-color: COLOR(bermuda-green-400);
+        }
+      }
+
+      .product-items-container {
+        padding: 0 1rem;
+        flex: 1 1 100%;
+        overflow-y: auto;
+
+        ::ng-deep {
+          // override some special styles for the product list items
+
+          app-basket-list-item {
+            &:first-child {
+              .basket-list-item-container {
+                border-top: none;
+              }
+            }
+
+            .basket-list-item-container {
+              font-size: FONT_SIZES(small);
+              padding: 1rem 0;
+
+              .image {
+                align-self: center;
+                position: relative;
+                img {
+                  width: 80px;
+                  height: 80px;
+                  mix-blend-mode: multiply;
+                }
+              }
+
+              .sold-out {
+                position: absolute;
+                z-index: 1;
+                margin: 0 auto;
+                text-align: center;
+                top: 25%;
+                width: 100%;
+                font-size: FONT_SIZES(extraSmall);
+              }
+
+              .price-container {
+                margin-top: 4px;
+              }
+            }
+          }
+        }
+      }
+
+      .more-items-label {
+        padding: 1rem 1rem;
+        font-size: FONT_SIZES(small);
+        font-weight: bold;
+        color: COLOR(black);
+        text-align: center;
+        line-height: 16px;
+      }
+
+      .options-wrapper {
+        flex: 0 1 auto;
+        border-top: COLOR(grey-150) 1px solid;
+        padding: 0 1rem 1.2rem 1rem;
+        width: 100%;
+
+        .action {
+          display: block;
+          margin-top: 1rem;
+          margin-bottom: 1rem;
+
+          &:last-of-type {
+            margin-bottom: 0;
+          }
+        }
+      }
+
+      .costs {
+        padding: 1rem;
+        display: flex;
+        align-content: center;
+        justify-content: space-between;
+
+        .costs-amount {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}

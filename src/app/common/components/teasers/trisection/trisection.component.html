@@ -1,0 +1,130 @@
+<div class="row trisection pt-5 pb-4">
+  <div class="col-12 mobile">
+    <div class="component-headline"><app-text [label]="headline" [tag]="'h2'"></app-text></div>
+    <div *ngIf="trisectionSlides.length > 0" class="trisection" [ngClass]="{ single: trisectionSlides.length === 1 }">
+      <ngb-carousel [interval]="500000">
+        <ng-template ngbSlide *ngFor="let slide of trisectionSlides">
+          <div
+            class="carousel-caption mobile"
+            (swipeleft)="onSwipeLeft()"
+            (swiperight)="onSwipeRight()"
+            (click)="callback(slide)"
+          >
+            <div class="content-wrapper">
+              <img
+                class="element"
+                [style.background]="slide.elementGroups[1].attributes.bgColor"
+                [src]="slide.elementGroups[1].elements[0].attributes | cdn: { size: 'extralarge' }"
+              />
+              <div
+                class="text-content"
+                [style.background]="slide.elementGroups[0].attributes.bgColor"
+                [style.textAlign]="getTextboxAlign(slide.elementGroups[0].attributes.textboxAlign)"
+              >
+                <ng-container
+                  [ngTemplateOutlet]="renderElementGroup"
+                  [ngTemplateOutletContext]="{ elementGroup: slide.elementGroups[0] }"
+                ></ng-container>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </ngb-carousel>
+    </div>
+  </div>
+  <div class="col-12 desktop">
+    <div class="component-headline"><app-text [label]="headline" [tag]="'h2'"></app-text></div>
+    <div *ngIf="trisectionSlides.length > 0" class="" [ngClass]="{ single: trisectionSlides.length === 1 }">
+      <ngb-carousel [interval]="500000">
+        <ng-template ngbSlide *ngFor="let slide of trisectionSlides">
+          <div class="carousel-caption" (click)="callback(slide)">
+            <div class="grid-tile">
+              <div class="grid_of_three">
+                <div class="left-section" [style.background]="slide.elementGroups[0].attributes.bgColor">
+                  <ng-container
+                    [ngTemplateOutlet]="renderElementGroup"
+                    [ngTemplateOutletContext]="{ elementGroup: slide.elementGroups[0] }"
+                  ></ng-container>
+                </div>
+                <div class="center-section" [style.background]="slide.elementGroups[1].attributes.bgColor">
+                  <ng-container
+                    [ngTemplateOutlet]="renderElementGroup"
+                    [ngTemplateOutletContext]="{ elementGroup: slide.elementGroups[1] }"
+                  ></ng-container>
+                </div>
+                <div class="right-section" [style.background]="slide.elementGroups[2].attributes.bgColor">
+                  <ng-container
+                    [ngTemplateOutlet]="renderElementGroup"
+                    [ngTemplateOutletContext]="{ elementGroup: slide.elementGroups[2] }"
+                  ></ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </ngb-carousel>
+    </div>
+  </div>
+</div>
+
+<ng-template #renderElementGroup let-elementGroup="elementGroup">
+  <div class="element-group">
+    <ng-container *ngFor="let element of elementGroup.elements" class="element">
+      <ng-container [ngSwitch]="element.type">
+        <app-text
+          class="element"
+          *ngSwitchCase="'element_headline'"
+          [tag]="getTextTag(element.attributes.size)"
+          [label]="element.attributes.text"
+          [style.textAlign]="getTextboxAlign(elementGroup.attributes.textboxAlign)"
+          [style.color]="element.attributes.color"
+        ></app-text>
+
+        <app-text
+          class="element"
+          *ngSwitchCase="'element_subline'"
+          [tag]="getTextTag(element.attributes.size)"
+          [label]="element.attributes.text"
+          [style.textAlign]="getTextboxAlign(elementGroup.attributes.textboxAlign)"
+          [style.color]="element.attributes.color"
+        ></app-text>
+
+        <span
+          class="element_text"
+          *ngSwitchCase="'element_text'"
+          [style.color]="element.attributes.color"
+          [style.textAlign]="getTextboxAlign(elementGroup.attributes.textboxAlign)"
+        >
+          {{ element.attributes.text }}
+        </span>
+
+        <ng-container *ngSwitchCase="'element_cta'" [ngSwitch]="element.attributes.tag">
+          <app-button
+            class="element_cta"
+            *ngSwitchCase="'button'"
+            [variant]="element.attributes.style ? element.attributes.style : 'default'"
+            (click)="callback(element)"
+            [ngClass]="getTextboxAlign(elementGroup.attributes.textboxAlign)"
+          >
+            {{ element.attributes.text }}
+          </app-button>
+          <a
+            *ngSwitchCase="'anchor'"
+            class="element_cta"
+            [ngClass]="getTextboxAlign(elementGroup.attributes.textboxAlign)"
+            href="element.attributes.link.href"
+            >{{ element.attributes.text }}</a
+          >
+        </ng-container>
+        <!-- TODO: Wait for definition for logo attributes by content -->
+        <!-- <img class="resource_image_logo" *ngSwitchCase="'resource_image_logo'"
+              [src]="element.attributes | cdn: { size: 'medium' }" /> -->
+        <img
+          class="element"
+          *ngSwitchCase="'resource_image_bg'"
+          [src]="element.attributes | cdn: { size: 'extralarge' }"
+        />
+      </ng-container>
+    </ng-container>
+  </div>
+</ng-template>

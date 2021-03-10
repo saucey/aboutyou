@@ -1,0 +1,17 @@
+<li appAccordionItem>
+  <div class="fix-block">
+    <app-icon class="icon" type="picto" [icon]="inputs.iconName" width="56px" height="56px"></app-icon>
+    <div class="titles">
+      <h6 class="headline Text-Style-25">{{ inputs.headline }}</h6>
+      <div [innerHtml]="inputs.short" class="short Text-Style-30"></div>
+    </div>
+    <app-icon class="handle" icon="chevron-up" width="20px" height="20px"></app-icon>
+  </div>
+  <div class="expand-block content">
+    <div [innerHtml]="inputs.long" class="long Text-Style-27"></div>
+    <a *ngIf="inputs.link" href="#" class="link Text-Style-24">
+      {{ inputs.link }}
+      <app-icon icon="chevron-right"></app-icon>
+    </a>
+  </div>
+</li>

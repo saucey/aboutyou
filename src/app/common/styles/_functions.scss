@@ -1,0 +1,8 @@
+/// Define base assets url.
+///
+/// @param {string} $name
+///   The path and filename
+/// @return {string} .
+@function ASSETS_URL($name) {
+  @return url('/assets/'+$name);
+}

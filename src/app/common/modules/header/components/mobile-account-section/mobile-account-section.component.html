@@ -1,0 +1,56 @@
+<div class="accounts-section">
+  <ng-container *ngIf="opened; else overview">
+    <div class="top-row">
+      <a class="reset-link" (click)="setOpenedState(false)">
+        <app-icon icon="chevron-left" [scale]="1.5"></app-icon>
+        {{ 'GLOBAL.sidebar.user.goBackLabel' | translate }}
+      </a>
+      <div class="selected-item" [innerHTML]="'GLOBAL.sidebar.user.label' | translate" (click)="goToAccount()"></div>
+    </div>
+
+    <ng-container *ngIf="isAuthenticated">
+      <div class="child-row">
+        <a
+          class="child-link"
+          [innerHTML]="'GLOBAL.sidebar.user.loggedInUser.personalData' | translate"
+          (click)="goToPersonalData()"
+        ></a>
+      </div>
+      <div class="child-row">
+        <a
+          class="child-link"
+          [innerHTML]="'GLOBAL.sidebar.user.loggedInUser.reservations' | translate"
+          (click)="goToReservations()"
+        ></a>
+      </div>
+      <div class="child-row">
+        <a
+          class="child-link"
+          [innerHTML]="'GLOBAL.sidebar.user.loggedInUser.orders' | translate"
+          (click)="goToOrders()"
+        ></a>
+      </div>
+      <div class="child-row" (click)="handleLogoutClick()">
+        <a class="child-link" [innerHTML]="'GLOBAL.sidebar.user.loggedInUser.logout' | translate"></a>
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <ng-template #overview>
+    <div class="overview">
+      <app-icon type="picto" icon="profile" (click)="goToAccount()"> </app-icon>
+      <div *ngIf="isAuthenticated" class="texts vertical" (click)="setOpenedState(true)">
+        <span [innerHTML]="'GLOBAL.sidebar.user.label' | translate"></span>
+        <span [innerHTML]="'GLOBAL.sidebar.user.loggedInUser.welcome' | translate: { username: user.firstName }"></span>
+      </div>
+      <div *ngIf="!isAuthenticated" class="texts horizontal">
+        <span (click)="handleLoginClick()" [innerHTML]="'GLOBAL.sidebar.user.loggedOutUser.login' | translate"></span>
+        <span
+          (click)="handleRegistrationClick()"
+          [innerHTML]="'GLOBAL.sidebar.user.loggedOutUser.register' | translate"
+        ></span>
+      </div>
+      <app-icon icon="chevron-right" [scale]="1.5" *ngIf="isAuthenticated" (click)="setOpenedState(true)"></app-icon>
+    </div>
+  </ng-template>
+</div>

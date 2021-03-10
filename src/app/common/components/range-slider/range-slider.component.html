@@ -1,0 +1,10 @@
+<div class="custom-slider">
+  <ng5-slider
+    [value]="value.min"
+    [highValue]="value.max"
+    [options]="options"
+    [manualRefresh]="manualRefreshEmitter"
+    (userChange)="onChangeHandler($event)"
+    (userChangeEnd)="onChangeCommitHandler($event)"
+  ></ng5-slider>
+</div>

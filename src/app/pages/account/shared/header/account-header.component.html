@@ -1,0 +1,21 @@
+<div class="wrapper">
+  <div class="row header-mobile d-md-none">
+    <div class="col-2 arrow-container">
+      <span (click)="goBack()">
+        <app-icon icon="arrow-left" scale="1.5"></app-icon>
+      </span>
+    </div>
+    <div class="col-7 title">
+      <div>{{ title }}</div>
+    </div>
+  </div>
+  <mat-divider class="d-md-none"></mat-divider>
+  <div class="row d-none d-md-block header-desktop">
+    <div (click)="goBack()" class="header">
+      <app-icon icon="chevron-left" scale="1.5" class="icon"></app-icon>
+      <div class="header-label">
+        {{ 'ACCOUNT.header' | translate }}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,73 @@
+@import 'src/app/common/styles/index';
+
+.cost-overview {
+  @include MEDIA_QUERY(xs) {
+    min-width: 345px;
+  }
+  .benefits {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    border: solid 1px COLOR(grey-150);
+    padding: 1rem;
+    font-size: FONT_SIZES(small);
+    margin-bottom: 40px;
+    min-height: 98px;
+
+    & > div {
+      display: flex;
+      width: 150px;
+      span {
+        padding-left: 5px;
+      }
+    }
+  }
+
+  .reduction,
+  .costs {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 6px;
+    font-size: FONT_SIZES(small);
+
+    span {
+      font-size: FONT_SIZES(extraSmall);
+    }
+  }
+
+  .costs {
+    padding-top: 14px;
+    border-top: solid 1px COLOR(grey-150);
+    line-height: FONT_SIZES(base);
+    font-size: FONT_SIZES(base);
+    font-weight: bold;
+    margin-bottom: 14px;
+  }
+
+  .payments {
+    display: flex;
+    margin-top: 15px;
+
+    & > div {
+      flex: 1;
+      border: solid 1px COLOR(grey-150);
+    }
+  }
+}
+
+// ADAPTION
+.cost-overview {
+  @include MEDIA_QUERY(md) {
+    min-width: initial;
+  }
+
+  .plus-product-warning {
+    color: COLOR(grey-600);
+    font-size: FONT_SIZES(small);
+    line-height: FONT_SIZES(base);
+    padding: 18px 16px 20px 16px;
+    background-color: rgba(195, 195, 195, 0.25);
+    margin: 22px 0 42px 0;
+  }
+}

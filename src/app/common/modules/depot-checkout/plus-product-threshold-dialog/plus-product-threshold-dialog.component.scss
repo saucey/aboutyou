@@ -1,0 +1,68 @@
+@import '../../../..//common/styles/index';
+
+:host {
+  width: 100%;
+  margin: auto;
+  position: relative;
+  display: block;
+
+  .content-container {
+    display: flex;
+    flex-flow: column;
+    margin: 10px 8px 16px 8px;
+
+    .title {
+      font-size: FONT_SIZES(base);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 24px;
+      font-weight: 400;
+      color: COLOR(grey-600);
+      margin: 0 0 16px 0;
+      width: calc(100% - 20px);
+    }
+
+    .info {
+      font-weight: 300;
+      margin-bottom: 24px;
+      font-size: FONT_SIZES(medium);
+    }
+
+    .purchase-button {
+      margin-bottom: 12px;
+    }
+
+    .purchase-button,
+    .no-button {
+      ::ng-deep {
+        app-button button {
+          font-weight: 700;
+        }
+      }
+    }
+
+    .icon-link {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+}
+
+// style for desktop version
+:host-context(.desktop-dialog) .content-container {
+  width: 376px;
+  height: 100%;
+  // center via margin auto
+  margin: 16px auto 40px auto;
+
+  .title {
+    text-align: center;
+  }
+
+  .icon-link {
+    right: -8px;
+    top: -24px;
+  }
+}

@@ -1,0 +1,27 @@
+<div class="payment-methods">
+  <h4>{{ 'BASKET.paymentMethods' | translate }}</h4>
+
+  <div class="row-of-logos">
+    <app-icon class="payment-icon" [icon]="'paypal'"></app-icon>
+    <app-icon class="payment-icon" [icon]="'mastercard'"></app-icon>
+    <app-icon class="payment-icon" [icon]="'visa'"></app-icon>
+    <app-icon class="payment-icon" [icon]="'amazon-pay'"></app-icon>
+
+    <div class="icon-with-subtitle">
+      <app-icon [icon]="'klarna'"></app-icon>
+      <div class="underline-text">{{ 'BASKET.debit' | translate }}</div>
+    </div>
+    <div class="icon-with-subtitle">
+      <app-icon [icon]="'klarna'"></app-icon>
+      <div class="underline-text">{{ 'BASKET.bill' | translate }}</div>
+    </div>
+    <div class="icon-with-subtitle">
+      <app-icon [icon]="'klarna'"></app-icon>
+      <div class="underline-text">{{ 'BASKET.rates' | translate }}</div>
+    </div>
+    <div class="icon-with-subtitle">
+      <app-icon [icon]="'klarna'"></app-icon>
+      <div class="underline-text">{{ 'BASKET.instant' | translate }}</div>
+    </div>
+  </div>
+</div>

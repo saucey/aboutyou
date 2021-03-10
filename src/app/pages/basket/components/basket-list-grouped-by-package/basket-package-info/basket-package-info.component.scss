@@ -1,0 +1,34 @@
+@import '../../../../..//common/styles';
+
+:host {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+
+  .delivery-label {
+    flex: 1 1 auto;
+    justify-self: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .delivery-date {
+    flex: 1 1 auto;
+    color: COLOR(black);
+    font-size: FONT_SIZES(medium);
+    font-weight: bold;
+    text-align: right;
+    margin-right: 1rem;
+  }
+
+  app-icon.carrier-icon {
+    flex: 0 0 52px;
+  }
+}
+
+// override
+:host-context(.package-info-footer) {
+  .delivery-date {
+    text-align: left;
+  }
+}

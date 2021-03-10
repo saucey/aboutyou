@@ -1,0 +1,116 @@
+@import 'src/app/common/styles/index.scss';
+
+::ng-deep {
+  .accounts-section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+
+    app-icon {
+      height: 48px;
+      width: 20px;
+      display: flex;
+      align-items: center;
+    }
+
+    .overview {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      height: 96px;
+      cursor: pointer;
+      padding: 0 1rem 0 2rem;
+      border-bottom: solid 1px COLOR(grey-150);
+      background-color: COLOR(grey-050);
+      align-items: center;
+
+      app-icon {
+        height: 57px;
+        width: 57px;
+
+        i {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      .texts {
+        display: flex;
+        flex-direction: column;
+        font-size: FONT_SIZES(small);
+        flex-grow: 1;
+        justify-content: center;
+        padding-left: 0.3rem;
+
+        &.horizontal {
+          flex-direction: row;
+          justify-content: flex-start;
+          align-items: center;
+
+          span {
+            padding: 0 0.5rem;
+
+            &:not(:last-of-type) {
+              border-right: solid 1px COLOR(grey-600);
+            }
+          }
+        }
+      }
+      &:hover {
+        color: COLOR(bermuda-green-400);
+      }
+    }
+
+    .top-row {
+      padding: 0 1rem 0 2rem;
+      border-bottom: solid 1px COLOR(grey-150);
+      width: 100%;
+
+      .reset-link {
+        color: COLOR(grey-600);
+        font-size: FONT_SIZES(medium);
+        cursor: pointer;
+        text-decoration: none;
+        height: 48px;
+        display: flex;
+        align-items: center;
+
+        &:hover {
+          color: COLOR(bermuda-green-400);
+        }
+      }
+
+      .selected-item {
+        font-weight: bold;
+        font-size: FONT_SIZES(base);
+        height: 48px;
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    .child-row {
+      width: 100%;
+      border-bottom: solid 1px COLOR(grey-150);
+      height: 48px;
+      padding: 0 1rem 0 2rem;
+      display: flex;
+      align-items: center;
+
+      .child-link {
+        width: 100%;
+        color: COLOR(grey-600);
+        font-size: FONT_SIZES(medium);
+        cursor: pointer;
+        text-decoration: none;
+      }
+
+      &:hover {
+        .child-link {
+          color: COLOR(bermuda-green-400);
+        }
+      }
+    }
+  }
+}

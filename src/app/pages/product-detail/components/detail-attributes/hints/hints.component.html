@@ -1,0 +1,70 @@
+<ng-container>
+  <div class="section" *ngIf="product.custom.instructions && product.custom.instructions.length > 0">
+    <h3>{{ 'PRODUCT_DETAIL.hints.instructionsTitle' | translate }}</h3>
+    <p *ngFor="let instruction of product.custom.instructions">
+      {{ instruction }}
+    </p>
+  </div>
+
+  <div class="section" *ngIf="product.custom.ipuroHints && product.custom.ipuroHints.length > 0">
+    <h3>{{ 'PRODUCT_DETAIL.hints.ipuroHintsTitle' | translate }}</h3>
+
+    <div class="warning-signs" *ngIf="product.custom.isBadForEnvironment || product.custom.isInflammable">
+      <div class="sign inflammable" *ngIf="product.custom.isInflammable"></div>
+      <div class="sign environment" *ngIf="product.custom.isBadForEnvironment"></div>
+    </div>
+
+    <p>
+      {{ product.custom.ipuroHints }}
+    </p>
+  </div>
+
+  <div class="section" *ngIf="product.custom.warningHints && product.custom.warningHints.length > 0">
+    <h3>{{ 'PRODUCT_DETAIL.hints.warningHintsTitle' | translate }}</h3>
+
+    <div class="warning-signs" *ngIf="product.custom.isBadForEnvironment || product.custom.isInflammable">
+      <div class="sign inflammable" *ngIf="product.custom.isInflammable"></div>
+      <div class="sign environment" *ngIf="product.custom.isBadForEnvironment"></div>
+    </div>
+
+    <p *ngFor="let hint of product.custom.warningHints">
+      {{ hint }}
+    </p>
+  </div>
+
+  <div class="section" *ngIf="product.custom.specialIngredients">
+    <h3>{{ 'PRODUCT_DETAIL.hints.specialIngredientsTitle' | translate }}</h3>
+
+    <p>
+      {{ product.custom.specialIngredients }}
+    </p>
+  </div>
+
+  <div class="section">
+    <h3>{{ 'PRODUCT_DETAIL.hints.furtherHintsTitle' | translate }}</h3>
+
+    <p *ngFor="let hint of product.custom.furtherHints">
+      {{ hint }}
+    </p>
+
+    <p class="with-icon" *ngIf="product.custom.withBatteryWaste">
+      <img src="/assets/images/battery-waste.jpg" />
+
+      {{ 'PRODUCT_DETAIL.hints.batteryWasteDescription.0' | translate
+      }}<a href="#" (click)="$event.preventDefault()">{{
+        'PRODUCT_DETAIL.hints.batteryWasteDescription.1' | translate
+      }}</a
+      >{{ 'PRODUCT_DETAIL.hints.batteryWasteDescription.2' | translate }}
+    </p>
+
+    <p *ngFor="let hint of product.custom.remainingFurtherHints">
+      {{ hint }}
+    </p>
+
+    <p *ngIf="product.custom.moodImageHint">{{ product.custom.moodImageHint }}</p>
+
+    <p>
+      {{ 'PRODUCT_DETAIL.hints.generalFurtherHintInfo' | translate }}
+    </p>
+  </div>
+</ng-container>

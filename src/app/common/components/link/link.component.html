@@ -1,0 +1,9 @@
+<a
+  [ngClass]="variant"
+  [routerLink]="useAngularRouter ? (url | localize) : null"
+  [href]="useAngularRouter ? null : url"
+  [target]="target"
+>
+  <ng-content></ng-content>
+  <app-icon *ngIf="variant === 'primary' || variant === 'primary-green'" [scale]="1.5" icon="chevron-right"></app-icon>
+</a>

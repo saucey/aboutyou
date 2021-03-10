@@ -1,0 +1,14 @@
+span.wrapper {
+  display: inline-block;
+
+  span {
+    display: block;
+  }
+
+  ::ng-deep {
+    i {
+      margin-top: 5px;
+      width: 50px;
+    }
+  }
+}

@@ -1,0 +1,7 @@
+<li [ngClass]="[isActive ? 'active' : '']" #li>
+  <a>{{ label }}</a>
+
+  <div class="content" #content>
+    <ng-content></ng-content>
+  </div>
+</li>

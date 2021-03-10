@@ -1,0 +1,737 @@
+{
+  "HOME": {
+    "DOUBLETEASER": {
+      "headline": "DEPOT Projekte"
+    },
+    "discover": "Jetzt entdecken",
+    "USP": {
+      "customerservice": {
+        "headline": "Kundenservice",
+        "short": "Finde Antworten auf häufig gestellte Fragen oder kontaktiere uns persönlich.",
+        "long": "Sortiert nach Themen findest Du in unseren <b><a href=\"/\">FAQs</a></b> schnell die richtigen Antworten auf Deine Fragen. <br> Unser Kundenservice ist zudem 24h über das <b><a href=\"/\">Kontaktformular</a></b> oder zu unseren Servicezeiten per Telefon unter 0800 400 3110 erreichbar."
+      },
+      "bill": {
+        "headline": "Kauf auf Rechnung",
+        "short": "Jetzt shoppen und später bezahlen",
+        "long": "Bezahle Deine Bestellung ganz bequem erst nach Erhalt der Ware. Die Rechnung erhältst Du per E-Mail.",
+        "link": "Weitere Informationen"
+      },
+      "clickAndCollect": {
+        "headline": "Click & Collect",
+        "short": "Online bestellen und versandkostenfrei in Deine Filiale liefern lassen.",
+        "long": "Mit unserem <b><a href=\"/\">Click & Collect Service</a></b> kannst Du Deine Bestellung direkt in Deine Wunschfiliale liefern lassen."
+      },
+      "store": {
+        "headline": "Filialfinder",
+        "short": "Einfach DEPOT Filialen in Deiner Nähe finden & Artikel versandkostenfrei in die Filiale liefern lassen.",
+        "long": "Erlebe unser DEPOT Sortiment zum Anfassen und genieße den rundum Vor-Ort-Service. Unsere Mitarbeiter freuen sich auf Dich!",
+        "link": "Zum Filialfinder"
+      }
+    },
+    "NEWSLETTER": {
+      "subline": "Newsletter",
+      "headline": "Jetzt anmelden und <b>5 € Rabatt¹</b> erhalten.",
+      "placeholder": "E-Mail-Adresse",
+      "submit": "Anmelden",
+      "disclaimer": "Keine Datenweitergabe an Dritte. Eine Abmeldung ist jederzeit möglich. Hier finden Sie unsere <b>Datenschutzerklärung</b>."
+    }
+  },
+  "FOOTER": {
+    "info": "* Aktionsbedingungen: Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
+    "shoppingLabel": "Einkaufen",
+    "aboutLabel": "Über DEPOT",
+    "followLabel": "DEPOT folgen",
+    "appLabel": "Kostenlose DEPOT App",
+    "serviceLabel": "Service",
+    "faq": "Häufige Fragen (FAQ)",
+    "storefinder": "Filialfinder",
+    "voucher": "Gutschein",
+    "newsletter": "Newsletter",
+    "flyer": "Katalog / Flyer",
+    "purchaseOnInvoice": "Kauf auf Rechnung",
+    "delivery": "Lieferung",
+    "collectInStore": "Abholung in der Filiale",
+    "freeReturn": "Kostenlose Retoure",
+    "contactLabel": "Kontakt",
+    "hotline": {
+      "text": "Kostenlose Hotline: "
+    },
+    "openingTimes": "(Mo - Fr: 11 - 18 Uhr)",
+    "paymentLabel": "Sichere Zahlarten",
+    "imprint": "Impressum",
+    "privacy": "Datenschutz",
+    "dataProcessing": "Datenverarbeitung",
+    "conditions": "AGB",
+    "revocation": "Widerrufsrecht",
+    "shipping": "Versandkosten",
+    "copyrightText": "© 2011 – 2020 GDC DEPOT",
+    "priceText": "*Alle Preise inkl. MwSt zzgl.",
+    "career": "Karriere",
+    "company": "Unternehmen",
+    "basket": "Warenkorb",
+    "contact": "Kontakt",
+    "contactForm": "Kontaktformular"
+  },
+  "CLICK_AND_RESERVE": {
+    "button": {
+      "label": "Verfügbarkeit prüfen und reservieren"
+    },
+    "information": {
+      "content": "Click & Reserve – Artikel online reservieren und in der DEPOT Filiale zum Kauf abholen."
+    }
+  },
+  "RESERVATION_CONFIRMATION_PAGE": {
+    "title": "Reservierungsbestätigung",
+    "action1": "Zu meinen Reservierungen",
+    "action2": "Weiter einkaufen",
+    "thankyou": "Herzlichen Dank für Deine Reservierung.",
+    "reservationNumber": "Deine Reservierungsnummer:",
+    "strip": "Und so geht's weiter:",
+    "notification1": "Deine Wunschartikel werden nun von einem Filial-Mitarbeiter gepackt.",
+    "notification2": "In voraussichtlich 1 – 2 Tagen erhältst Du eine Abhol-benachrichtigung per E-Mail.",
+    "notification3": "Wir freuen uns auf Deinen Besuch in der DEPOT Filiale."
+  },
+  "LOCAL_RESERVATION_DIALOG": {
+    "title": "Filialverfügbarkeit",
+    "preSearchInfo": "Bitte gib eine Stadt oder Postieitzahl ein, um Dir alle DEPOT Filialen in Deiner Nahe anzeigen zu lassen.",
+    "zipCode": "Stadt oder PLZ",
+    "errorInpt": "Bitte überprüfe deine Eingabe.",
+    "checkboxInfo": "Zeige nur Filialen an, in denen mein Artikel verfügbar ist.",
+    "searchButton": "Suchen",
+    "enterZipCodeTextInfo": "Bitte gib eine Stadt oder Postleitzahl ein, um Dir alle DEPOT Filialen in Deiner Nahe anzeigen zu lassen.",
+    "noResultsInfo1": "Für deine Eingabe konnte leider",
+    "noResultsInfo2": "kein Ergebnis",
+    "noResultsInfo3": "gefunden werden.",
+    "noResultsFound": "Artikel nicht in gewünschter Menge verfügbar",
+    "sufficientItemsFound": "Ausreichend Artikel verfügbar",
+    "fewItemsFound": "Wenige Artikel verfügbar",
+    "addToReservation": "Zur Reservierungsliste hinzufügen",
+    "goToReservationList": "Zur Reservierungsliste",
+    "goToReservationListInfo": "Du hast derzeit eine nicht abgeschlossene Reservierung für die Filiale Hamburg Spitaler. Bitte schließe diese zunächst ab, um eine weitere Reservierung für eine andere Filiale durchzuführen.",
+    "openHours": "Öffnungszeiten",
+    "additionalInfo": "Zusätzliche Informationen",
+    "contactInfo": "Kontakt",
+    "email": "Schreibe uns",
+    "callUs": "Rufe uns an"
+  },
+  "PRODUCT_DETAIL": {
+    "noAvailability": "Nicht mehr in dieser Farbe auf Lager",
+    "limitedAvailability": "Nur noch {{value}} Produkte auf Lager.",
+    "ctaNotAvailable": "Filiale wählen & Artikel reservieren",
+    "cta": "In den Warenkorb",
+    "added": "Hinzugefügt",
+    "shareThisProduct": "Diesen Artikel teilen:",
+    "addToWishlist": "Auf die Wunschliste setzen",
+    "removeFromWishlist": "Von der Wunschliste entfernen",
+    "colorLabel": "Farbe",
+    "freeShipping": "Versandkostenfrei",
+    "withShippingCosts": "zzgl. Versandkosten",
+    "includingVAT": "inkl. MwSt",
+    "backToListing": "Zurück zur Übersicht",
+    "backToAnything": "Zurück",
+    "clickReserve": "Filiale wählen & Artikel reservieren",
+    "onlyOnline": "Dieser Artikel ist nur online erhältlich.",
+    "quantityLabel": "Anzahl",
+    "packSizeLabel": "{{value}}er-Pack",
+    "descriptionTitle": "Produktbeschreibung",
+    "detailsTitle": "Produktdetails",
+    "hintsTitle": "Hinweise",
+    "articleNumber": "Artikelnummer",
+    "bundle": {
+      "consistsOf": "besteht aus:"
+    },
+    "description": {
+      "woodOriginTitle": "Holzherkunft",
+      "and": "und",
+      "materialTitle": "Material",
+      "dimensionsTitle": "Maße",
+      "colorTitle": "Farbe",
+      "plusTitle": "Plus Produkt",
+      "alcohol": "Alkoholgehalt: ",
+      "plusDescription": {
+        "0": "Mit dem DEPOT Plus Produkt bieten wir Ihnen niedrigpreisige Artikel, die ab einem Gesamtwert von CHF 49,00 (exklusive Gutscheine) bestellbar sind. Bitte haben Sie Verständnis, dass ein Versand als Einzelartikel unwirtschaftlich und der Umwelt nicht zuträglich wäre. Weitere Informationen zum DEPOT Plus Produkt finden Sie ",
+        "1": "hier",
+        "2": "."
+      },
+      "fscNote": "Das verwendete Holz ist zertifiziert mit {{value}}.",
+      "seatHeight": "Sitzhöhe",
+      "seatDepth": "Sitztiefe",
+      "seatWidth": "Sitzbreite",
+      "pileHeight": "Florhöhe",
+      "maxBurningTime": "max. Brenndauer",
+      "lampCount": "Anzahl Lichter (Lichterkette)",
+      "lampsGap": "Abstand zwischen Lampen",
+      "pictureSize": "Bildgröße",
+      "fillingQuantity": "Füllmenge"
+    },
+    "accordion": {
+      "furtherInformation": "Weitere Informationen",
+      "shipping": {
+        "title": "Versand",
+        "subtitle": "Innerhalb von {{days}} Werktagen.",
+        "description": "Die Lieferung erfolgt in {{days}} Werktagen mit {{supplier}}."
+      },
+      "freeShipping": {
+        "title": "Kostenlose Lieferung",
+        "subtitle": {
+          "free": "Dieser Artikel ist versandkostenfrei.",
+          "deko": "Ab 75 CHF Bestellwert oder kostenfrei in Deine Lieblingsfiliale liefern lassen. Für diesen Artikel: 12,95 CHF",
+          "bulky": "Ab 499 CHF Bestellwert versandkostenfrei. Für diesen Artikel: 59,95 CHF"
+        },
+        "description": {
+          "free": "Dieser Artikel wird Dir versandkostenfrei an Deine gewünschte Adresse geliefert.",
+          "deko": "Kostenlose Lieferung an Deine Filiale mit Click & Collect oder ab einem Einkaufswert von 49 € direkt an Deine gewünschte Adresse.",
+          "bulky": "Kostenlose LIeferung an Deine FIliale mit Click & Collect oder ab einem Einkaufswert von 399 € direkt an Deine gewünschte Adresse."
+        }
+      },
+      "clickAndReserve": {
+        "title": "Click & Reserve",
+        "subtitle": "Filiale finden und Deine Lieblingsartikel reservieren.",
+        "description": "Mit unserem <b><a href=\"/\">Click & Reserve Service</a></b> ermöglichen wir Dir die Reservierung in einer <b><a href=\"/\">DEPOT Filiale</a></b> Deiner Wahl, sollte der Artikel vorrätig sein."
+      },
+      "return": {
+        "title": "Kostenlose Retoure",
+        "subtitle": "Rücksendungen an uns innerhalb von 14 Tagen.",
+        "description": "Du kannst jeden Artikel innerhalb von 14 Tagen kostenfrei an uns zurücksenden."
+      }
+    },
+    "hints": {
+      "instructionsTitle": "Pflegehinweise",
+      "ipuroHintsTitle": "Sicherheits- und Gefahrenhinweise",
+      "warningHintsTitle": "Warnhinweise",
+      "specialIngredientsTitle": "Besondere Kennzeichnung bestimmter Gemische (EUH208)",
+      "furtherHintsTitle": "Weitere Hinweise",
+      "batterySingular": "Batterie",
+      "batteryPlural": "Batterien",
+      "batteryWasteDescription": {
+        "0": "Bitte beachten Sie die ",
+        "1": "Informationen nach BattG",
+        "2": ""
+      },
+      "perItem": "Stück",
+      "powerSupplyMethodWithOne": "Artikel wird betrieben mittels {{method1}}.",
+      "powerSupplyMethodWithTwo": "Artikel wird betrieben mittels {{method1}} und {{method2}}.",
+      "generalFurtherHintInfo": "Auf Produktbildern abgebildetes Zubehör sowie Deko-Artikel gehören nicht zum Produktangebot, sofern sie nicht ausdrücklich eingeschlossen werden."
+    }
+  },
+  "PRODUCT_LISTING": {
+    "content": {
+      "discover": "Jetzt entdecken",
+      "shopTheLook": "SHOP THE LOOK"
+    },
+    "categoryTree": {
+      "subCategoryLabel": "Weitere Kategorien"
+    },
+    "filters": {
+      "heading": "Filter",
+      "headingMobile": "Filtern & Sortieren",
+      "price": "Preis",
+      "toLabel": "bis",
+      "apply": "{{count}} Ergebnisse anzeigen",
+      "clearAll": "Alle Filter zurücksetzen"
+    },
+    "sorting": {
+      "values": {
+        "0": "Beliebtheit",
+        "1": "Neuheit",
+        "2": "Preis aufsteigend",
+        "3": "Preis absteigend"
+      },
+      "buttonLabel": "Filtern & Sortieren",
+      "sortByLabel": "Sortiert nach"
+    },
+    "products": {
+      "noResults": {
+        "withFilters": {
+          "message": "Bitte passen Sie den Filter an oder setzen Sie die Filter vollständig zurück."
+        },
+        "withoutFilters": {
+          "message": "Es gibt keine Produkte in dieser Kategorie."
+        }
+      },
+      "articles": "{{total}} Artikel",
+      "loadMore": {
+        "buttonLabel": "Mehr Produkte sehen",
+        "progressText": "Sie haben {{loaded}} von {{total}} Produkten gesehen"
+      }
+    }
+  },
+  "SEARCH_PAGE": {
+    "yourSearch": "Ihr Suchergebnis für",
+    "goBackLabel": "zurück",
+    "products": {
+      "noResults": {
+        "withFilters": {
+          "message": "Ihre Suche ergab <b>keine Ergebnisse</b>. <br/> Bitte setzen Sie den Filter zurück."
+        },
+        "withoutFilters": {
+          "message": "Ihre Suche ergab keine Ergebnisse. <br/> Versuchen Sie es bitte erneut.",
+          "tip": "<b>Hier einige Tipps:</b> Stimmt die Rechtschreibung? ('Buchstabendreher') <br/> Sie können nach Begriffen oder Artikelnummern suchen."
+        }
+      }
+    }
+  },
+  "BASKET": {
+    "tabTitle": "Warenkorb ({{itemCount}})",
+    "title": "Warenkorb ({{itemCount}})",
+    "yours": "Dein Warenkorb ({{itemCount}})",
+    "yoursEmpty": "Dein Warenkorb",
+    "goToCheckout": "Zur Kasse",
+    "outOfStock": "Ausverkauft",
+    "listHeader": {
+      "label": "Lieferung:",
+      "labelGroupedByPackage": "Lieferung {{count}}:",
+      "notDeliverable": "Ausverkaufte Produkte:",
+      "itemCount": "{{itemCount}} Artikel",
+      "editLink": "bearbeiten"
+    },
+    "listFooter": {
+      "predictedDelivery": "Voraussichtliche Lieferung"
+    },
+    "remove": "Artikel entfernen",
+    "addTo": "Auf die Wunschliste",
+    "costContainer": {
+      "shipping": "Versandkosten",
+      "cost": "Gesamtsumme",
+      "includingVAT": "inkl. MwSt",
+      "reduction": "Sie sparen",
+      "error": "Ihre Bestellung kann nicht fortgesetzt werden. Bitte passen Sie Ihren Warenkorb an.",
+      "errorItem": "DEPOT Plus Produkt ab einem Gesamtwert von mind. 29,00 € bestellbar.",
+      "errorDialog": {
+        "headline": "Hinweis zu DEPOT Plus Produkten",
+        "content": "Der Mindestbestellwert von 29,00 € für DEPOT Plus Produkte wurde noch nicht erreicht. Setze Deinen Einkauf fort und füge Deinem Warenkorb weitere Produkte hinzu oder gehe ohne Plus Produkte zur Kasse.",
+        "continueShopping": "Weiter shoppen",
+        "toCheckout": "Zur Kasse gehen"
+      },
+      "plusProductDifference": "DEPOT Plus Produkte sind erst ab einem Gesamtwert von 29,00 € bestellbar. Es fehlen noch {{plusProductDifference}} bis DEPOT Plus Produkte bestellbar sind.",
+      "benefits": {
+        "first": "Schnelle Lieferzeiten",
+        "second": "Click & Collect",
+        "third": "Kostenlose Retour",
+        "fourth": "Käuferschutz"
+      }
+    },
+    "itemQuantity": "Menge {{quantity}}",
+    "basketIsEmpty": "Ihr Warenkorb ist leer.",
+    "paymentMethods": "Akzeptierte Zahlungsmethoden",
+    "debit": "Lastschrift",
+    "bill": "Rechnung",
+    "rates": "Ratenkauf",
+    "instant": "Sofortüberweisung",
+    "errors": {
+      "generic": "Ups, da ging etwas schief. Versuchen sie es später nochmal."
+    },
+    "paymentPartner": "Unser Partner"
+  },
+  "RESERVATION_BASKET": { "tabTitle": "Reservierung ({{itemCount}})" },
+  "WISHLIST": {
+    "title": "Deine Wunschliste",
+    "isEmpty": "Deine Wunschliste ist leider leer.",
+    "outOfStock": "Leider ausverkauft",
+    "articles": "{{total}} Artikel",
+    "message": {
+      "sure": "Möchtest Du den Artikel wirklich von Deiner Wunschliste entfernen?"
+    },
+    "actions": {
+      "delete": "Entfernen"
+    }
+  },
+  "OSP": {
+    "headline": "Deine Bestellbestätigung",
+    "successGreeting": "Herzlichen Dank für Deinen Einkauf",
+    "orderNumber": "Deine Bestellnummer: <b>{{orderId}}</b>",
+    "message": {
+      "line1": "Unser Team wird Deine Bestellung nun schnellstmöglich bearbeiten, damit Sie Deine Artikel so bald wie möglich in den Händen halten können. Sie erhalten umgehend eine Bestellbestätigung per E-Mail.",
+      "line2": "Viel Freude mir Deinen neuen Artikeln!",
+      "line3": "Dein DEPOT Online-Team"
+    },
+    "actions": {
+      "goToOrders": "Zu meinen Bestellungen",
+      "continueShopping": "Weiter einkaufen"
+    },
+    "nextSteps": {
+      "headline": "Und so geht's weiter",
+      "confirmation": "In wenigen Augenblicken erhältst Du von uns eine Bestellbestätigung per E-Mail.",
+      "delivery": "In ca. 3 – 4 Werktagen wird Deine Bestellung an die von Dir gewählte Adresse geliefert.",
+      "unpacking": "Dann einfach auspacken und über die neuen DEPOT-Artikel freuen. Viel Spaß damit!"
+    },
+    "register": {
+      "headline": "Kundenkonto anlegen",
+      "subHeadline": "Vorteile sichern",
+      "line1": "Schnelles, einfaches Einkaufen",
+      "line2": "Speichern der Benutzerdaten und Einstellungen im persönlichen Konto",
+      "line3": "Einblick in die Bestellhistorie inkl. Sendungsverfolgung und Retourenabwicklung",
+      "line4": "Verwalten der Wunschliste",
+      "button": "Jetzt registrieren"
+    }
+  },
+  "ACCOUNT": {
+    "label": "Mein DEPOT",
+    "logout": "Abmelden",
+    "header": "zurück zu Mein DEPOT",
+    "status": "Status: ",
+    "categories": {
+      "orders": {
+        "title": "Meine Bestellungen",
+        "subTitle": "{{total}} Bestellungen"
+      },
+      "reservations": {
+        "title": "Meine Reservierungen",
+        "subTitle": "{{total}} Reservierungen ({{opened}} offen)"
+      },
+      "settings": {
+        "title": "Meine Einstellungen",
+        "subTitle": "Persönliche Daten ändern"
+      }
+    },
+    "pages": {
+      "orders": {
+        "title": "Bestellübersicht",
+        "order": {
+          "title": "Bestellung vom {{date}}",
+          "firstSubtitle": "depot-{{id}}",
+          "secondSubtitle": "{{total}} Artikel - Status:",
+          "detail": {
+            "orderId": "depot-{{id}}",
+            "address": {
+              "combinedTitle": "Liefer und Rechnungsadresse",
+              "delivery": {
+                "title": "Lieferadresse"
+              },
+              "billing": {
+                "title": "Rechnungsadresse"
+              }
+            },
+            "product": {
+              "deliveryText": " Lieferung ca {{deliveryDay}}: {{deliveryDate}}",
+              "withPrefix": "mit",
+              "quantity": "Anzahl: {{quantity}}",
+              "color": "Farbe: {{color}}",
+              "articleNumber": "Artikelnr: {{Nr}}"
+            },
+            "totalPrice": "Gesamtsumme",
+            "tax": "inkl MwSt",
+            "payment": {
+              "method": "Bezahlt mit:",
+              "receiver": "Empfänger:",
+              "purpose": "Verwendungszweck:",
+              "amount": "Betrag:",
+              "bankDetails": "IBAN:",
+              "bank": "Bank:",
+              "dateOfPayment": "Zahlungsziel:",
+              "invoice": "Rechnung (PDF)",
+              "types": {
+                "klarna_installments": "Klarna",
+                "klarna_paylater": "Klarna Zahl später",
+                "accounting": "Bankkonto"
+              }
+            }
+          }
+        },
+        "noOrder": {
+          "title": "Bestellübersicht",
+          "noOrderText": "Du hast noch keine Bestellungen",
+          "contact": {
+            "title": "Kundenservice",
+            "contactText": "Du erreichst unseren Kundenservice",
+            "openingHours": {
+              "days": "Montag - Freitag",
+              "hours": "11:00 bis 18:00 Uhr"
+            },
+            "formularText": "Zum Kontaktformular",
+            "phone": "0800 400 31 10"
+          }
+        },
+        "errors": {
+          "generic": "Die Rechnung kann vorübergehend nicht abgerufen werden.",
+          "pending": "Die Rechnung kann erst 24 Stunden nach der Bestellung abgerufen werden."
+        },
+        "statusLabels": {
+          "order_open": "In Bearbeitung",
+          "payment_pending": "In Bearbeitung",
+          "payment_reserved": "In Bearbeitung",
+          "invoice_completed": "Versendet",
+          "cancellation_pending": "Storniert",
+          "cancellation_completed": "Storniert",
+          "invoice_partially_completed": "Storniert",
+          "open": "In Bearbeitung",
+          "shipment_pending": "In Bearbeitung",
+          "shipment_completed": "Versendet"
+        }
+      },
+      "reservations": {
+        "title": "Reservierungsübersicht",
+        "order": {
+          "title": "Reservierung vom {{date}}",
+          "firstSubtitle": "depot-{{id}}",
+          "secondSubtitle": "{{total}} Artikel - Status:",
+          "articleNumber": "{{total}} Artikel",
+          "details": "Details",
+          "notification": {
+            "title": "Du hast eine offene Reservierung. Bitte schließe diese zunächst ab",
+            "closeNotification": "Reservierung abschließen"
+          },
+          "detail": {
+            "orderId": "depot-{{id}}",
+            "address": {
+              "combinedTitle": "Deine Filiale",
+              "moreInfos": {
+                "moreInfosText": "Mehr anzeigen",
+                "lessInfosText": "Weniger anzeigen",
+                "openHours": "Öffnungszeiten",
+                "moreInfos": {
+                  "label": "Zusätzliche Informationen",
+                  "text": "Barrierefreier Zugang"
+                },
+                "contact": {
+                  "label": "Kontakt",
+                  "text": "Rufe uns an"
+                }
+              }
+            },
+
+            "product": {
+              "pickupText": "Abholung: {{pickupDateStart}} - {{pickupDateEnd}}",
+              "quantity": "Anzahl: {{quantity}}",
+              "color": "Farbe: {{color}}",
+              "articleNumber": "Artikelnr: {{Nr}}"
+            },
+            "totalPrice": "Gesamtsumme",
+            "tax": "inkl. MwSt",
+            "payment": {
+              "method": "Bezahlt mit:",
+              "receiver": "Empfänger:",
+              "purpose": "Verwendungszweck:",
+              "amount": "Betrag:",
+              "bankDetails": "IBAN:",
+              "bank": "Bank:",
+              "dateOfPayment": "Zahlungsziel:",
+              "invoice": "Rechnung (PDF)"
+            }
+          }
+        },
+        "noOrder": {
+          "title": "Reservierungsübersicht",
+          "noOrderText": "Du hast noch keine Reservierungen",
+          "contact": {
+            "title": "Kundenservice",
+            "contactText": "Du erreichst unseren Kundenservice",
+            "openingHours": {
+              "days": "Montag - Freitag",
+              "hours": "11:00 bis 18:00 Uhr"
+            },
+            "formularText": "Zum Kontaktformular",
+            "phone": "0800 400 31 10"
+          }
+        },
+        "statusLabels": {
+          "created": "In Bearbeitung",
+          "transferred": "In Bearbeitung",
+          "pending": "In Bearbeitung",
+          "complete": "In Bearbeitung",
+          "ready": "Zur Abholung bereit",
+          "picked": "Abgeholt",
+          "cancelled": "Storniert",
+          "sended": "Versendet"
+        }
+      },
+      "personal": {
+        "settings": "Einstellungen",
+        "title": "Persönliche Daten",
+        "gender": {
+          "female": "Frau",
+          "male": "Herr"
+        },
+        "firstName": "Vorname",
+        "lastName": "Nachname",
+        "phone": "Telefonnummer",
+        "birthDate": "Geburtsdatum",
+        "email": "E-Mail-Adresse",
+        "save": "Speichern",
+        "errorMessage": {
+          "firstName": "Bitte Vornamen eintragen",
+          "lastName": "Bitte Nachnamen eintragen",
+          "birthDate": "Bitte Geburtsdatum eintragen",
+          "phone": "Bitte korrekte Telefonnummer eintragen",
+          "email": "Bitte E-Mail eintragen"
+        }
+      },
+      "newsletter": {
+        "title": "Benachrichtungen",
+        "checkbox": "DEPOT Newsletter",
+        "teaser": "Geben Sie hier an, worüber wir Sie per E-Mail informieren sollen",
+        "save": "Speichern"
+      }
+    }
+  },
+  "GLOBAL": {
+    "product_title": {
+      "packSizeLabel": "{{value}}er-Pack",
+      "plus_produkt": "Plus Produkt",
+      "sale": "Sale",
+      "neu": "Neu",
+      "set": "Set",
+      "online_produkt": "Online Collection",
+      "tv_spot": "Tv Spot",
+      "unikat": "Unikat"
+    },
+    "header": {
+      "search": {
+        "placeholder": "Kategorien, Artikel suchen",
+        "viewAll": "alle anzeigen",
+        "groups": {
+          "categories": "Kategorien",
+          "products": "Artikel"
+        }
+      },
+      "icons": {
+        "myAccount": {
+          "label": "Mein DEPOT",
+          "loggedInUser": {
+            "personalData": "Persönliche Daten",
+            "reservations": "Reservierungen",
+            "orders": "Bestellungen",
+            "addresses": "Adressen",
+            "logout": "Nicht {{username}}? &nbsp; <b>Abmelden</b>"
+          },
+          "loggedOutUser": {
+            "login": "<b>Anmelden</b>",
+            "register": "Kein Kunde? &nbsp; <b>Jetzt registrieren</b>"
+          }
+        },
+        "wishlist": {
+          "label": "Wunschliste",
+          "flyOutTitle": "Kürzlich gemerkt",
+          "moreItemsAvailable": "Weitere {{amount}} Artikel in Ihrer <br>Wunschliste",
+          "empty": {
+            "info": "Deine Wunschliste ist leer",
+            "actionCall": "Füge etwas mit dem <img class='icon-translated' src='{{iconLocation}}' /> zu Deiner Liste hinzu."
+          },
+          "navigation": {
+            "toWishlist": "Zur Wunschliste"
+          }
+        },
+        "basket": {
+          "label": "Warenkorb",
+          "flyOutTitle": "Warenkorb ({{itemCount}})",
+          "moreItemsAvailable": "Weitere {{amount}} Artikel in Ihrem <br>Warenkorb",
+          "cost": "Gesamtbetrag:",
+          "empty": {
+            "info": "Ihr Warenkorb ist leer",
+            "actionCall": "Fügen Sie Artikel zu Ihrem Warenkorb hinzu."
+          },
+          "navigation": {
+            "toBasket": "Zum Warenkorb",
+            "inBasket": "Im Warenkorb",
+            "toCheckout": "Zur Kasse"
+          }
+        }
+      }
+    },
+    "sidebar": {
+      "categories": {
+        "goBackLabel": "zurück",
+        "showAllLabel": "Alle Artikel anzeigen"
+      },
+      "user": {
+        "label": "<b>Mein DEPOT</b>",
+        "goBackLabel": "zurück",
+        "loggedInUser": {
+          "personalData": "Persönliche Daten",
+          "reservations": "Reservierungen",
+          "orders": "Bestellungen",
+          "addresses": "Adressen",
+          "logout": "Abmelden",
+          "welcome": "Hallo {{username}}"
+        },
+        "loggedOutUser": {
+          "login": "Anmelden",
+          "register": "Registrieren"
+        }
+      },
+      "language": {
+        "label": "Länderwahl"
+      }
+    },
+    "productItem": {
+      "actions": {
+        "addToWishlist": "Wunschliste",
+        "delete": "löschen"
+      }
+    }
+  },
+  "ERROR_PAGE": {
+    "headline": "Oops! Page not found"
+  },
+  "SEO": {
+    "homepage": {
+      "title": "DEPOT Online Shop | Alles für eine traumhafte Einrichtung",
+      "description": "DEPOT Online Shop | Alles für eine traumhafte Einrichtung"
+    },
+    "pdp": {
+      "title": "{{productName}}",
+      "description": "{{productName}}"
+    },
+    "plp": {
+      "title": "{{categoryName}}",
+      "description": "{{categoryName}}"
+    },
+    "basket": {
+      "title": "DEPOT Warenkorb",
+      "description": "DEPOT Warenkorb"
+    }
+  },
+  "NEWSLETTER": {
+    "title": "News & Trends",
+    "teaser": "Abonniere unseren Newsletter und sichere Dir viele Vorteile!",
+    "errors": {
+      "alreadySubscribedError": "Die angegebene E-Mail-Adresse ist bereits für den Newsletter registriert.",
+      "checkFailedError": "Es tut uns leid, der Service ist aktuell nicht erreichbar. Bitte versuchen Sie es zu einem späteren Zeitpunkt erneut."
+    },
+    "success": "Bitte schließen Sie Ihre Anmeldung ab: zur Bestätigung Ihrer E-Mail-Adresse finden Sie in Ihrem Posteingang eine Nachricht von uns.",
+    "confirmation": {
+      "success": {
+        "title": "Vielen Dank, Deine Anmeldung war erfolgreich!",
+        "description": "Ab jetzt erhältst Du alle Neuigkeiten zu Trends, Kollektionen und Rabattaktionen exklusiv vor allen anderen. Um Dich herzlich willkommen zu heißen, senden wir Dir einen Willkommens-Rabatt1 mit Deinem ersten Newsletter zu. Dieses Angebot gilt ausschließlich für Erstanmelder."
+      },
+      "failure": {
+        "title": "Deine Anmeldung war noch nicht erfolgreich!",
+        "description": "Es tut uns leid, der Service ist aktuell nicht erreichbar. Bitte versuche es zu einem späteren Zeitpunkt erneut."
+      },
+      "buttonTitle": "Jetzt shoppen"
+    },
+    "register": {
+      "form": {
+        "title": "Newsletter Anmeldung",
+        "gender": {
+          "female": "Frau",
+          "male": "Mann",
+          "advice": "Bitte wählen Sie Ihre Anrede"
+        },
+        "firstname": "Vorname",
+        "lastname": "Nachname",
+        "birthdate": "Geburtsdatum",
+        "email": "E-Mail-Adresse",
+        "info": "Wir benötigen Dein Geburtsdatum für die Zahlarten im letzten Schritt des Bestellvorgangs.",
+        "buttonTitle": "Jetzt anmelden",
+        "legalAdvice": "Keine Datenweitergabe an Dritte. Eine Abmeldung ist jederzeit möglich. Hier findest Du unsere Datenschutzerklärung."
+      },
+      "advantages": {
+        "title": "Nichts mehr verpassen",
+        "teaser": "Mit dem DEPOT-Newsletter wirst Du zum Interior-Trendsetter und kannst Dir zahlreiche Vorteile sichern:",
+        "welcomeTitle": "Willkommensrabatt",
+        "welcomeTeaser": "Mit dem DEPOT-Newsletter wirst Du zum Interior-Trendsetter und kannst Dir zahlreiche Vorteile sichern:",
+        "personalTitle": "Persönliche Geburtstagsüberraschung",
+        "personalTeaser": "Mit dem DEPOT-Newsletter wirst Du zum Interior-Trendsetter und kannst Dir zahlreiche Vorteile sichern:",
+        "individualTitle": "Individuelle Produktempfehlung",
+        "individualTeaser": "Mit dem DEPOT-Newsletter wirst Du zum Interior-Trendsetter und kannst Dir zahlreiche Vorteile sichern:",
+        "exclusiveTitle": "Exklusive Angebote & Rabatt-Aktionen",
+        "exclusiveTeaser": "Mit dem DEPOT-Newsletter wirst Du zum Interior-Trendsetter und kannst Dir zahlreiche Vorteile sichern:",
+        "newTitle": "Brandneue Kollektionen & Trends",
+        "newTeaser": "Mit dem DEPOT-Newsletter wirst Du zum Interior-Trendsetter und kannst Dir zahlreiche Vorteile sichern:",
+        "eventsTitle": "Events in Deiner Lieblingsfiliale",
+        "eventsTeaser": "Mit dem DEPOT-Newsletter wirst Du zum Interior-Trendsetter und kannst Dir zahlreiche Vorteile sichern:"
+      }
+    }
+  }
+}

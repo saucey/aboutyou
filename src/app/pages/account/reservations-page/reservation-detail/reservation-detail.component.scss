@@ -1,0 +1,228 @@
+@import '../../../..//common/styles';
+
+:host {
+  .address {
+    display: flex;
+    border: solid 1px COLOR(grey-150);
+    padding: 18px 24px 24px 24px;
+    margin-bottom: 40px;
+    min-height: 146px;
+    letter-spacing: normal;
+    font-style: normal;
+    font-stretch: normal;
+    font-size: FONT_SIZES(medium);
+    line-height: 1.43;
+    color: COLOR(grey-600);
+    .address-card {
+      width: 100%;
+    }
+    .address-card-title {
+      min-height: 20px;
+      font-weight: normal;
+      margin-bottom: 4px;
+    }
+    .address-card-body {
+      max-height: 80px;
+      font-weight: 300;
+    }
+    .collapse-open-hours {
+      position: relative;
+      margin-top: 16px;
+      margin-bottom: 16px;
+      min-height: 16px;
+      font-weight: 500;
+      line-height: 1.33;
+      font-size: FONT_SIZES(small);
+    }
+    .divider-address {
+      margin-top: 16px;
+      margin-bottom: 16px;
+    }
+
+    .contact {
+      display: flex;
+      justify-content: space-between;
+    }
+    .phone {
+      min-height: 16px;
+      font-size: FONT_SIZES(small);
+      font-weight: normal;
+      line-height: 1.33;
+      text-align: right;
+      a {
+        text-decoration: none;
+        color: COLOR(grey-600);
+      }
+    }
+
+    .collapse-text {
+      div {
+        min-height: 20px;
+        font-weight: 300;
+      }
+      .more-infos-title {
+        min-height: 20px;
+        font-size: FONT_SIZES(medium);
+        font-weight: normal;
+        margin-bottom: 4px;
+      }
+    }
+    .compass-icon {
+      margin-left: auto;
+    }
+  }
+
+  .bill {
+    display: flex;
+    justify-content: space-between;
+    .address {
+      width: 48%;
+    }
+  }
+  .tab-group {
+    padding: 18px 20px 28px;
+    ::ng-deep {
+      .mat-tab-header {
+        border-bottom: none;
+      }
+      .mat-tab-label {
+        height: 20px;
+        font-size: FONT_SIZES(medium);
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.43;
+        letter-spacing: normal;
+        color: COLOR(grey-600);
+        padding: 0 0;
+        margin-right: 40px;
+        margin-bottom: 4px;
+        justify-content: flex-start;
+      }
+      .mat-tab-label-active {
+        color: COLOR(bermuda-green-400);
+      }
+      .mat-ink-bar {
+        background-color: COLOR(bermuda-green-300);
+      }
+    }
+
+    .tab {
+      margin-top: 12px;
+    }
+  }
+  mat-divider {
+    margin-bottom: 11px;
+    height: 1px;
+    background-color: COLOR(grey-150);
+  }
+  .status {
+    margin-bottom: 10px;
+    font-size: FONT_SIZES(medium);
+    line-height: 1.43;
+    span {
+      color: COLOR(grey-300);
+
+      &.cancelled {
+        color: COLOR(red-orange);
+      }
+    }
+  }
+  .total-price {
+    margin-top: 20px;
+    display: flex;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    justify-content: space-between;
+
+    .total-price-label {
+      min-height: 24px;
+      font-size: FONT_SIZES(base);
+      font-weight: 500;
+      line-height: 1.5;
+      color: COLOR(black);
+    }
+    .tax-label {
+      min-height: 14px;
+      font-size: FONT_SIZES(extraSmall);
+      font-weight: 300;
+      line-height: 1.4;
+      color: COLOR(grey-600);
+    }
+    .sum {
+      min-height: 24px;
+      font-size: FONT_SIZES(base);
+      font-weight: 500;
+      line-height: 1.5;
+      text-align: right;
+      color: COLOR(black);
+    }
+  }
+
+  .invoice {
+    padding: 20px 24px 28px 24px;
+    margin-top: 48px;
+    border: solid 1px COLOR(grey-150);
+  }
+
+  .order-id {
+    height: 20px;
+    font-size: FONT_SIZES(medium);
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    margin-bottom: 16px;
+  }
+
+  .detail-container {
+    margin-top: 24px;
+
+    @include MEDIA_QUERY(md) {
+      margin-top: 32px;
+    }
+  }
+
+  app-icon {
+    position: absolute;
+    top: 3px;
+  }
+  .contact {
+    display: flex;
+    justify-content: space-between;
+  }
+  .phone {
+    padding-top: 20px;
+  }
+
+  .order-title {
+    font-size: FONT_SIZES(extraLarge);
+    font-weight: 500;
+    color: COLOR(grey-600);
+    line-height: 1.33;
+    height: 32px;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: -0.8px;
+  }
+
+  app-icon {
+    position: relative;
+    left: 0;
+    top: 9px;
+  }
+  .postal-code {
+    margin-right: 3px;
+  }
+
+  .products-lists {
+    margin-bottom: 8px;
+    .products-title {
+      margin-bottom: 8px;
+      font-size: FONT_SIZES(medium);
+      line-height: 1.43;
+      color: COLOR(grey-600);
+    }
+  }
+}

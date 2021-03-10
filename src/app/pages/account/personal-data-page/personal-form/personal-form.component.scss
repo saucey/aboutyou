@@ -1,0 +1,60 @@
+@import '../../../..//common/styles/index';
+
+@mixin form-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+  label {
+    position: absolute;
+    color: rgba(0, 0, 0, 0.5);
+    top: -9px;
+    left: 26px;
+    background: COLOR(white);
+    font-size: 12px;
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+  .error-label {
+    height: 12px;
+    padding-top: 5px;
+    color: COLOR(red-orange);
+    font-size: FONT_SIZES(extraSmall);
+    line-height: 1.4;
+  }
+
+  ::ng-deep app-icon {
+    position: absolute;
+    right: 27px;
+    top: 12px;
+  }
+
+  input {
+    font-size: FONT_SIZES(medium);
+    line-height: 1.43;
+    color: COLOR(grey-600);
+    text-indent: 3px;
+    border-radius: unset;
+    height: 40px;
+    &.error {
+      border-color: COLOR(red-orange);
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: none;
+    }
+  }
+}
+
+:host {
+  .form-group {
+    @include form-group;
+  }
+  .submit {
+    margin-top: 25px;
+  }
+
+  button {
+    border-radius: unset;
+    width: 100%;
+  }
+}

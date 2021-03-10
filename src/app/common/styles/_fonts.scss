@@ -1,0 +1,24 @@
+$sizes: (
+  /* 16px */ base: 1rem,
+  /* 8px */ halfBase: 0.5rem,
+  /* 10px */ extraSmall: 0.625rem,
+  /* 12px */ small: 0.75rem,
+  /* 14px */ medium: 0.875rem,
+  /* 18px */ extraMedium: 1.125rem,
+  /* 20px */ large: 1.25rem,
+  /* 24px */ extraLarge: 1.5rem,
+  /* 32px */ doubleBase: 2rem,
+  /* 64px */ superLarge: 4rem
+);
+
+@function FONT_SIZES($name) {
+  @if map-has-key($sizes, $name) {
+    @return map-get($sizes, $name);
+  }
+
+  @warn "The key #{$name} is not in the map ’$sizes";
+  @return null;
+}
+
+// Usage
+// font-size: FONT_SIZES(base);

@@ -1,0 +1,54 @@
+@import '../../styles/index';
+
+.color-bubble {
+  border-radius: 100%;
+  box-shadow: inset 0px 0px 0px 2px COLOR(white);
+  background-size: 200% 100%;
+  display: inline-flex;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  margin-right: 18px;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+
+  border: solid 1px COLOR(grey-100);
+  &.selected {
+    border: solid 1px COLOR(black);
+  }
+
+  i.checkMark {
+    cursor: pointer;
+    background-image: ASSETS_URL('icons/done.svg');
+    height: 24px;
+    background-repeat: no-repeat;
+    width: 24px;
+    transition: all 0.1s ease-out;
+  }
+
+  &:hover {
+    border: 1px solid COLOR(black);
+  }
+
+  .label {
+    position: absolute;
+    top: 110%;
+    font-size: FONT_SIZES(extraSmall);
+    text-transform: lowercase;
+  }
+
+  @include MEDIA_QUERY(lg) {
+    width: 24px;
+    height: 24px;
+    i.checkMark {
+      transform: scale(0.5);
+    }
+    .label {
+      display: none;
+    }
+  }
+}

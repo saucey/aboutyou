@@ -1,0 +1,22 @@
+<div class="basket-list">
+  <div class="content">
+    <ng-container *ngIf="loading; then loadingBasketItems; else basketItemsList"></ng-container>
+    <ng-template #loadingBasketItems>
+      <app-skeleton-basket-list></app-skeleton-basket-list>
+    </ng-template>
+    <ng-template #basketItemsList>
+      <app-reservation-basket-list-item
+        *ngFor="let basketItem of basketItems"
+        [isMobile]="isMobile"
+        [currency]="currency"
+        [item]="basketItem"
+        [disabled]="disabled"
+        [isFlyoutMode]="false"
+        (basketItemClick)="basketItemClick.emit($event)"
+        (deleteItem)="handleDeleteItem.emit($event)"
+        (changeQuantity)="handleItemQuantityChange.emit($event)"
+      >
+      </app-reservation-basket-list-item>
+    </ng-template>
+  </div>
+</div>

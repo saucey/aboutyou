@@ -1,0 +1,297 @@
+@import '../../..//common/styles/_index.scss';
+@import '~bootstrap/scss/mixins';
+
+footer {
+  font-family: Montserrat;
+
+  // Style the first two rows with the navigation.
+  .footer-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+
+    .loyalty {
+      position: absolute;
+    }
+
+    .footer:not(.reduced) {
+      .loyalty {
+        top: 170px;
+        left: 75%;
+
+        @include media-breakpoint-down(lg) {
+          top: 190px;
+          left: 75%;
+        }
+
+        @include media-breakpoint-down(md) {
+          top: 760px;
+          left: 10px;
+        }
+
+        @include media-breakpoint-down(sm) {
+          top: 760px;
+          left: 10px;
+        }
+      }
+    }
+
+    .footer.reduced {
+      .loyalty {
+        top: 220px;
+        left: 43%;
+
+        @include media-breakpoint-down(lg) {
+          top: 220px;
+          left: 41%;
+        }
+
+        @include media-breakpoint-down(md) {
+          top: 547px;
+          left: 9px;
+        }
+
+        @include media-breakpoint-down(sm) {
+          top: 544px;
+          left: 9px;
+        }
+      }
+    }
+
+    .container {
+      padding-top: 0;
+      margin-left: 0 52px 32px 52px;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    .footer {
+      position: relative;
+
+      // Make sure all child containers have the same size.
+      div[class*='col'] {
+        border-top: 1px solid COLOR(grey-150);
+        padding: 32px 0 0;
+        padding-right: 24px;
+        margin-bottom: 16px;
+      }
+
+      label,
+      h2 {
+        color: COLORS(grey-600);
+        font-size: FONT_SIZES(medium);
+        line-height: 20px;
+
+        padding-top: 0;
+        margin-bottom: 16px;
+
+        .chevron {
+          display: none;
+        }
+      }
+
+      ul {
+        margin-bottom: 16px;
+
+        > li {
+          color: COLORS(grey-600);
+          font-size: FONT_SIZES(medium);
+          font-size: 14px;
+          font-weight: 300;
+          line-height: 20px;
+
+          ~ li {
+            margin-top: 8px;
+          }
+
+          > a {
+            color: inherit;
+            font: inherit;
+
+            &.hotlineNumber {
+              font-weight: 500;
+            }
+          }
+        }
+
+        &.list-horizontal {
+          list-style-type: none;
+          display: flex;
+          flex-direction: row;
+          padding-left: 0;
+          margin-bottom: 0;
+
+          > li {
+            &:first-child {
+              margin-left: 0;
+            }
+
+            ~ li {
+              margin-top: 0;
+              margin-left: 12px;
+            }
+          }
+        }
+      }
+
+      .icon-options {
+        display: flex;
+        flex-direction: row;
+
+        > * + * {
+          margin-left: 12px;
+        }
+      }
+
+      .info-text {
+        color: COLOR(grey-600);
+        font-size: FONT_SIZES(small);
+        line-height: 16px;
+        object-fit: contain;
+      }
+
+      .customer-additions {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+      }
+
+      // Hide the checkboxes used for the expander.
+      input[type='checkbox'] {
+        display: none;
+      }
+
+      // Overrides for tablet mode.
+      @include media-breakpoint-down(md) {
+        border-top: unset;
+        padding-top: 0;
+        padding-bottom: 0;
+
+        flex-direction: column;
+
+        &:not(.reduced) {
+          div[class*='col'] {
+            padding-right: 0;
+          }
+
+          label {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+
+            > * {
+              display: block;
+            }
+          }
+
+          // Closed state.
+          input[type='checkbox'] {
+            & ~ label .chevron {
+              animation: close 500ms;
+              transform: rotate(0deg);
+            }
+
+            & ~ ul,
+            & ~ div {
+              display: none;
+            }
+
+            // Open state.
+            &:checked {
+              & ~ label .chevron {
+                animation: open 500ms;
+                transform: rotate(180deg);
+              }
+
+              & ~ ul,
+              & ~ div {
+                display: block;
+              }
+            }
+          }
+
+          li + li {
+            margin-top: 20px;
+          }
+
+          .info-text {
+            margin-bottom: 0;
+          }
+
+          .icon-options {
+            margin-bottom: 16px;
+          }
+        }
+      }
+
+      // Reduced mode
+      &.reduced {
+        * {
+          white-space: nowrap;
+        }
+
+        .service ul {
+          > li {
+            display: flex;
+            align-items: flex-start;
+
+            > * ~ * {
+              margin-left: 10px;
+            }
+          }
+        }
+
+        @include media-breakpoint-up(lg) {
+          > div.row {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            width: 100%;
+
+            > div {
+              flex: 1 1;
+
+              &.payment {
+                flex: 0 1;
+              }
+            }
+          }
+
+          .payment {
+            > .icon-options {
+              flex-flow: row wrap;
+              justify-content: center;
+
+              > * ~ * {
+                margin: 10px 0 0;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes open {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes close {
+  from {
+    transform: rotate(180deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}

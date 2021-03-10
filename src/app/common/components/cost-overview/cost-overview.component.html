@@ -1,0 +1,44 @@
+<ng-container>
+  <div class="cost-overview" appStickyOverview>
+    <div class="benefits" *ngIf="!isMobile">
+      <div>
+        <app-icon [icon]="'checkmark-styled'" [scale]="1"></app-icon>
+        <span>{{ 'BASKET.costContainer.benefits.first' | translate }}</span>
+      </div>
+      <div>
+        <app-icon [icon]="'checkmark-styled'" [scale]="1"></app-icon>
+        <span>{{ 'BASKET.costContainer.benefits.second' | translate }}</span>
+      </div>
+      <div>
+        <app-icon [icon]="'checkmark-styled'" [scale]="1"></app-icon>
+        <span>{{ 'BASKET.costContainer.benefits.third' | translate }}</span>
+      </div>
+      <div>
+        <app-icon [icon]="'checkmark-styled'" [scale]="1"></app-icon>
+        <span>{{ 'BASKET.costContainer.benefits.fourth' | translate }}</span>
+      </div>
+    </div>
+
+  <div class="plus-product-warning" *ngIf="!plusProductThresholdReached && plusProductDifference > 0">
+    {{
+      'BASKET.costContainer.plusProductDifference'
+        | translate: { plusProductDifference: plusProductDifference | currency: currency }
+    }}
+  </div>
+
+  <div class="reduction" *ngIf="totalBasketReduction > 0">
+    <div>{{ 'BASKET.costContainer.reduction' | translate }}</div>
+    <div>{{ totalBasketReduction | currency: currency }}</div>
+  </div>
+
+  <div class="costs">
+    <div>
+      {{ 'BASKET.costContainer.cost' | translate }} <br />
+      <span>{{ 'BASKET.costContainer.includingVAT' | translate }}</span>
+    </div>
+    <div>{{ basketCost?.withTax | currency: currency }}</div>
+  </div>
+  <app-button (click)="goToCheckout.emit()" variant="purchase" [disabled]="disabled">{{
+    'BASKET.goToCheckout' | translate
+  }}</app-button>
+</div>

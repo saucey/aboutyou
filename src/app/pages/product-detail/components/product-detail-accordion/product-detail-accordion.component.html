@@ -1,0 +1,44 @@
+<ng-container>
+  <ul class="accordion">
+    <app-accordion-usp
+      [inputs]="{
+        iconName: 'clock',
+        headline: 'PRODUCT_DETAIL.accordion.shipping.title' | translate,
+        short: 'PRODUCT_DETAIL.accordion.shipping.subtitle' | translate: { days: deliveryTime },
+        long: 'PRODUCT_DETAIL.accordion.shipping.description' | translate: { days: deliveryTime, supplier: supplier },
+        link: 'PRODUCT_DETAIL.accordion.furtherInformation' | translate
+      }"
+    ></app-accordion-usp>
+
+    <app-accordion-usp
+      [inputs]="{
+        iconName: 'truck',
+        headline: 'PRODUCT_DETAIL.accordion.freeShipping.title' | translate,
+        short: freeShippingSubtitleKey | translate,
+        long: freeShippingDescriptionKey | translate,
+        link: 'PRODUCT_DETAIL.accordion.furtherInformation' | translate
+      }"
+    ></app-accordion-usp>
+
+    <app-accordion-usp
+      *ngIf="displayClickAndReserve"
+      [inputs]="{
+        iconName: 'click-and-reserve',
+        headline: 'PRODUCT_DETAIL.accordion.clickAndReserve.title' | translate,
+        short: 'PRODUCT_DETAIL.accordion.clickAndReserve.subtitle' | translate,
+        long: 'PRODUCT_DETAIL.accordion.clickAndReserve.description' | translate,
+        link: 'PRODUCT_DETAIL.accordion.furtherInformation' | translate
+      }"
+    ></app-accordion-usp>
+
+    <app-accordion-usp
+      [inputs]="{
+        iconName: 'return',
+        headline: 'PRODUCT_DETAIL.accordion.return.title' | translate,
+        short: 'PRODUCT_DETAIL.accordion.return.subtitle' | translate,
+        long: 'PRODUCT_DETAIL.accordion.return.description' | translate,
+        link: 'PRODUCT_DETAIL.accordion.furtherInformation' | translate
+      }"
+    ></app-accordion-usp>
+  </ul>
+</ng-container>

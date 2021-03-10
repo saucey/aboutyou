@@ -1,0 +1,22 @@
+@import '../../common/styles/index';
+
+.header-margin {
+  padding-top: $header-mobile-height;
+  @include MEDIA_QUERY(lg) {
+    padding-top: $header-desktop-height;
+  }
+  text-align: center;
+
+  h1,
+  i {
+    text-align: center;
+    font-weight: bolder;
+    font-size: FONT_SIZES(large);
+    margin-bottom: 16px;
+
+    @include MEDIA_QUERY(lg) {
+      font-size: FONT_SIZES(extraLarge);
+      margin-bottom: 24px;
+    }
+  }
+}

@@ -1,0 +1,18 @@
+<div class="row pb-2">
+  <div class="col-12">
+    <div class="text-center col-12 component-headline">
+      <app-text [label]="tiles.headline.text" [tag]="'h2'"></app-text>
+    </div>
+    <div class="grid-tiles-grid">
+      <div [ngClass]="tile.type" (click)="navigateIfPossible(tile)" *ngFor="let tile of tiles.data">
+        <div class="grid-tile-wrapper">
+          <img class="background-image" [src]="tile.elements[0].attributes | cdn: { size: 'medium' }" />
+          <div class="text">{{ tile.elements[1].attributes.text }}</div>
+          <app-button variant="default" (click)="navigateIfPossible(tile)">
+            {{ defaultButtonText }}
+          </app-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

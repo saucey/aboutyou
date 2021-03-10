@@ -1,0 +1,168 @@
+@import '../../styles/index';
+
+::ng-deep {
+  header {
+    display: flex;
+    flex-direction: column;
+
+    .logo {
+      font-weight: bold;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      z-index: $z-header-logo;
+
+      a {
+        background-image: ASSETS_URL('logo.svg');
+        text-decoration: none;
+        width: 160px;
+        height: 45px;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+    }
+
+    .search-bar {
+      top: $header-desktop-reduced-height;
+      display: flex;
+      flex-grow: 1;
+      flex-shrink: 1;
+      align-items: baseline;
+      padding: 0 2rem;
+      justify-content: center;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: white;
+      z-index: $z-header-search-bar;
+
+      app-auto-suggest {
+        width: 100%;
+        margin-top: 0.2rem;
+      }
+
+      @include MEDIA_QUERY(lg) {
+        top: 0;
+        z-index: initial;
+
+        app-auto-suggest {
+          width: 20%;
+          min-width: 230px;
+        }
+      }
+    }
+
+    .icons {
+      display: flex;
+      flex-shrink: 1;
+
+      .icon {
+        display: flex;
+        align-items: center;
+        transition: all 0.3s ease-in-out;
+        width: 54px;
+        padding: 0 1rem;
+        position: relative;
+
+        @include MEDIA_QUERY(lg) {
+          padding: 0 0.5rem;
+          width: 38px;
+        }
+
+        app-icon i {
+          z-index: $z-header-app-icon;
+          display: flex;
+          flex-shrink: 0;
+          background-repeat: no-repeat;
+          width: 22px;
+          height: 22px;
+
+          @include MEDIA_QUERY(lg) {
+            margin-right: 0.2rem;
+            transform: scale(0.8);
+          }
+        }
+
+        &.basket-route-active,
+        &.wishlist-route-active {
+          $routeActiveColor: COLOR(bermuda-green-500);
+          // the basket icon outline should be green
+          g path:first-child {
+            fill: $routeActiveColor !important;
+          }
+
+          .icon-label {
+            color: $routeActiveColor;
+          }
+        }
+
+        &.route-active {
+          .icon-label {
+            color: COLOR(bermuda-green-500);
+          }
+        }
+
+        .mat-badge-content {
+          color: COLOR(black) !important;
+          background: COLOR(bermuda-green-300);
+        }
+      }
+    }
+
+    .container {
+      padding: 0;
+      display: flex;
+      flex-shrink: 0;
+      justify-content: space-between;
+    }
+
+    .row-1 {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: white;
+      height: $header-desktop-reduced-height;
+      z-index: $z-header-row-1;
+      border-bottom: solid 1px;
+      border-color: COLOR(grey-150);
+      transition: all 0.2s ease-in;
+
+      @include MEDIA_QUERY(lg) {
+        border-color: transparent;
+
+        &.language-bar-visible {
+          top: $header-desktop-language-switch-height;
+        }
+      }
+    }
+
+    .row-2 {
+      position: fixed;
+      left: 0;
+      right: 0;
+      margin: auto;
+      width: 100%;
+      z-index: $z-header-row-2;
+      display: flex;
+      flex: 1;
+      border-bottom: solid 1px COLOR(grey-150);
+      height: 100%;
+
+      @include MEDIA_QUERY(lg) {
+        top: $header-desktop-reduced-height;
+        height: $header-desktop-height - $header-desktop-reduced-height;
+        &.language-bar-visible {
+          top: $header-desktop-reduced-height + $header-desktop-language-switch-height;
+        }
+      }
+    }
+
+    .row-1,
+    .row-2 {
+      background: white;
+      margin: 0;
+      transition: all 0.2s ease-in;
+    }
+  }
+}

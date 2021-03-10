@@ -1,0 +1,57 @@
+@import '../../common/styles';
+
+$z-back-link: 2;
+
+$z-carousel-actions: 5;
+$z-carousel-image-preview-nav: 2;
+$z-carousel-bullets: 1;
+
+$z-overview-arrow-handle: 5;
+
+::ng-deep {
+  label,
+  figure {
+    margin: 0;
+  }
+}
+
+.container {
+  overflow-y: hidden;
+}
+.wrapper {
+  padding-top: 10px;
+}
+
+.back-link {
+  font-size: FONT_SIZES(medium);
+  font-weight: 300;
+  line-height: 1.43;
+  text-decoration: none;
+  color: COLOR(grey-600);
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  position: absolute;
+  z-index: $z-back-link;
+  padding-top: 18px;
+
+  label {
+    display: none;
+  }
+
+  @include MEDIA_QUERY(md) {
+    margin-bottom: 10px;
+    padding-top: 0;
+    position: static;
+
+    label {
+      display: inline-block;
+      cursor: pointer;
+    }
+  }
+
+  span {
+    margin-bottom: -7px; /* TODO: Fix icons */
+    margin-right: 5px;
+  }
+}

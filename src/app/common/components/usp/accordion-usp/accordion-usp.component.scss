@@ -1,0 +1,89 @@
+@import 'src/app/common/styles/index.scss';
+@import '../../../styles/styleguide/fonts.css';
+
+li[appAccordionItem] {
+  border-top: 1px solid COLOR(grey-150);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  .fix-block {
+    display: flex;
+    justify-content: space-between;
+    height: 92px;
+
+    .icon {
+      margin-top: 16px;
+      margin-left: 16px;
+      margin-right: 16px;
+      height: 56px;
+    }
+
+    .titles {
+      flex-grow: 1;
+      margin-top: 26px;
+
+      .headline {
+        margin-bottom: 4px;
+      }
+    }
+
+    .handle {
+      transition: all 0.2s;
+      display: inline-block;
+      align-self: center;
+      transform: rotate(180deg) translate(0, 5px);
+      margin-right: 16px;
+    }
+  }
+
+  .expand-block {
+    transition: all 0.2s;
+    overflow: hidden;
+    height: 0px; // overriden by AccordionItemDirective when active
+    padding-bottom: 0px; // need to override some global style applied to .content
+    padding-left: 24px;
+
+    @include MEDIA_QUERY(lg) {
+      margin-left: 63px;
+    }
+
+    .long {
+      margin-top: 8px;
+
+      ::ng-deep a {
+        color: COLOR(grey-600);
+        text-decoration: none;
+      }
+      ::ng-deep a:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .link {
+      margin-top: 18px;
+      display: flex;
+      align-items: center;
+
+      app-icon {
+        margin-bottom: -9px; // workaround since app-icon messes up it's own position
+      }
+    }
+
+    :last-child {
+      margin-bottom: 32px;
+    }
+  }
+
+  &.active {
+    .fix-block .handle {
+      -webkit-transform: rotate(0deg) translate(0, 0px);
+      transform: rotate(0deg) translate(0, 0px);
+    }
+  }
+
+  &:last-child {
+    border-bottom: 1px solid COLOR(grey-150);
+  }
+}

@@ -1,0 +1,12 @@
+@import '../../styles/index';
+
+:host {
+  .dialog {
+    max-width: 100%;
+    width: 100%;
+  }
+  #map {
+    height: 78.5vh;
+    width: 100%;
+  }
+}

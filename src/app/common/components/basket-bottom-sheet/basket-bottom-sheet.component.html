@@ -1,0 +1,14 @@
+<div class="basket-bottom-sheet">
+  <div class="title">
+    <b>{{ data.productTitle }}</b>
+  </div>
+  <div (click)="addItem()" id="add-button-wrapper">
+    <app-button variant="primary">{{ 'BASKET.addTo' | translate }}</app-button>
+  </div>
+  <div (click)="deleteItem()" id="delete-button-wrapper">
+    <app-button variant="secondary">{{ 'BASKET.remove' | translate }}</app-button>
+  </div>
+  <div (click)="cancel()" class="icon-link">
+    <app-icon [icon]="'close'" [scale]="2"></app-icon>
+  </div>
+</div>

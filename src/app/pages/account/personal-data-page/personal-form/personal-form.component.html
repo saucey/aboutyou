@@ -1,0 +1,42 @@
+<div class="form-group row" [formGroup]="profileForm">
+  <div class="form-group col-md-6">
+    <label for="firstName">{{ 'ACCOUNT.pages.personal.firstName' | translate }}</label>
+    <app-icon icon="checkmark-styled" scale="1.5" *ngIf="firstName.valid"></app-icon>
+    <input type="text" formControlName="firstName" class="form-control" [class.error]="firstName.invalid" />
+    <div class="error-label" *ngIf="firstName.invalid">
+      {{ 'ACCOUNT.pages.personal.errorMessage.firstName' | translate }}
+    </div>
+  </div>
+  <div class="form-group col-md-6">
+    <label for="lastName">{{ 'ACCOUNT.pages.personal.lastName' | translate }}</label>
+    <app-icon icon="checkmark-styled" scale="1.5" *ngIf="lastName.valid"></app-icon>
+    <input type="text" formControlName="lastName" class="form-control" [class.error]="lastName.invalid" />
+    <div class="error-label" *ngIf="lastName.invalid">
+      {{ 'ACCOUNT.pages.personal.errorMessage.lastName' | translate }}
+    </div>
+  </div>
+  <div class="form-group col-md-6">
+    <label for="phone">{{ 'ACCOUNT.pages.personal.phone' | translate }}</label>
+    <app-icon icon="checkmark-styled" scale="1.5" *ngIf="phone.valid"></app-icon>
+    <input type="text" formControlName="phone" class="form-control" [class.error]="phone.invalid" />
+    <div class="error-label" *ngIf="phone.invalid">
+      {{ 'ACCOUNT.pages.personal.errorMessage.phone' | translate }}
+    </div>
+  </div>
+  <div class="form-group col-md-6">
+    <label for="birthDate">{{ 'ACCOUNT.pages.personal.birthDate' | translate }}</label>
+    <app-icon icon="checkmark-styled" scale="1.5" *ngIf="birthDate.valid"></app-icon>
+    <input type="text" formControlName="birthDate" class="form-control" [class.error]="birthDate.invalid" />
+    <div class="error-label" *ngIf="birthDate.invalid">
+      {{ 'ACCOUNT.pages.personal.errorMessage.birthDate' | translate }}
+    </div>
+  </div>
+  <div class="form-group col-md-12">
+    <label for="email">{{ 'ACCOUNT.pages.personal.email' | translate }}</label>
+    <app-icon icon="checkmark-styled" scale="1.5" *ngIf="email.valid"></app-icon>
+    <input type="text" formControlName="email" class="form-control" [class.error]="email.invalid" />
+    <div class="error-label" *ngIf="email.invalid">
+      {{ 'ACCOUNT.pages.personal.errorMessage.email' | translate }}
+    </div>
+  </div>
+</div>

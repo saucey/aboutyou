@@ -1,0 +1,6 @@
+<div class="tags">
+  <span *ngFor="let tag of tags" class="tag" (click)="onTagRemove(tag)">
+    <span>{{ tag.name }}</span>
+    <i class="remove-button"></i>
+  </span>
+</div>

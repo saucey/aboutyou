@@ -1,0 +1,171 @@
+<span class="d-none d-lg-block">
+  <header>
+    <app-desktop-language-switch
+      *ngIf="showLanguageSwitchBar"
+      [onClose]="setLanguageBarVisibility(false)"
+      [languages]="languages"
+      [selectedLanguage]="selectedLanguage"
+      [onChange]="onLanguageSelection"
+    ></app-desktop-language-switch>
+
+    <div
+      [@toggleBorderColor]="toggleHeader"
+      [ngClass]="['row', 'row-1', showLanguageSwitchBar ? 'language-bar-visible' : '']"
+    >
+      <div class="container">
+        <div class="logo">
+          <a [routerLink]="'/' | localize"></a>
+        </div>
+
+        <div class="search-bar">
+          <app-auto-suggest
+            (suggestionsLookup)="suggestionsLookup($event)"
+            [suggestionsGroupOptions]="suggestionGroupOptions$ | async"
+            [placeholder]="'GLOBAL.header.search.placeholder' | translate"
+            (suggestionSelect)="onSuggestionSelect($event)"
+            (searchSubmit)="onSearchSubmit($event)"
+            [minSearchTermLength]="minSearchTermLength"
+            [currency]="currency"
+          ></app-auto-suggest>
+        </div>
+
+        <div class="icons">
+          <div
+            [ngClass]="['icon', toggleHeader]"
+            [routerLink]="translatedAccountRoute"
+            routerLinkActive="route-active"
+            [@toggleShrink]="toggleHeader"
+          >
+            <app-user-icon-dropdown
+              [customClass]="toggleHeader"
+              [redirectToCheckoutAccountArea]="handleRedirectToCheckoutAccountArea"
+              [redirectToCheckoutOrdersArea]="handleRedirectToCheckoutOrdersArea"
+            >
+            </app-user-icon-dropdown>
+          </div>
+          <div
+            [ngClass]="['icon', toggleHeader]"
+            routerLinkActive="route-active"
+            [routerLink]="translatedWishlistRoute"
+            [@toggleShrink]="toggleHeader"
+          >
+            <app-wishlist-icon-dropdown
+              [loading]="basketLoading$ | async"
+              [customClass]="toggleHeader"
+              [user]="user$ | async"
+              [currency]="currency"
+              [itemCount]="wishlistItemsCount$ | async"
+              (basketItemClick)="onBasketItemClick($event)"
+              (handleRedirectToWishlist)="handleRedirectToWishlist()"
+              (handleBasketHandoverToCheckout)="handleBasketHandoverToCheckout()"
+            >
+            </app-wishlist-icon-dropdown>
+          </div>
+          <div
+            [ngClass]="['icon', toggleHeader]"
+            [routerLink]="translatedBasketRoute"
+            routerLinkActive="route-active"
+            [@toggleShrink]="toggleHeader"
+          >
+            <app-basket-icon-dropdown
+              [loading]="basketLoading$ | async"
+              [customClass]="toggleHeader"
+              [user]="user$ | async"
+              [basketItems]="basketItems$ | async"
+              [currency]="currency"
+              [itemCount]="basketItemsCount$ | async"
+              [basketCost]="basketCost$ | async"
+              (basketItemClick)="onBasketItemClick($event)"
+              (handleRedirectToBasket)="handleRedirectToBasket()"
+              (handleBasketHandoverToCheckout)="handleBasketHandoverToCheckout()"
+            >
+            </app-basket-icon-dropdown>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      @scrollAnimation
+      *ngIf="isExpanded"
+      [ngClass]="['row', 'row-2', showLanguageSwitchBar ? 'language-bar-visible' : '']"
+    >
+      <app-navbar
+        *ngIf="categories"
+        [items]="categories"
+        [activeItem]="activeCategory"
+        [onCategoryClick]="onCategoryClick(false)"
+      ></app-navbar>
+    </div>
+  </header>
+</span>
+
+<span class="d-block d-lg-none">
+  <header>
+    <div class="row row-1">
+      <div class="container">
+        <div class="icons">
+          <div class="icon" (click)="collapseMenu()">
+            <app-icon [icon]="showBurgerMenu ? 'close' : 'menu'" [@closeIconAnimation]="showBurgerMenu"></app-icon>
+          </div>
+          <div class="icon">
+            <app-icon
+              [icon]="shouldShowMobileSearch ? 'close' : 'search'"
+              [@closeIconAnimation]="shouldShowMobileSearch"
+              (click)="showBurgerMenu && toggleBurgerMenu(); toggleMobileSearchVisibility()"
+            >
+            </app-icon>
+          </div>
+        </div>
+
+        <div class="logo">
+          <a [routerLink]="'/' | localize"></a>
+        </div>
+        <div class="icons">
+          <div class="icon" [routerLink]="translatedWishlistRoute" routerLinkActive="wishlist-route-active">
+            <app-header-icon-dropdown
+              customClass="reduced"
+              icon="heart-inactive"
+              [badgeCount]="wishlistItemsCount$ | async"
+            ></app-header-icon-dropdown>
+          </div>
+          <div class="icon" [routerLink]="translatedBasketRoute" routerLinkActive="basket-route-active">
+            <app-header-icon-dropdown
+              customClass="reduced"
+              icon="bag"
+              [badgeCount]="basketItemsCount$ | async"
+            ></app-header-icon-dropdown>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row row-2" *ngIf="shouldShowMobileSearch">
+      <div class="container">
+        <div class="search-bar">
+          <app-auto-suggest
+            (suggestionsLookup)="suggestionsLookup($event)"
+            [suggestionsGroupOptions]="suggestionGroupOptions$ | async"
+            [placeholder]="'GLOBAL.header.search.placeholder' | translate"
+            [viewAllLabel]="'GLOBAL.header.search.viewAll' | translate"
+            (suggestionSelect)="onSuggestionSelect($event)"
+            (searchSubmit)="onSearchSubmit($event)"
+            [minSearchTermLength]="minSearchTermLength"
+            [currency]="currency"
+          ></app-auto-suggest>
+        </div>
+      </div>
+    </div>
+  </header>
+  <app-sidebar
+    [toggleBurgerMenu]="toggleBurgerMenu"
+    [show]="showBurgerMenu"
+    [categories]="categories"
+    [activeCategory]="activeCategory"
+    [onCategoryClick]="onCategoryClick(true)"
+    [languages]="languages"
+    [selectedLanguage]="selectedLanguage"
+    [onLanguageSelection]="onLanguageSelection"
+    [redirectToCheckoutOrdersArea]="handleRedirectToCheckoutOrdersArea"
+    [redirectToCheckoutAccountArea]="handleRedirectToCheckoutAccountArea"
+  ></app-sidebar>
+</span>

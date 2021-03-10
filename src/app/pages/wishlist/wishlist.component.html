@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="wishlist-header">
+    <div>
+      <div class="backlink">
+        <a [routerLink]="previousRouteUrl" [queryParams]="previousRouteUrlParams" class="back-link">
+          <span class="d-none d-md-inline">
+            <app-icon icon="chevron-left" scale="1.5"></app-icon>
+          </span>
+          <span class="d-inline d-md-none">
+            <app-icon icon="arrow-left" scale="1"></app-icon>
+          </span>
+          <label *ngIf="previousRoutePath === '**'">{{ 'PRODUCT_DETAIL.backToListing' | translate }}</label>
+          <label *ngIf="previousRoutePath !== '**'">{{ 'PRODUCT_DETAIL.backToAnything' | translate }}</label>
+        </a>
+      </div>
+      <app-text tag="h2" [label]="'WISHLIST.title' | translate"></app-text>
+    </div>
+    <div class="info-row">
+      <span *ngIf="wishlistCount$ | async">{{
+        'WISHLIST.articles' | translate: { total: wishlistCount$ | async }
+      }}</span>
+      <span></span>
+      <!-- TODO: next ticket edit items use span-->
+    </div>
+  </div>
+
+  <ng-template #emptyWishlist>
+    <div class="empty-wishlist" *ngIf="notLoading$ | async">
+      <app-icon [icon]="'heart_wishlist'" [scale]="9"></app-icon>
+      <div>{{ 'WISHLIST.isEmpty' | translate }}</div>
+    </div>
+  </ng-template>
+
+  <div class="wlp-grid" *ngIf="wishlistCount$ | async; else emptyWishlist">
+    <ng-container *ngIf="(loading$ | async) === false">
+      <app-product-tile
+        *ngFor="let entry of wishlistItemsAvailable$ | async"
+        [product]="entry.mappedProduct"
+        [isMobile]="isMobile$ | async"
+      >
+      </app-product-tile>
+    </ng-container>
+  </div>
+
+  <div class="wlp-grid" *ngIf="(isOutOfStock$ | async) && (loading$ | async) === false">
+    <h3>{{ 'WISHLIST.outOfStock' | translate }}</h3>
+  </div>
+
+  <div class="wlp-grid sold-out" *ngIf="(isOutOfStock$ | async) && (loading$ | async) === false">
+    <app-product-tile
+      *ngFor="let entry of wishlistItemsNotAvailable$ | async"
+      [product]="entry.mappedProduct"
+      [isMobile]="isMobile$ | async"
+    >
+    </app-product-tile>
+  </div>
+  <app-skeleton-wishlist [productsCount]="wishlistCount$ | async" *ngIf="loading$ | async"></app-skeleton-wishlist>
+
+  <div class="row">
+    <div class="col-md-12"></div>
+  </div>
+  <app-subscribe-newsletter
+    [subline]="'HOME.NEWSLETTER.subline' | translate"
+    [headline]="'HOME.NEWSLETTER.headline' | translate"
+    [placeholder]="'HOME.NEWSLETTER.placeholder' | translate"
+    [submit]="'HOME.NEWSLETTER.submit' | translate"
+    [disclaimer]="'HOME.NEWSLETTER.disclaimer' | translate"
+    [source]="'Footer'"
+  ></app-subscribe-newsletter>
+</div>

@@ -1,0 +1,78 @@
+<div class="container overview-wrapper">
+  <div class="wrapper">
+    <div class="row ">
+      <div class="col-1 d-sm-none icon back-arrow">
+        <app-icon icon="arrow-left" scale="1.5" (click)="goBack()"></app-icon>
+      </div>
+      <div class="col-md-12 col-8 header-label">
+        {{ 'ACCOUNT.label' | translate }}
+      </div>
+    </div>
+    <div class="row logout">
+      <div class="col-12 d-none d-sm-inline logout-text" (click)="logout()">
+        {{ 'ACCOUNT.logout' | translate }}
+      </div>
+    </div>
+  </div>
+  <mat-divider class="d-block d-sm-none"></mat-divider>
+  <div class="row account-menu">
+    <div class="col-md-6">
+      <ul class="accordion">
+        <li appAccordionItem [routerLink]="['/account/orders' | localize]">
+          <div class="category-container">
+            <app-icon class="icon order" type="picto" icon="package" width="56px" height="56px"></app-icon>
+            <div class="category">
+              <div class="title">{{ 'ACCOUNT.categories.orders.title' | translate }}</div>
+              <div class="subTitle" *ngIf="totalOrders">
+                {{ 'ACCOUNT.categories.orders.subTitle' | translate: { total: totalOrders } }}
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-md-6">
+      <ul class="accordion">
+        <li appAccordionItem [routerLink]="['/account/reservations' | localize]">
+          <div class="category-container">
+            <app-icon class="icon" type="picto" icon="click-and-reserve" width="56px" height="56px"></app-icon>
+            <div class="category">
+              <div class="title">
+                <div>{{ 'ACCOUNT.categories.reservations.title' | translate }}</div>
+                <div class="dot" *ngIf="openedReservations > 0"></div>
+              </div>
+
+              <div class="subTitle" *ngIf="totalReservations && openedReservations">
+                {{
+                  'ACCOUNT.categories.reservations.subTitle'
+                    | translate: { total: totalReservations, opened: openedReservations }
+                }}
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-md-6">
+      <ul class="accordion">
+        <li appAccordionItem [routerLink]="['/account/personal-data' | localize]">
+          <div class="category-container">
+            <app-icon class="icon" type="picto" icon="settings" width="56px" height="56px"></app-icon>
+            <div class="category">
+              <div class="title">{{ 'ACCOUNT.categories.settings.title' | translate }}</div>
+              <div class="subTitle">
+                {{ 'ACCOUNT.categories.settings.subTitle' | translate }}
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row logout">
+    <div class="col-12 d-sm-none logout-text" (click)="logout()">{{ 'ACCOUNT.logout' | translate }}</div>
+  </div>
+</div>

@@ -1,0 +1,71 @@
+@import '../..//common/styles/';
+
+::ng-deep {
+  .osp {
+    .order-header {
+      padding: 20px;
+      margin-bottom: 50px;
+      text-align: center;
+      border-bottom: solid 1px COLOR(grey-100);
+      font-size: FONT_SIZES(large);
+      @include MEDIA_QUERY(lg) {
+        border-bottom: none;
+        font-size: FONT_SIZES(doubleBase);
+      }
+    }
+
+    .messages {
+      text-align: center;
+      max-width: 575px;
+      margin-top: 2rem;
+      display: block;
+      margin-bottom: 2rem;
+
+      .greeting {
+        font-size: FONT_SIZES(base);
+        font-weight: normal;
+        line-height: 2.5rem;
+        font-weight: 500;
+      }
+
+      .order {
+        font-size: FONT_SIZES(medium);
+        line-height: 1.5;
+        font-weight: normal;
+        margin-bottom: 0.8rem;
+      }
+
+      .message {
+        font-size: FONT_SIZES(medium);
+        font-weight: 300;
+        line-height: 1.5rem;
+      }
+    }
+    .action {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 0.8rem;
+
+      ::ng-deep app-button {
+        button {
+          width: 276px;
+        }
+      }
+    }
+  }
+}
+
+// Adaption:
+.trusted-shop-gift-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  ::ng-deep app-trusted-shop {
+    width: 340px;
+  }
+
+  > * {
+    margin: 10px;
+  }
+}

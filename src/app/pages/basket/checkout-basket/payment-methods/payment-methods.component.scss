@@ -1,0 +1,59 @@
+@import 'src/app/common/styles/index';
+
+:host {
+  .payment-methods {
+    margin-bottom: 16px;
+
+    h4 {
+      margin-top: 92px;
+      font-weight: 900;
+    }
+
+    .row-of-logos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+
+      .payment-icon,
+      .icon-with-subtitle {
+        margin-top: 32px;
+        width: 160px;
+        height: 58px;
+      }
+
+      .icon-with-subtitle {
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+
+        .underline-text {
+          font-size: FONT_SIZES(extraSmall);
+          font-weight: 900;
+        }
+      }
+
+      app-icon {
+        ::ng-deep i {
+          width: 160px;
+          height: 58px;
+
+          &.amazon-pay {
+            position: relative;
+            top: 7px;
+            left: 12px;
+          }
+
+          &.klarna {
+            width: 78px;
+            height: 44px;
+          }
+
+          svg {
+            height: 100%;
+          }
+        }
+      }
+    }
+  }
+}

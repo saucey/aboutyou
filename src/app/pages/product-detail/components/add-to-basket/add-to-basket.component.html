@@ -1,0 +1,3 @@
+<app-button (click)="addToBasket()" variant="purchase" [disabled]="quantity === 0 || (loading$ | async)" [loading]="(loading$ | async)">
+  <ng-container>{{ 'PRODUCT_DETAIL.cta' | translate }}</ng-container>
+</app-button>

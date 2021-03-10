@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="d-none d-md-block col-md-4 no-order">
+    <div class="title">{{ title }}</div>
+  </div>
+</div>
+<div class="row">
+  <div class=" d-md-block col-md-4 contact-container">
+    <div class="contact">
+      <div>
+        <div class="icon-container">
+          <app-icon type="picto" icon="speechbubbles" width="64px" height="64px"></app-icon>
+        </div>
+        <div class="contact-title">{{ 'ACCOUNT.pages.orders.noOrder.contact.title' | translate }}</div>
+      </div>
+      <div class="contact-text">{{ 'ACCOUNT.pages.orders.noOrder.contact.contactText' | translate }}</div>
+
+      <div class="opening-hours">
+        <div>{{ 'ACCOUNT.pages.orders.noOrder.contact.openingHours.days' | translate }}</div>
+        <div>{{ 'ACCOUNT.pages.orders.noOrder.contact.openingHours.hours' | translate }}</div>
+      </div>
+      <hr class="first-line" />
+      <div class="formular-text">
+        <app-icon icon="email_white" scale="1.2" width="20px" height="15px"> </app-icon>
+        {{ 'ACCOUNT.pages.orders.noOrder.contact.formularText' | translate }}
+      </div>
+      <hr class="second-line" />
+      <div class="phone">
+        <app-icon icon="phone" scale="1.5" width="18px" height="18px"> </app-icon
+        >{{ 'ACCOUNT.pages.orders.noOrder.contact.phone' | translate }}
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-8 content-container">
+    <div class="content">
+      <div>
+        <app-icon type="picto" icon="package" scale="1.6" width="103px" height="92px"></app-icon>
+      </div>
+      <div class="no-order-text">{{ subTitle }}</div>
+    </div>
+  </div>
+</div>

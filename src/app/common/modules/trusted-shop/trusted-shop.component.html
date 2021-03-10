@@ -1,0 +1,14 @@
+<ng-container *ngIf="checkoutData && trustedShopType.CHECKOUT === type">
+  <div id="trustedShopsCheckout">
+    <span id="tsCheckoutOrderNr">{{ checkoutData.orderNumber }}</span>
+    <span id="tsCheckoutBuyerEmail">{{ checkoutData.buyerEmail }}</span>
+    <span id="tsCheckoutOrderAmount">{{ checkoutData.orderAmount }}</span>
+    <span id="tsCheckoutOrderCurrency">{{ checkoutData.orderCurrency }}</span>
+  </div>
+
+  <div id="trusted-shop-confirmation"></div>
+</ng-container>
+
+<ng-container *ngIf="trustedShopType.BADGE === type">
+  <ng-content></ng-content>
+</ng-container>

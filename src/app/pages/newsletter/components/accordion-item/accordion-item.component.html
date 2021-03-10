@@ -1,0 +1,14 @@
+<div class="accordion-item">
+  <div class="icon">
+    <app-icon type="picto" [active]="highlight" [icon]="icon" scale="4.5"></app-icon>
+  </div>
+  <div class="content">
+    <div class="title">{{ title }}</div>
+    <div class="text">
+      <ng-content></ng-content>
+    </div>
+  </div>
+  <div class="arrow">
+    <span><app-icon icon="chevron-down" scale="1.5"></app-icon></span>
+  </div>
+</div>

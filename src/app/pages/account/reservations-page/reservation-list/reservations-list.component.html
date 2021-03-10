@@ -1,0 +1,98 @@
+<!-- title for desktop only-->
+<div class="d-none d-md-block title">{{ label }}</div>
+<div class="content">
+  <!-- side nav desktop-->
+  <div class="list-group" *ngIf="!isMobile">
+    <ng-container *ngFor="let order of ordersList">
+      <app-orders-list-item
+        [isMobile]="isMobile"
+        [isActive]="isActive(order)"
+        [isCancelled]="isCancelled(order)"
+        [type]="'reservations'"
+        [date]="order.reservationDate"
+        [id]="order.reservationId"
+        [total]="order.numberOfItems"
+        [status]="getOrderStatus(order.status)"
+      ></app-orders-list-item>
+    </ng-container>
+  </div>
+  <div class="d-none d-md-block pagination">
+    <app-pagination
+      [totalRecords]="ordersCount"
+      [recordsPerPage]="recordsPerPage"
+      [activePage]="activePage"
+      (pageChange)="displayActivePage($event)"
+    ></app-pagination>
+  </div>
+
+  <!-- side nav mobile-->
+  <ng-container *ngIf="isMobile">
+    <div class="notification" *ngIf="openedReservations.length > 0">
+      <div class="title">{{ 'ACCOUNT.pages.reservations.order.notification.title' | translate }}</div>
+      <div class="close-reservation">
+        {{ 'ACCOUNT.pages.reservations.order.notification.closeNotification' | translate }}
+      </div>
+    </div>
+    <div class="d-md-none open-reservations" *ngFor="let reservation of openedReservations">
+      <div class="open-reservations-headline">
+        <div class="title">
+          {{
+            'ACCOUNT.pages.reservations.order.title'
+              | translate: { date: reservation.reservationDate | date: 'dd.MM.yyyy' }
+          }}
+        </div>
+        <div class="reservation-id">
+          {{ 'ACCOUNT.pages.reservations.order.firstSubtitle' | translate: { id: reservation.reservationId } }}
+        </div>
+      </div>
+      <div class="open-reservations-details">
+        <div class="title">
+          {{
+            'ACCOUNT.pages.reservations.order.detail.product.pickupText'
+              | translate
+                : {
+                    pickupDateStart: reservation.reservationDate | date: 'dd.MM',
+                    pickupDateEnd: getFinalPickUpDay(reservation.reservationDate) | date: 'dd.MM'
+                  }
+          }}
+        </div>
+        <div class="subtitle">
+          <div class="count">
+            {{ 'ACCOUNT.pages.reservations.order.articleNumber' | translate: { total: reservation.numberOfItems } }}
+          </div>
+          <div class="status">
+            {{ 'ACCOUNT.status' | translate }}
+            <span>{{ getOrderStatus(reservation.status) }}</span>
+          </div>
+        </div>
+
+        <div class="details-button" (click)="goToDetails(reservation)">
+          <span> {{ 'ACCOUNT.pages.reservations.order.details' | translate }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="list-group">
+      <ng-container *ngFor="let ordersGroup of groupedOrders | keyvalue">
+        <div class="orderTitle">
+          <div class="month">{{ ordersGroup.key }}</div>
+
+          <mat-divider></mat-divider>
+        </div>
+
+        <ng-container *ngFor="let order of ordersGroup.value">
+          <app-orders-list-item
+            [isMobile]="isMobile"
+            [isActive]="isActive(order)"
+            [isCancelled]="isCancelled(order)"
+            [type]="'reservations'"
+            [date]="order.reservationDate"
+            [id]="order.reservationId"
+            [total]="order.numberOfItems"
+            [status]="getOrderStatus(order.status)"
+          ></app-orders-list-item>
+        </ng-container>
+      </ng-container>
+    </div>
+  </ng-container>
+</div>

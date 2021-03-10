@@ -1,0 +1,27 @@
+<div class="text-center col-12 pt-5 pb-2 component-headline">
+  <h2 class="text-tag headline">{{ headline }}</h2>
+</div>
+<div class="items">
+  <div class="slider">
+    <a
+      class="product item"
+      [ngClass]="{ active: i === currentProduct - 1 }"
+      [routerLink]="'/p/' + product.id | localize"
+      *ngFor="let product of products; let i = index"
+    >
+      <img [src]="product.imageSrc" />
+      <div class="title text-center">
+        {{ product.title }}
+      </div>
+      <div class="subtitle text-center">
+        {{ product.subtitle }}
+      </div>
+    </a>
+    <div class="nav-left d-none d-lg-block">
+      <app-circle-button (click)="prev()"><app-icon icon="chevron-left"></app-icon></app-circle-button>
+    </div>
+    <div class="nav-right d-none d-lg-block">
+      <app-circle-button (click)="next()"><app-icon icon="chevron-right"></app-icon></app-circle-button>
+    </div>
+  </div>
+</div>

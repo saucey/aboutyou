@@ -1,0 +1,28 @@
+<div class="container">
+  <app-header [title]="'ACCOUNT.pages.reservations.title' | translate"></app-header>
+
+  <div *ngIf="reservations">
+    <div class="row">
+      <div class="col-md-4">
+        <app-reservations-list
+          [label]="'ACCOUNT.pages.reservations.title' | translate"
+          [isMobile]="isMobile$ | async"
+          [orders]="reservations"
+          [openedReservations]="openedReservations"
+          [closedReservations]="closedReservations"
+        ></app-reservations-list>
+      </div>
+
+      <div class="col-7 offset-md-1" *ngIf="(isMobile$ | async) === false">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!reservations && !isLoading">
+    <app-no-order
+      [title]="'ACCOUNT.pages.reservations.noOrder.title' | translate"
+      [subTitle]="'ACCOUNT.pages.reservations.noOrder.noOrderText' | translate"
+    ></app-no-order>
+  </div>
+  <app-skeleton-overview-list *ngIf="isLoading"></app-skeleton-overview-list>
+</div>

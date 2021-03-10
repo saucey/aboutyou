@@ -1,0 +1,48 @@
+<div
+  *ngIf="slides.length > 0"
+  (swipeleft)="onSwipeLeft()"
+  (swiperight)="onSwipeRight()"
+  class="stage-module"
+  [ngClass]="{ single: slides.length === 1 }"
+>
+  <ngb-carousel #carousel [interval]="500000">
+    <ng-template ngbSlide *ngFor="let slide of slides; index as i">
+      <div class="img-wrapper" [ngStyle]="setBgImage(slide)"></div>
+      <div class="carousel-caption desktop" [ngClass]="slide.attributes.textboxAlign">
+        <app-text
+          *ngIf="slide.attributes.sublineFirst"
+          [tag]="slide.subline.size"
+          [color]="slide.subline.color"
+          [label]="slide.subline.text"
+        >
+        </app-text>
+        <app-text [tag]="'h1'" [color]="slide.headline.color" [label]="slide.headline.text"></app-text>
+        <app-text
+          *ngIf="!slide.attributes.sublineFirst"
+          [tag]="slide.subline.size"
+          [color]="slide.subline.color"
+          [label]="slide.subline.text"
+        ></app-text>
+        <app-button
+          *ngIf="slide.cta.tag === 'button' && !slide.attributes.ctaHidden"
+          [variant]="slide.cta.style"
+          href="slide.cta.link.href"
+        >
+          {{ slide.cta.text }}
+        </app-button>
+        <a
+          *ngIf="slide.cta.tag === 'link' && !slide.attributes.ctaHidden"
+          [ngClass]="slide.cta.style"
+          href="slide.cta.link.href"
+          target="slide.cta.link.target"
+        >
+          {{ slide.cta.text }}
+        </a>
+      </div>
+      <div class="gradient mobile"></div>
+      <div class="carousel-caption mobile text-center">
+        <app-text [tag]="slide.headline.size" [color]="slide.headline.color" [label]="slide.headline.text"> </app-text>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</div>

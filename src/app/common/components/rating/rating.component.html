@@ -1,0 +1,13 @@
+<ng-container>
+  <div class="items">
+    <ul>
+      <li *ngFor="let star of stars">
+        <span *ngIf="star == 0" class="star empty"></span>
+        <span *ngIf="star == 0.5" class="star half"></span>
+        <span *ngIf="star == 1" class="star full"></span>
+      </li>
+    </ul>
+    <div class="rating-display" *ngIf="displayRating">{{ rating }}</div>
+    <div class="rating-count" *ngIf="ratingCount">({{ ratingCount }})</div>
+  </div>
+</ng-container>

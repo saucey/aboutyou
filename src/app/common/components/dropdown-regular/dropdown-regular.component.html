@@ -1,0 +1,8 @@
+<div class="dropdown">
+  <div class="icon-link" (click)="toggleIsExpanded()">
+    <app-icon [icon]="'magnifier'" [scale]="2"></app-icon>
+  </div>
+  <div class="content" *ngIf="isExpanded">
+    <ng-content></ng-content>
+  </div>
+</div>

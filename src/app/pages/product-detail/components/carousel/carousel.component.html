@@ -1,0 +1,85 @@
+<ng-container>
+  <div class="wrapper">
+    <div class="actions">
+      <div class="wishlist">
+        <app-circle-button
+          (click)="onHandleAddWishlistItem()"
+          [tooltip]="(isWishlisted ? 'PRODUCT_DETAIL.removeFromWishlist' : 'PRODUCT_DETAIL.addToWishlist') | translate"
+        >
+          <app-icon *ngIf="!isWishlisted" scale="1.3" icon="heart"></app-icon>
+          <app-icon *ngIf="isWishlisted" scale="1.3" icon="heart-active"></app-icon>
+        </app-circle-button>
+      </div>
+
+      <div class="share" (mouseover)="showShareToolbox = true" (mouseout)="showShareToolbox = false">
+        <div [ngClass]="['toolbox', showShareToolbox ? 'active' : '']">
+          <div class="label">{{ 'PRODUCT_DETAIL.shareThisProduct' | translate }}</div>
+
+          <ul>
+            <li>
+              <a [href]="mailShareUrl"><app-icon scale="2.2" icon="email-circle"></app-icon></a>
+            </li>
+            <li>
+              <a [href]="facebookShareUrl" target="_blank"><app-icon scale="2.2" icon="facebook"></app-icon></a>
+            </li>
+            <li>
+              <a [href]="pinterestShareUrl" target="_blank"><app-icon scale="2.2" icon="pinterest"></app-icon></a>
+            </li>
+          </ul>
+        </div>
+        <app-circle-button (click)="shareOnMobile()">
+          <app-icon scale="1.3" icon="share-android"></app-icon>
+        </app-circle-button>
+      </div>
+    </div>
+    <div class="mobile-image-preview d-block d-md-none">
+      <swiper [(index)]="currentImage">
+        <div *ngFor="let image of images; index as i">
+          <div class="image" [style.background-image]="'url(' + image + ')'"></div>
+        </div>
+      </swiper>
+    </div>
+    <div class="image-preview d-none d-md-block">
+      <div class="nav-left d-none d-md-block" *ngIf="images.length > 1">
+        <app-circle-button borderColor="#a5a5a5" (click)="prev()"
+          ><app-icon icon="chevron-left"></app-icon
+        ></app-circle-button>
+      </div>
+      <div class="nav-right d-none d-md-block" *ngIf="images.length > 1">
+        <app-circle-button borderColor="#a5a5a5" (click)="next()"
+          ><app-icon icon="chevron-right"></app-icon
+        ></app-circle-button>
+      </div>
+      <div class="zoom-container">
+        <ng-container *ngFor="let preview of previewQueue; index as i">
+          <div
+            class="image"
+            [style.background-image]="'url(' + preview + ')'"
+            [@enterAnimation]
+            [ngClass]="zoom ? 'zoomed' : ''"
+          ></div>
+        </ng-container>
+      </div>
+    </div>
+    <ul class="bullets d-flex d-md-none" *ngIf="images.length > 1">
+      <li class="bullet" *ngFor="let image of images; index as i">
+        <span (click)="setCurrentImage(i)" [ngClass]="[i === currentImage ? 'active' : '']"></span>
+      </li>
+    </ul>
+    <div class="items d-none d-md-block" *ngIf="images.length > 1">
+      <div class="slider">
+        <div *ngFor="let image of images; index as i">
+          <div class="item" (click)="setCurrentImage(i)">
+            <app-product-thumbnail [active]="i === currentImage" size="large" [image]="image"></app-product-thumbnail>
+          </div>
+        </div>
+      </div>
+      <div class="nav-left" *ngIf="images.length > 1">
+        <app-circle-button (click)="prev()"><app-icon icon="chevron-left"></app-icon></app-circle-button>
+      </div>
+      <div class="nav-right" *ngIf="images.length > 1">
+        <app-circle-button (click)="next()"><app-icon icon="chevron-right"></app-icon></app-circle-button>
+      </div>
+    </div>
+  </div>
+</ng-container>

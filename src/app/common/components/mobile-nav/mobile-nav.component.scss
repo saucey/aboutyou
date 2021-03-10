@@ -1,0 +1,103 @@
+@import '../../styles/index';
+
+::ng-deep {
+  .category-tree {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+
+    app-icon {
+      height: 48px;
+      width: 20px;
+      display: flex;
+      align-items: center;
+    }
+
+    .top-row {
+      padding: 0 1rem 0 2rem;
+      border-bottom: solid 1px COLOR(grey-150);
+      width: 100%;
+
+      .parent-link {
+        color: COLOR(grey-600);
+        font-size: FONT_SIZES(medium);
+        cursor: pointer;
+        text-decoration: none;
+        height: 48px;
+        display: flex;
+        align-items: center;
+
+        &:hover {
+          color: COLOR(bermuda-green-400);
+          svg {
+            path[fill],
+            path[stroke] {
+              fill: COLOR(bermuda-green-400);
+            }
+          }
+        }
+      }
+
+      .sub-category {
+        font-weight: bold;
+        font-size: FONT_SIZES(base);
+        height: 48px;
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    .child-row {
+      width: 100%;
+      border-bottom: solid 1px COLOR(grey-150);
+      height: 48px;
+      padding: 0 1rem 0 2rem;
+      display: flex;
+      align-items: center;
+
+      &.highlight {
+        .child-link {
+          color: COLOR(cherry);
+          font-weight: normal;
+
+          &.focused,
+          &.active,
+          &:hover {
+            color: COLOR(cherry);
+          }
+        }
+      }
+
+      .child-link {
+        width: 100%;
+        color: COLOR(grey-600);
+        font-size: FONT_SIZES(medium);
+        cursor: pointer;
+        text-decoration: none;
+        height: 100%;
+        display: flex;
+        align-items: center;
+      }
+
+      &.active {
+        .child-link {
+          color: COLOR(bermuda-green-400);
+        }
+      }
+
+      &:hover {
+        .child-link {
+          color: COLOR(bermuda-green-400);
+        }
+
+        svg {
+          path[fill],
+          path[stroke] {
+            fill: COLOR(bermuda-green-300);
+          }
+        }
+      }
+    }
+  }
+}

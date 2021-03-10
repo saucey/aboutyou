@@ -1,0 +1,24 @@
+<nav aria-label="search orders list">
+  <ul class="pagination">
+    <li class="page-item previous" (click)="onClickPage(activePage - 1)">
+      <a class="page-link" aria-label="Previous">
+        <span aria-hidden="true"><app-icon icon="chevron-left" scale="1.5"></app-icon></span>
+      </a>
+    </li>
+
+    <li
+      class="page-item"
+      [ngClass]="{ active: activePage === item }"
+      *ngFor="let item of pages"
+      (click)="onClickPage(item)"
+    >
+      <a class="page-link">{{ item }}</a>
+    </li>
+
+    <li class="page-item next" (click)="onClickPage(activePage + 1)">
+      <a class="page-link" aria-label="Next">
+        <span aria-hidden="true"><app-icon icon="chevron-right" scale="1.5"></app-icon></span>
+      </a>
+    </li>
+  </ul>
+</nav>

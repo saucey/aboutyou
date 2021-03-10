@@ -1,0 +1,32 @@
+@import '../../../../common/styles/index';
+
+.price-range {
+  margin-bottom: 1rem;
+  padding: 0 0.1rem;
+
+  .value-display {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+    font-size: FONT_SIZES(medium);
+    color: COLOR(grey-600);
+
+    input {
+      height: 40px;
+      padding: 0 0.5rem;
+      background-color: white;
+
+      &:first-of-type {
+        text-align: left;
+      }
+      &:last-of-type {
+        text-align: right;
+      }
+
+      &:disabled {
+        width: 35%;
+      }
+    }
+  }
+}

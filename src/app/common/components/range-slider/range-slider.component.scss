@@ -1,0 +1,28 @@
+@import "../../styles/index.scss";
+
+::ng-deep {
+  .custom-slider .ng5-slider .ng5-slider-bar {
+    background: COLOR(grey-100);
+    height: 4px;
+  }
+  .custom-slider .ng5-slider .ng5-slider-selection {
+    background: COLOR(grey-600);
+  }
+
+  .custom-slider .ng5-slider .ng5-slider-pointer {
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    top: auto; /* to remove the default positioning */
+    bottom: -8px;
+    background-color: COLOR(grey-600);
+  }
+
+  .custom-slider .ng5-slider .ng5-slider-pointer:after {
+    display: none;
+  }
+
+  .custom-slider .ng5-slider .ng5-slider-tick.ng5-slider-selected {
+    background: orange;
+  }
+}

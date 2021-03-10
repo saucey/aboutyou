@@ -1,0 +1,78 @@
+@import '../../common/styles/index';
+
+:host {
+  .container {
+    margin-bottom: 64px;
+    @include MEDIA_QUERY(md) {
+      margin-top: 32px;
+    }
+  }
+  .checkout-basket-header {
+    margin: 0 auto;
+    padding: 0;
+    border-bottom: 1px solid COLOR(grey-150);
+    text-align: center;
+
+    h2 {
+      padding: 0;
+      font-size: FONT_SIZES(extraMedium);
+      font-weight: 900;
+      margin: 0;
+    }
+  }
+
+  @include MEDIA_QUERY(md) {
+    .checkout-basket-header {
+      border-bottom: none;
+      h2 {
+        font-size: FONT_SIZES(doubleBase);
+        font-weight: 500;
+      }
+    }
+  }
+
+  .tab-container {
+    margin: 0 auto;
+
+    a.basket-tab-header {
+      height: 60px;
+      font-size: FONT_SIZES(base);
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.5;
+      letter-spacing: normal;
+      color: COLOR(black);
+      text-decoration: none;
+
+      &.mat-tab-label-active {
+        color: COLOR(bermuda-green-400);
+        font-weight: 500;
+      }
+    }
+
+    ::ng-deep .mat-ink-bar {
+      background-color: COLOR(bermuda-green-300);
+    }
+
+    @include MEDIA_QUERY(md) {
+      max-width: 460px;
+      border-bottom: none;
+
+      a.basket-tab-header {
+        height: 40px;
+        font-size: FONT_SIZES(extraLarge);
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.33;
+        letter-spacing: -0.8px;
+        color: COLOR(grey-600);
+      }
+    }
+  }
+
+  .basket-content {
+    margin-top: 64px;
+  }
+}

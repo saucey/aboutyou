@@ -1,0 +1,15 @@
+<div class="content-container">
+  <h3 class="title">{{ 'BASKET.costContainer.errorDialog.headline' | translate }}</h3>
+  <div class="info">
+    {{ 'BASKET.costContainer.errorDialog.content' | translate }}
+  </div>
+  <app-button class="purchase-button" (click)="goToCheckout()" variant="purchase">
+    {{ 'BASKET.costContainer.errorDialog.toCheckout' | translate }}
+  </app-button>
+  <app-button class="no-button" (click)="onNoClick()" variant="secondary">
+    {{ 'BASKET.costContainer.errorDialog.continueShopping' | translate }}
+  </app-button>
+  <div class="icon-link" (click)="onNoClick()">
+    <app-icon [icon]="'close'" [scale]="2"></app-icon>
+  </div>
+</div>

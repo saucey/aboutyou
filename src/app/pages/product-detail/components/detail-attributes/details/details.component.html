@@ -1,0 +1,100 @@
+<ng-container *ngIf="product">
+  <div class="section" *ngIf="product.custom.materialComposition.length > 0">
+    <h3>{{ 'PRODUCT_DETAIL.description.materialTitle' | translate }}</h3>
+    <p>
+      <ng-container *ngFor="let composition of product.custom.materialComposition; index as i; last as isLast">
+        <ng-container *ngIf="isLast && i > 0"> {{ 'PRODUCT_DETAIL.description.and' | translate }} </ng-container
+        >{{ composition }}<ng-container *ngIf="i < product.custom.materialComposition.length - 2">, </ng-container>
+      </ng-container>
+    </p>
+    <p *ngIf="product.custom.abraisonResistance">{{ product.custom.abraisonResistance }}</p>
+    <p *ngIf="product.custom.productionType">{{ product.custom.productionType }}</p>
+    <p *ngIf="product.custom.cushioning">{{ product.custom.cushioning }}</p>
+  </div>
+
+  <div class="section" *ngIf="product.custom.woodOrigin">
+    <h3>{{ 'PRODUCT_DETAIL.description.woodOriginTitle' | translate }}</h3>
+    <p>
+      {{ product.custom.woodOrigin }}
+    </p>
+  </div>
+
+  <div class="section" *ngIf="product.custom.fscNote">
+    <p>{{ 'PRODUCT_DETAIL.description.fscNote' | translate: { value: product.custom.fscNote } }}</p>
+    <img src="/assets/images/fsc.jpg" />
+  </div>
+
+  <div class="section" *ngIf="product.custom.showDimensions">
+    <h3>{{ 'PRODUCT_DETAIL.description.dimensionsTitle' | translate }}</h3>
+    <p *ngIf="product.custom.dimensions">
+      {{ product.custom.dimensions }}
+    </p>
+    <p *ngIf="product.custom.seatHeight">
+      {{ 'PRODUCT_DETAIL.description.seatHeight' | translate }}:
+      {{ product.custom.seatHeight }}
+    </p>
+    <p *ngIf="product.custom.seatDepth">
+      {{ 'PRODUCT_DETAIL.description.seatDepth' | translate }}: {{ product.custom.seatDepth }}
+    </p>
+    <p *ngIf="product.custom.seatWidth">
+      {{ 'PRODUCT_DETAIL.description.seatWidth' | translate }}: {{ product.custom.seatWidth }}
+    </p>
+    <p *ngIf="product.custom.pileHeight">
+      {{ 'PRODUCT_DETAIL.description.pileHeight' | translate }}:
+      {{ product.custom.pileHeight }}
+    </p>
+    <p
+      *ngIf="product.custom.additionalFurnitureDimensions"
+      [innerHTML]="product.custom.additionalFurnitureDimensions"
+    ></p>
+    <p *ngIf="product.custom.maxBurningTime">
+      {{ 'PRODUCT_DETAIL.description.maxBurningTime' | translate }}:
+      {{ product.custom.maxBurningTime }}
+    </p>
+    <p *ngIf="product.custom.maxCandleHeight">{{ product.custom.maxCandleHeight }}</p>
+    <p *ngIf="product.custom.lampCount">
+      {{ 'PRODUCT_DETAIL.description.lampCount' | translate }}: {{ product.custom.lampCount }}
+    </p>
+    <p *ngIf="product.custom.lampsGap">
+      {{ 'PRODUCT_DETAIL.description.lampsGap' | translate }}: {{ product.custom.lampsGap }}
+    </p>
+    <p *ngIf="product.custom.pictureSize">
+      {{ 'PRODUCT_DETAIL.description.pictureSize' | translate }}: {{ product.custom.pictureSize }}
+    </p>
+    <p *ngIf="product.custom.fillingQuantity">
+      {{ 'PRODUCT_DETAIL.description.fillingQuantity' | translate }}: {{ product.custom.fillingQuantity }}
+    </p>
+  </div>
+
+  <div class="section" *ngIf="product.custom.color && !isBundle">
+    <h3>{{ 'PRODUCT_DETAIL.description.colorTitle' | translate }}</h3>
+    <p>{{ product.custom.color }}</p>
+  </div>
+
+  <div class="section" *ngIf="product.custom.sorted">
+    <p>{{ product.custom.sorted }}</p>
+  </div>
+
+  <div class="section" *ngIf="product.custom.foodIngredients">
+    <div [innerHTML]="product.custom.foodIngredients"></div>
+  </div>
+
+  <div class="section" *ngIf="product.custom.alcoholValue && product.custom.alcoholUnit">
+    <br />
+    <div>
+      {{ 'PRODUCT_DETAIL.description.alcohol' | translate }}
+      <span [innerHTML]="product.custom.alcoholValue + ' ' + product.custom.alcoholUnit"></span>
+    </div>
+  </div>
+
+  <div class="section" *ngIf="product.custom.isPlus">
+    <h3>{{ 'PRODUCT_DETAIL.description.plusTitle' | translate }}</h3>
+    <p>
+      {{ 'PRODUCT_DETAIL.description.plusDescription.0' | translate
+      }}<a href="#" (click)="$event.preventDefault()">{{
+        'PRODUCT_DETAIL.description.plusDescription.1' | translate
+      }}</a
+      >{{ 'PRODUCT_DETAIL.description.plusDescription.2' | translate }}
+    </p>
+  </div>
+</ng-container>

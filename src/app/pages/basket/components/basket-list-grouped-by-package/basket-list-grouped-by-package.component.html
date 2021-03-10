@@ -1,0 +1,66 @@
+<div class="basket-list">
+  <div class="content">
+    <ng-container *ngIf="loading; then loadingBasketItems; else basketItemsList"></ng-container>
+
+    <ng-template #loadingBasketItems>
+      <app-skeleton-basket-list></app-skeleton-basket-list>
+    </ng-template>
+    <ng-template #basketItemsList>
+      <div class="package-group" *ngFor="let entry of basketItemsGroupedByPackage | keyvalue; index as packageIndex">
+        <ng-container *ngIf="entry.value.length > 0">
+          <app-basket-package-info
+            *ngIf="packagesInformation.get(entry.key) as packageInfo"
+            [carrierKey]="isMobile ? packageInfo.carrierKey.toLowerCase() : null"
+            [dateFormat]="isMobile ? 'dd.MM.' : 'EE dd.MM.'"
+            [minDeliveryDate]="packageInfo.deliveryDate.min"
+            [maxDeliveryDate]="packageInfo.deliveryDate.max"
+            [packageIndex]="packageIndex + 1"
+          ></app-basket-package-info>
+          <app-basket-list-header [showTitle]="false" [basketItemsLength]="entry.value.length"></app-basket-list-header>
+          <app-basket-list
+            [isMobile]="isMobile"
+            [loading]="loading"
+            [currency]="currency"
+            [disabled]="disabled"
+            [basketItems]="entry.value"
+            [plusProductThresholdReached]="plusProductThresholdReached"
+            (basketItemClick)="basketItemClick.emit($event)"
+            (handleDeleteItem)="deleteItem.emit($event)"
+            (handleItemQuantityChange)="itemQuantityChange.emit($event)"
+          >
+          </app-basket-list>
+        </ng-container>
+      </div>
+      <div class="not-deliverable-items-list" *ngIf="notDeliverableItems?.length > 0">
+        <span class="not-deliverable-list-header" [innerText]="'BASKET.listHeader.notDeliverable' | translate"></span>
+        <app-basket-list-header
+          [showTitle]="false"
+          [basketItemsLength]="notDeliverableItems.length"
+        ></app-basket-list-header>
+        <app-basket-list
+          [isMobile]="isMobile"
+          [loading]="loading"
+          [currency]="currency"
+          [disabled]="disabled"
+          [basketItems]="notDeliverableItems"
+          (basketItemClick)="basketItemClick.emit($event)"
+          (handleDeleteItem)="deleteItem.emit($event)"
+          (handleItemQuantityChange)="itemQuantityChange.emit($event)"
+        >
+        </app-basket-list>
+      </div>
+    </ng-template>
+    <div class="package-info-footer" *ngIf="!isMobile">
+      <div class="title" [textContent]="'BASKET.listFooter.predictedDelivery' | translate"></div>
+      <app-basket-package-info
+        *ngFor="let entry of packagesInformation | keyvalue"
+        [carrierKey]="entry.value.carrierKey"
+        [dateFormat]="'EE dd.MM.'"
+        [minDeliveryDate]="entry.value.deliveryDate.min"
+        [maxDeliveryDate]="entry.value.deliveryDate.max"
+        [packageIndex]="entry.key"
+      >
+      </app-basket-package-info>
+    </div>
+  </div>
+</div>

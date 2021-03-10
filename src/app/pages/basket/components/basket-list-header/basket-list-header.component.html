@@ -1,0 +1,10 @@
+<div class="header">
+  <div class="info">
+    <app-text *ngIf="showTitle" tag="h5" [label]="'BASKET.listHeader.label' | translate"></app-text>
+    <div class="actions">
+      <span class="item-count-label">{{
+        'BASKET.listHeader.itemCount' | translate: { itemCount: basketItemsLength }
+      }}</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,235 @@
+@import 'src/app/common/styles';
+::ng-deep {
+  .basket-list-item-container {
+    padding: 32px 0px 32px 0;
+    display: flex;
+    flex-wrap: nowrap;
+    border-top: 1px solid COLOR(grey-150);
+
+    .image {
+      position: relative;
+      display: inline-block;
+      height: 112px;
+      cursor: pointer;
+      img {
+        width: 112px;
+        height: 112px;
+        mix-blend-mode: multiply;
+      }
+      .sold-out {
+        position: absolute;
+        z-index: 1;
+        margin: 0 auto;
+        padding: 3px 0px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        top: 40%;
+        background: COLOR(grey-300);
+        color: COLOR(black);
+        width: 80%;
+        font-size: FONT_SIZES(extraSmall);
+        text-transform: uppercase;
+      }
+    }
+    .content-container {
+      padding-left: 20px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: space-between;
+
+      .details {
+        .title {
+          font-size: FONT_SIZES(medium);
+          font-weight: 500;
+          line-height: 1.33;
+          letter-spacing: -0.8px;
+          color: COLOR(grey-600);
+          cursor: pointer;
+          margin-bottom: 2px;
+        }
+
+        .dimensions {
+          height: 15px;
+          font-size: FONT_SIZES(extraSmall);
+        }
+
+        .energy-flag-container {
+          margin-top: 10px;
+        }
+
+        .additional-information {
+          font-size: FONT_SIZES(base);
+        }
+      }
+
+      .actions {
+        font-size: FONT_SIZES(small);
+        font-weight: 500;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+
+        .icon-link {
+          margin-top: 10px;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+
+          app-icon {
+            transform: scale(1.5);
+            height: 18px;
+          }
+
+          span {
+            padding-left: 10px;
+          }
+
+          &:first-child {
+            margin-right: 30px;
+          }
+
+          &:hover {
+            color: COLOR(bermuda-green-400);
+          }
+        }
+      }
+
+      .price-container {
+        div:first-child {
+          height: 25px;
+        }
+        text-align: right;
+        font-size: FONT_SIZES(medium);
+        font-weight: 300;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+
+        .price {
+          font-weight: 500;
+          margin-left: 14px;
+        }
+
+        .discount,
+        .pack-size {
+          figure {
+            height: 24px;
+          }
+          &:not(:first-child) {
+            margin-left: 8px;
+          }
+        }
+      }
+
+      .base-price-label {
+        text-align: right;
+        font-size: FONT_SIZES(small);
+      }
+
+      app-quantity-picker {
+        float: right;
+      }
+    }
+  }
+
+  .content-container-mobile {
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+
+    .details {
+      .title {
+        display: flex;
+        justify-content: space-between;
+        cursor: pointer;
+
+        h1 {
+          font-size: FONT_SIZES(medium);
+          font-weight: 500;
+          line-height: 1.43;
+          color: COLOR(grey-600);
+          margin-bottom: 2px;
+          overflow: hidden;
+          hyphens: auto;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+
+    .labels {
+      margin-top: 5px;
+    }
+    .dimensions {
+      font-size: FONT_SIZES(small);
+    }
+
+    .price-container {
+      display: flex;
+      margin-top: 15px;
+      figure {
+        margin-right: 18px;
+      }
+    }
+
+    .discount,
+    .pack-size {
+      figure {
+        height: 24px;
+        margin-right: 8px;
+      }
+    }
+
+    .quantity-picker {
+      margin-top: 10px;
+    }
+  }
+
+  .reduced-price {
+    color: COLOR(cherry);
+  }
+
+  .striked-price {
+    text-decoration: line-through;
+    margin-left: 10px;
+  }
+
+  .discount,
+  .pack-size {
+    figure {
+      display: block;
+      height: 24px;
+      line-height: 0;
+      margin: 0px;
+    }
+  }
+  .not-available {
+    opacity: 0.4;
+  }
+
+  .icon-link {
+    app-icon {
+      cursor: pointer;
+    }
+  }
+}
+
+// adaption
+.plus-product-error-msg {
+  color: red;
+  position: relative;
+  display: block;
+  width: 100%;
+  padding-left: 132px;
+  font-size: FONT_SIZES(small);
+  padding-bottom: 10px;
+  top: -10px;
+  padding-left: 0;
+  @include MEDIA_QUERY(md) {
+    padding-left: 132px;
+  }
+}

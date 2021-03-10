@@ -1,0 +1,20 @@
+<ng-container [style.display]="'inline-block'">
+  <ng-container [ngSwitch]="ext">
+    <i
+      *ngSwitchCase="'svg'"
+      [ngClass]="[icon, active ? 'active' : '']"
+      [style.width]="width"
+      [style.height]="height"
+      [style.transform]="'scale(' + scale + ')'"
+      [inlineSVG]="'/assets/' + type + 's/' + icon + '.svg'"
+    ></i>
+    <img
+      *ngSwitchCase="'png'"
+      [ngClass]="icon"
+      [style.width]="width"
+      [style.height]="height"
+      [style.transform]="'scale(' + scale + ')'"
+      [src]="'/assets/' + type + 's/' + icon + '.png'"
+    />
+  </ng-container>
+</ng-container>

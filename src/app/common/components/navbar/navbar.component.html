@@ -1,0 +1,30 @@
+<div class="main-nav" *ngIf="items">
+  <a
+    *ngFor="let item of items"
+    [ngClass]="getMainCategoryClass(item)"
+    [routerLink]="item.path | localize"
+    (click)="handleLinkClick($event, item)"
+    (mouseenter)="onCategoryFocus(item)"
+    >{{ item.shortSlug }}</a
+  >
+  <div
+    class="flyout"
+    *ngIf="menuOpen && focusedCategory && focusedCategory.children.length"
+    @enterAnimation
+    [style.flexDirection]="focusedCategory.children.length > 4 ? 'column' : 'row'"
+  >
+    <div class="subCategory" *ngFor="let subCategory of focusedCategory.children">
+      <a
+        class="subCategoryName"
+        [routerLink]="subCategory.path | localize"
+        (click)="handleLinkClick($event, subCategory)"
+        [innerHTML]="subCategory.shortSlug"
+      ></a>
+      <div class="subCategoryChild" *ngFor="let subCategoryChild of subCategory.children">
+        <a [routerLink]="subCategoryChild.path | localize" (click)="handleLinkClick($event, subCategoryChild)">{{
+          subCategoryChild.shortSlug
+        }}</a>
+      </div>
+    </div>
+  </div>
+</div>

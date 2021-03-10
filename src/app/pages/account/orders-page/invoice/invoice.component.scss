@@ -1,0 +1,37 @@
+@import '../../../..//common/styles/index';
+
+.payment {
+  font-size: FONT_SIZES(medium);
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.7;
+  letter-spacing: normal;
+  color: COLOR(grey-600);
+  margin-bottom: 24px;
+  .payment-infos-labels {
+    font-weight: normal;
+  }
+
+  .payment-infos {
+    font-weight: 300;
+  }
+}
+
+.invoice-download {
+  padding-left: 13px;
+  padding-right: 13px;
+  min-height: 40px;
+  margin: 0;
+  border: solid 1px COLOR(grey-600);
+  button {
+    min-height: 20px;
+    font-size: FONT_SIZES(medium);
+    font-weight: 500;
+    font-stretch: FONT_SIZES(medium);
+    font-style: normal;
+    line-height: 1.43;
+    letter-spacing: normal;
+    text-align: center;
+    color: COLOR(grey-600);
+  }
+}

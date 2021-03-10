@@ -1,0 +1,12 @@
+<ng-container>
+  <div
+    [style.background-image]="'url(' + image + ')'"
+    [ngClass]="[active ? 'active' : '', size ? size : '']"
+    class="image"
+  >
+    <div class="handle-indicator top left"></div>
+    <div class="handle-indicator top right"></div>
+    <div class="handle-indicator bottom left"></div>
+    <div class="handle-indicator bottom right"></div>
+  </div>
+</ng-container>

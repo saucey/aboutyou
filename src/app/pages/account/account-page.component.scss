@@ -1,0 +1,135 @@
+@import '../..//common/styles/index';
+
+.overview-wrapper {
+  .wrapper {
+    margin-top: 16px;
+    margin-bottom: 20px;
+
+    .back-arrow {
+      margin-top: 8px;
+    }
+
+    @include MEDIA_QUERY(sm) {
+      margin-top: 48px;
+      margin-bottom: 16px;
+    }
+
+    .header-label {
+      font-size: FONT_SIZES(extraLarge);
+      font-weight: 500;
+      line-height: 1.33;
+      letter-spacing: -0.8px;
+      margin-left: 20px;
+      text-align: center;
+      @include MEDIA_QUERY(sm) {
+        text-align: unset;
+        margin-left: 0;
+      }
+    }
+  }
+
+  .dot {
+    position: absolute;
+    left: 100%;
+    top: -4px;
+    height: 12px;
+    width: 12px;
+    background-color: COLOR(bermuda-green-300);
+    border-radius: 50%;
+  }
+
+  .account-menu {
+    margin-top: 24px;
+
+    @include MEDIA_QUERY(sm) {
+      margin-top: 0px;
+    }
+  }
+
+  .logout {
+    margin-top: 8px;
+
+    .logout-text {
+      opacity: 0.4;
+      font-size: FONT_SIZES(small);
+      font-weight: 500;
+      line-height: 1.33;
+      text-align: center;
+      cursor: pointer;
+      color: COLOR(black);
+
+      @include MEDIA_QUERY(sm) {
+        text-align: unset;
+      }
+    }
+  }
+
+  .accordion {
+    li {
+      border: 1px solid COLOR(grey-150);
+      cursor: pointer;
+
+      &:hover {
+        border-color: COLOR(grey-600);
+      }
+
+      .category-container {
+        padding-top: 20px;
+        padding-bottom: 32px;
+        display: flex;
+        margin: auto;
+
+        @include MEDIA_QUERY(sm) {
+          padding-top: 16px;
+          display: table;
+          margin: 0 auto;
+        }
+      }
+
+      .title {
+        font-size: FONT_SIZES(base);
+        line-height: 1.5;
+        color: COLOR(grey-600);
+        margin-bottom: 4px;
+        @include MEDIA_QUERY(sm) {
+          color: COLOR(black);
+        }
+      }
+
+      .subTitle {
+        font-size: FONT_SIZES(small);
+        font-weight: 300;
+        line-height: 1.33;
+        color: COLOR(grey-600);
+        margin-bottom: 0;
+      }
+
+      .icon {
+        padding-left: 24px;
+        margin-right: 24px;
+        margin-top: 8px;
+
+        @include MEDIA_QUERY(sm) {
+          display: table;
+          margin: 0 auto;
+          padding-left: 0;
+          margin-top: 0;
+        }
+      }
+      .order {
+        margin-bottom: -19px;
+      }
+
+      .category {
+        margin-right: auto;
+        height: 52px !important;
+        text-align: left;
+        position: relative;
+
+        @include MEDIA_QUERY(sm) {
+          text-align: center;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+<div class="registration-container">
+  <div class="headline">{{ 'OSP.register.headline' | translate }}</div>
+  <div class="sub-headline">{{ 'OSP.register.subHeadline' | translate }}</div>
+
+  <ul>
+    <li>
+      <app-icon icon="checkmark-styled"></app-icon>
+      {{ 'OSP.register.line1' | translate }}
+    </li>
+    <li>
+      <app-icon icon="checkmark-styled"></app-icon>
+      {{ 'OSP.register.line2' | translate }}
+    </li>
+    <li>
+      <app-icon icon="checkmark-styled"></app-icon>
+      {{ 'OSP.register.line3' | translate }}
+    </li>
+    <li>
+      <app-icon icon="checkmark-styled"></app-icon>
+      {{ 'OSP.register.line4' | translate }}
+    </li>
+  </ul>
+
+  <app-button variant="primary" (click)="onRegisterClick()">
+    {{ 'OSP.register.button' | translate }}
+  </app-button>
+</div>

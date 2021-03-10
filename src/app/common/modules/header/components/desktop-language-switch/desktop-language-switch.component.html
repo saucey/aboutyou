@@ -1,0 +1,26 @@
+<div class="desktop-language-switch">
+  <div class="container">
+    <div class="switch">
+      <div class="heading" (click)="toggleExpanded()">
+        <app-icon class="flag" [icon]="selectedValue.locale" width="18px" type="flag" ext="png"></app-icon>
+        <span class="selected-value" *ngIf="selectedValue">{{ selectedValue.language }}</span>
+        <app-icon icon="chevron-down" [ngClass]="{ expanded: expanded }"></app-icon>
+      </div>
+      <div class="content" *ngIf="expanded">
+        <ng-container *ngFor="let item of languages">
+          <div
+            [ngClass]="['item', isSelected(item) ? 'selected' : '']"
+            *ngIf="item !== selectedLanguage"
+            (click)="onClickHandler(item)"
+          >
+            <ng-container>
+              <app-icon class="flag" [icon]="item.locale" width="18px" type="flag" ext="png"></app-icon>
+              {{ item.language }}
+            </ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+    <app-icon icon="close" (click)="onClose()"></app-icon>
+  </div>
+</div>

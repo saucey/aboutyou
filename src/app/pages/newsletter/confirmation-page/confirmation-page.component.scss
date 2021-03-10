@@ -1,0 +1,35 @@
+@import 'src/app/common/styles';
+
+.container {
+  padding-top: 0;
+  margin-bottom: 60px;
+}
+
+h2 {
+  font-size: FONT_SIZES(extraLarge);
+  font-weight: 300;
+  line-height: 1.33;
+  letter-spacing: -0.8px;
+  text-align: center;
+  color: COLOR(grey-600);
+  margin-bottom: 16px;
+}
+
+p {
+  font-size: FONT_SIZES(medium);
+  font-weight: 300;
+  line-height: 1.43;
+  text-align: center;
+  color: COLOR(grey-600);
+  margin-bottom: 40px;
+}
+
+.action {
+  display: inline-block;
+  max-width: 376px;
+  width: 100%;
+}
+
+.icon-wrapper {
+  margin-bottom: 25px;
+}

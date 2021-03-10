@@ -1,0 +1,44 @@
+@import '../../styles';
+
+figure {
+  position: relative;
+  text-align: right;
+  display: inline-block;
+  font-size: FONT_SIZES(medium);
+  line-height: 1.43;
+  color: COLOR(white);
+  background: transparent;
+  padding: 0px 3px;
+  margin-right: 10px;
+  margin-bottom: 0;
+  min-width: 30px;
+
+  &:after {
+    content: '';
+    position: absolute;
+    left: 100%;
+    top: 0%;
+    width: 0;
+    height: 0;
+    border-bottom: 10px solid transparent;
+    border-top: 10px solid transparent;
+    border-left: 10px solid transparent;
+    clear: both;
+  }
+
+  @mixin colorize($color) {
+    background: COLOR($color);
+
+    &:after {
+      border-left-color: COLOR($color);
+    }
+  }
+
+  $efficiency-classes: 'appe', 'appp', 'app', 'ap', 'a', 'b', 'c', 'd', 'e';
+
+  @each $efficiency-class in $efficiency-classes {
+    &.#{$efficiency-class} {
+      @include colorize(energy-#{$efficiency-class});
+    }
+  }
+}

@@ -1,0 +1,26 @@
+<div class="bundle">
+  <div class="consists">{{ 'PRODUCT_DETAIL.bundle.consistsOf' | translate }}</div>
+  <div class="products">
+    <ng-container *ngFor="let product of products">
+      <a class="product-item" [routerLink]="'/p/' + product.mapped.productId | localize">
+        <div class="preview" [style.backgroundImage]="'url(' + product.mapped.getPreviewImageSrc() + ')'">
+          <div class="sold-out" *ngIf="product.mapped.availableQuantities === 0">
+            {{ 'BASKET.outOfStock' | translate }}
+          </div>
+        </div>
+        <div class="description" [class.not-available]="product.mapped.availableQuantities === 0">
+          <div class="product-name">
+            <span class="qty">{{ product.qty }} x</span>
+            <span class="label">{{ product.mapped.custom.productTitle }}</span>
+          </div>
+
+          <div class="dimensions">
+            {{ product.mapped.custom.dimensions }}
+            <span *ngIf="product.mapped.custom.dimensions && product.mapped.custom.color">, </span>
+            <span *ngIf="product.mapped.custom.color">{{ product.mapped.custom.color }}</span>
+          </div>
+        </div>
+      </a>
+    </ng-container>
+  </div>
+</div>

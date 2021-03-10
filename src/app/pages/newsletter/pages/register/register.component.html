@@ -1,0 +1,173 @@
+<app-stage
+  headline="{{ 'NEWSLETTER.title' | translate }}"
+  subHeadline="{{ 'NEWSLETTER.teaser' | translate }}"
+></app-stage>
+
+<div class="container">
+  <div class="row" *ngIf="isMobile">
+    <div class="col-md-12">
+      <h3>{{ 'NEWSLETTER.register.advantages.title' | translate }}</h3>
+      <p>{{ 'NEWSLETTER.register.advantages.teaser' | translate }}</p>
+
+      <app-accordion-group>
+        <app-accordion-item
+          [highlight]="newsletterForm.get('email').valid"
+          icon="heart-newsletter"
+          title="{{ 'NEWSLETTER.register.advantages.welcomeTitle' | translate }}"
+        >
+          {{ 'NEWSLETTER.register.advantages.welcomeTeaser' | translate }}
+        </app-accordion-item>
+
+        <app-accordion-item
+          [highlight]="newsletterForm.get('birthDate').value"
+          icon="gift"
+          title="{{ 'NEWSLETTER.register.advantages.personalTitle' | translate }}"
+        >
+          {{ 'NEWSLETTER.register.advantages.personalTeaser' | translate }}
+        </app-accordion-item>
+
+        <app-accordion-item
+          [highlight]="newsletterForm.get('email').valid"
+          icon="star"
+          title="{{ 'NEWSLETTER.register.advantages.individualTitle' | translate }}"
+        >
+          {{ 'NEWSLETTER.register.advantages.individualTeaser' | translate }}
+        </app-accordion-item>
+
+        <app-accordion-item
+          [highlight]="newsletterForm.get('email').valid"
+          icon="percentage"
+          title="{{ 'NEWSLETTER.register.advantages.exclusiveTitle' | translate }}"
+        >
+          {{ 'NEWSLETTER.register.advantages.exclusiveTeaser' | translate }}
+        </app-accordion-item>
+
+        <app-accordion-item
+          [highlight]="newsletterForm.get('email').valid"
+          icon="products"
+          title="{{ 'NEWSLETTER.register.advantages.newTitle' | translate }}"
+        >
+          {{ 'NEWSLETTER.register.advantages.newTeaser' | translate }}
+        </app-accordion-item>
+
+        <app-accordion-item icon="store" title="{{ 'NEWSLETTER.register.advantages.eventsTitle' | translate }}">
+          {{ 'NEWSLETTER.register.advantages.eventsTeaser' | translate }}
+        </app-accordion-item>
+      </app-accordion-group>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h3 *ngIf="!isMobile">{{ 'NEWSLETTER.register.form.title' | translate }}</h3>
+
+      <form [formGroup]="newsletterForm" (ngSubmit)="submitNewsletter()">
+        <div class="input-row radio-group">
+          <mat-radio-group aria-label="Bitte wählen Sie Ihre Anrede" formControlName="gender">
+            <mat-radio-button value="m">{{ 'NEWSLETTER.register.form.gender.male' | translate }}</mat-radio-button>
+            <mat-radio-button value="f">{{ 'NEWSLETTER.register.form.gender.female' | translate }}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <div class="input-row">
+          <input
+            formControlName="firstName"
+            type="text"
+            placeholder="{{ 'NEWSLETTER.register.form.firstname' | translate }}"
+          />
+        </div>
+
+        <div class="input-row">
+          <input
+            formControlName="lastName"
+            type="text"
+            placeholder="{{ 'NEWSLETTER.register.form.lastname' | translate }}"
+          />
+        </div>
+
+        <div class="input-row">
+          <app-info-tooltip>
+            {{ 'NEWSLETTER.register.form.info' | translate }}
+          </app-info-tooltip>
+
+          <input
+            formControlName="birthDate"
+            type="text"
+            placeholder="{{ 'NEWSLETTER.register.form.birthdate' | translate }} (TT.MM.JJJJ)"
+            [matDatepicker]="picker"
+            (click)="picker.open()"
+          />
+
+          <mat-datepicker #picker></mat-datepicker>
+        </div>
+
+        <div class="input-row">
+          <input
+            formControlName="email"
+            type="email"
+            email
+            placeholder="{{ 'NEWSLETTER.register.form.email' | translate }}"
+          />
+        </div>
+
+        <app-button variant="primary" [disabled]="!newsletterForm.valid">
+          {{ 'NEWSLETTER.register.form.buttonTitle' | translate }}</app-button
+        >
+        <div class="info">
+          {{ 'NEWSLETTER.register.form.legalAdvice' | translate }}
+        </div>
+      </form>
+    </div>
+
+    <div class="col-md-5 offset-md-1" *ngIf="!isMobile">
+      <h3>{{ 'NEWSLETTER.register.advantages.title' | translate }}</h3>
+      <p>{{ 'NEWSLETTER.register.advantages.teaser' | translate }}</p>
+
+      <app-accordion-group>
+        <app-accordion-item
+          [highlight]="newsletterForm.get('email').valid"
+          icon="heart-newsletter"
+          title="{{ 'NEWSLETTER.register.advantages.welcomeTitle' | translate }}"
+        >
+          {{ 'NEWSLETTER.register.advantages.welcomeTeaser' | translate }}
+        </app-accordion-item>
+
+        <app-accordion-item
+          [highlight]="newsletterForm.get('birthDate').value"
+          icon="gift"
+          title="{{ 'NEWSLETTER.register.advantages.personalTitle' | translate }}"
+        >
+          {{ 'NEWSLETTER.register.advantages.personalTeaser' | translate }}
+        </app-accordion-item>
+
+        <app-accordion-item
+          [highlight]="newsletterForm.get('email').valid"
+          icon="star"
+          title="{{ 'NEWSLETTER.register.advantages.individualTitle' | translate }}"
+        >
+          {{ 'NEWSLETTER.register.advantages.individualTeaser' | translate }}
+        </app-accordion-item>
+
+        <app-accordion-item
+          [highlight]="newsletterForm.get('email').valid"
+          icon="percentage"
+          title="{{ 'NEWSLETTER.register.advantages.exclusiveTitle' | translate }}"
+        >
+          {{ 'NEWSLETTER.register.advantages.exclusiveTeaser' | translate }}
+        </app-accordion-item>
+
+        <app-accordion-item
+          [highlight]="newsletterForm.get('email').valid"
+          icon="products"
+          title="{{ 'NEWSLETTER.register.advantages.newTitle' | translate }}"
+        >
+          {{ 'NEWSLETTER.register.advantages.newTeaser' | translate }}
+        </app-accordion-item>
+
+        <app-accordion-item icon="store" title="{{ 'NEWSLETTER.register.advantages.eventsTitle' | translate }}">
+          {{ 'NEWSLETTER.register.advantages.eventsTeaser' | translate }}
+        </app-accordion-item>
+      </app-accordion-group>
+    </div>
+  </div>
+</div>

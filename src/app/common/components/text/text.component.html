@@ -1,0 +1,9 @@
+<ng-container [ngSwitch]="true">
+  <h1 *ngSwitchCase="tag === 'h1'" class="text-tag" [innerHTML]="label" [style.color]="color"></h1>
+  <h2 *ngSwitchCase="tag === 'h2'" class="text-tag" [innerHTML]="label" [style.color]="color"></h2>
+  <h3 *ngSwitchCase="tag === 'h3'" class="text-tag" [innerHTML]="label" [style.color]="color"></h3>
+  <h4 *ngSwitchCase="tag === 'h4'" class="text-tag" [innerHTML]="label" [style.color]="color"></h4>
+  <h5 *ngSwitchCase="tag === 'h5'" class="text-tag" [innerHTML]="label" [style.color]="color"></h5>
+  <h6 *ngSwitchCase="tag === 'h6'" class="text-tag" [innerHTML]="label" [style.color]="color"></h6>
+  <span *ngSwitchDefault class="text-tag" [innerHTML]="label"></span>
+</ng-container>

@@ -1,0 +1,41 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Pages|Product Listing" />
+
+# Product Listing Page
+
+The Product listing page appears when a visitor clicks a Category link from the Navbar( or SideBar in the mobile).
+Storefront includes professionally designed products grid, or you can overrided the product listing page partially/fully.
+
+`Note: Product listing page has URL same as the Bapy Category's path property`
+
+The products pages uses `@aboutyou/backbone` SDK to fetch Products, Filters for the shop configures in the `storefront.config.ts` file.
+The Category tree allows the user to easily navigate up/down the shop Categories.
+
+## Sections
+
+- • [Products Grid](#products-grid)
+- • [Content Tiles](#content-tiles)
+- • [Category Tree](#category-tree)
+- • [Filters and Sorting](#filters-and-sorting)
+
+### Products Grid
+
+The [ProductTiles](?path=/docs/components-producttile--default) are lazy loaded in CSS-grid. Displays 2 products per row on mobile and 3 products per row on bigger screens.
+
+We load a predefined number of products per API call, and more products can be loaded in a paginated manner on demand by the user. The number of products loaded per page can be easily configured.
+
+### Content Tiles
+
+The data for the content tiles for a specific category page is loaded on page load.
+We use [ContentPLPBundleTileComponent](?path=/docs/components-contenttiles-plp-bundletiles--single-bundle-tile) and [ContentPLPGridTileComponent](?path=/docs/components-contenttiles-plp-gridtile--single-tile) components to display them.
+The Content tiles appear scattered in between the Product tiles with an optimally calculated algorithm (which you can of course override).
+
+### Category Tree
+
+We use our [Tree](?path=/docs/components-tree--default) component to display the Category tree on this page.
+
+### Filters and Sorting
+
+Filters section display the configured filters from the `backbone`.
+Selecting any filter or sort option is will reload the products and also add the filetrs in the url. This way all the filetrs are kept even after a page reload.

@@ -1,0 +1,43 @@
+@import '../../../common/styles/index';
+
+.empty-basket {
+  height: 216px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  .empty-basket-subtitle {
+    font-size: FONT_SIZES(medium);
+  }
+}
+
+.usps {
+  font-size: FONT_SIZES(small);
+  margin: 16px 12px 16px 12px;
+
+  app-icon {
+    position: relative;
+    top: 7px;
+    right: 5px;
+  }
+}
+
+.price-and-item-overview {
+  margin: 24px 0 24px 0;
+
+  .bold {
+    font-weight: 900;
+  }
+}
+
+.invalid-basket-message {
+  background-color: rgba(COLOR(red-orange), 0.25);
+  padding: 16px 18px 16px 20px;
+  font-size: FONT_SIZES(small);
+  margin: 16px 0 16px 0;
+
+  @include MEDIA_QUERY(md) {
+    margin: 0 0 16px 0;
+  }
+}

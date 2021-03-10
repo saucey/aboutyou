@@ -1,0 +1,9 @@
+<div class="load-more">
+  <div class="progress-text">{{ progressText }}</div>
+  <div class="progress-bar">
+    <div class="progress-current" [ngStyle]="{ width: getProgressPercent() + '%' }"></div>
+  </div>
+  <app-button variant="secondary" [loading]="loading" [disabled]="loading">
+    {{ buttonLabel }}
+  </app-button>
+</div>

@@ -1,0 +1,43 @@
+@import '../../../..//common/styles';
+
+ul {
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+
+  .previous {
+    margin-right: 32px;
+  }
+  .next {
+    margin-left: 26px;
+  }
+}
+
+.page-link {
+  border: none;
+  color: COLOR(grey-600);
+}
+.page-item.active {
+  .page-link {
+    background-color: unset;
+    border-color: unset;
+    color: COLOR(grey-600);
+    border: solid 1px;
+  }
+}
+
+.page-link {
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  padding-left: 7px;
+  padding-top: 2px;
+  margin-right: 3px;
+  font-size: FONT_SIZES(medium);
+
+  line-height: 1.43;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+}

@@ -1,0 +1,22 @@
+<div class="row pt-5">
+  <div class="col-12">
+    <div class="newsletter">
+      <div class="text-wrapper offset-0 col-9 offset-sm-0 col-sm-11 offset-lg-2 col-lg-8">
+        <div class="subline pb-2">{{ subline }}</div>
+        <app-text tag="h3" [label]="'HOME.NEWSLETTER.headline' | translate"></app-text>
+      </div>
+      <app-icon icon="letter-rotated" type="picto" width="134px" height="132px"></app-icon>
+      <app-icon icon="letter" type="picto" width="134px" height="132px"></app-icon>
+
+      <div class="offset-1 col-10 offset-sm-0 col-sm-11 offset-lg-2 col-lg-8">
+        <input type="text" [formControl]="emailControl" [placeholder]="placeholder" />
+        <app-button (click)="submitNewsletter()" variant="secondary-filled-default">
+          {{ submit }}
+        </app-button>
+      </div>
+      <div class="text-wrapper offset-0 col-9 offset-sm-0 col-sm-11 offset-lg-2 col-lg-8">
+        <div class="disclaimer" [innerHTML]="disclaimer"></div>
+      </div>
+    </div>
+  </div>
+</div>

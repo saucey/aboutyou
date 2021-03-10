@@ -1,0 +1,113 @@
+@import '../../styles/index';
+
+::ng-deep app-grid-tiles {
+  .text-tag {
+    text-align: center;
+  }
+  .group_tile_tall {
+    grid-area: 1 / 1 / 3 / 1;
+  }
+  .group_tile_wide {
+    grid-area: 3 / 1 / 3 / 3;
+  }
+  .grid-tile-wrapper {
+    height: 100%;
+    position: relative;
+  }
+  .grid-tiles-grid {
+    display: grid;
+    padding: 0 1rem;
+    grid-template-rows: auto;
+    justify-content: space-between;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 24px;
+    height: 526px;
+
+    @include MEDIA_QUERY(md) {
+      grid-gap: 30px;
+      height: 479px;
+      grid-template-columns: repeat(3, 1fr);
+      .group_tile_wide {
+        grid-area: 2 / 2 / 2 / 4;
+      }
+    }
+    @include MEDIA_QUERY(lg) {
+      height: 776px;
+    }
+  }
+
+  .group_tile_normal,
+  .group_tile_tall,
+  .group_tile_wide {
+    cursor: pointer;
+
+    img {
+      width: 100%;
+      object-fit: cover;
+      height: calc(100% - 44px);
+      position: absolute;
+      @include MEDIA_QUERY(lg) {
+        height: 100%;
+      }
+    }
+    app-button,
+    .text {
+      transition: opacity 0.5s;
+    }
+
+    app-button button,
+    .text {
+      text-transform: inherit;
+      @include MEDIA_QUERY(lg) {
+        text-transform: uppercase;
+      }
+    }
+    app-button {
+      opacity: 0;
+      position: absolute;
+    }
+    .text {
+      position: absolute;
+      opacity: 1;
+      height: 44px;
+      width: 100%;
+      padding: 12px 0;
+      text-align: center;
+      background: COLOR(white);
+    }
+    @include MEDIA_QUERY(lg) {
+      &:hover {
+        ::ng-deep {
+          app-button {
+            opacity: 1;
+          }
+          .text {
+            opacity: 0;
+          }
+        }
+      }
+    }
+    .text {
+      bottom: 0px;
+    }
+    app-button {
+      bottom: 24px;
+    }
+    @include MEDIA_QUERY(lg) {
+      .text,
+      app-button {
+        display: block;
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+        font-size: FONT_SIZES(medium);
+      }
+      .text {
+        bottom: 0px;
+      }
+      app-button {
+        bottom: 24px;
+      }
+    }
+  }
+}

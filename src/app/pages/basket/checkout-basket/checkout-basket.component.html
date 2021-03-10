@@ -1,0 +1,117 @@
+<ng-container *ngIf="(isMobile$ | async) && (basketCount$ | async)">
+  <div class="invalid-basket-message" *ngIf="(plusProductThresholdReached$ | async) === false">
+    {{ 'BASKET.costContainer.error' | translate }}
+  </div>
+  <div class="price-and-item-overview row">
+    <div class="bold col-6 text-left">
+      {{ 'BASKET.listHeader.itemCount' | translate: { itemCount: basketCount$ | async } }}
+    </div>
+    <div class="bold col-6 text-right">
+      {{ (basketCost$ | async)?.withTax | currency: currency }}
+    </div>
+  </div>
+  <div class="usps row">
+    <div class="col-6">
+      <app-icon icon="checkmark-styled"></app-icon>
+      {{ 'BASKET.costContainer.benefits.first' | translate }}
+    </div>
+    <div class="col-6">
+      <app-icon icon="checkmark-styled"></app-icon>
+      {{ 'BASKET.costContainer.benefits.second' | translate }}
+    </div>
+    <div class="col-6">
+      <app-icon icon="checkmark-styled"></app-icon>
+      {{ 'BASKET.costContainer.benefits.third' | translate }}
+    </div>
+    <div class="col-6">
+      <app-icon icon="checkmark-styled"></app-icon>
+      {{ 'BASKET.costContainer.benefits.fourth' | translate }}
+    </div>
+  </div>
+  <div class="pb-4">
+    <app-button (click)="goToCheckout()" variant="purchase" class="pb-2" [disabled]="disablePurchaseButton$ | async">
+      {{ 'BASKET.goToCheckout' | translate }}
+    </app-button>
+  </div>
+</ng-container>
+
+<ng-template #emptyBasket>
+  <div class="empty-basket" *ngIf="notLoading$ | async">
+    <app-icon [icon]="'bag-deco'" [scale]="160 / 64" width="160px" height="160px"></app-icon>
+    <div class="empty-basket-subtitle">{{ 'BASKET.basketIsEmpty' | translate }}</div>
+  </div>
+</ng-template>
+<div class="row" *ngIf="(basketCount$ | async) > 0 || (loading$ | async); else emptyBasket">
+  <div class="col-md-8 basket-list-container">
+    <div
+      class="invalid-basket-message"
+      *ngIf="(isMobile$ | async) === false && (plusProductThresholdReached$ | async) === false"
+    >
+      {{ 'BASKET.costContainer.error' | translate }}
+    </div>
+    <ng-container *ngIf="groupItemsByPackage; then basketListGroupedByPackage; else basketList"></ng-container>
+    <ng-template #basketListGroupedByPackage>
+      <ng-container *ngIf="basketItemsGroupedByPackage$ | async as itemsGroupedByPackage">
+        <app-basket-list-grouped-by-package
+          class="basket-list-grouped-by-package"
+          [isMobile]="isMobile$ | async"
+          [loading]="loading$ | async"
+          [currency]="currency"
+          [disabled]="isChangingQuantity$ | async"
+          [basketItemsGroupedByPackage]="itemsGroupedByPackage.groupedItemsMap"
+          [notDeliverableItems]="itemsGroupedByPackage.notDeliverableItems"
+          [packagesInformation]="itemsGroupedByPackage.packageMap"
+          [plusProductThresholdReached]="plusProductThresholdReached$ | async"
+          (basketItemClick)="onBasketItemClick($event)"
+          (deleteItem)="handleDeleteItem($event)"
+          (itemQuantityChange)="handleItemQuantityChange($event)"
+        ></app-basket-list-grouped-by-package>
+      </ng-container>
+    </ng-template>
+    <ng-template #basketList>
+      <app-basket-list-header [basketItemsLength]="basketCount$ | async"></app-basket-list-header>
+      <app-basket-list
+        class="basket-list"
+        [isMobile]="isMobile$ | async"
+        [loading]="loading$ | async"
+        [currency]="currency"
+        [disabled]="isChangingQuantity$ | async"
+        [basketItems]="basketItems$ | async"
+        [plusProductThresholdReached]="plusProductThresholdReached$ | async"
+        (basketItemClick)="onBasketItemClick($event)"
+        (handleDeleteItem)="handleDeleteItem($event)"
+        (handleItemQuantityChange)="handleItemQuantityChange($event)"
+      ></app-basket-list>
+    </ng-template>
+  </div>
+  <div class="col-md-4">
+    <app-cost-overview-list
+      *ngIf="notLoading$ | async"
+      [isMobile]="isMobile$ | async"
+      [basketCost]="basketCost$ | async"
+      [loading]="loading$ | async"
+      [currency]="currency"
+      [plusProductThresholdReached]="plusProductThresholdReached$ | async"
+      [plusProductDifference]="plusProductDifference$ | async"
+      [totalBasketReduction]="totalBasketReduction$ | async"
+      [disabled]="disablePurchaseButton$ | async"
+      (goToCheckout)="goToCheckout()"
+    ></app-cost-overview-list>
+    <app-skeleton-cost-overview *ngIf="loading$ | async"></app-skeleton-cost-overview>
+  </div>
+</div>
+<ng-container *ngIf="(isMobile$ | async) === false && (basketCount$ | async) > 0">
+  <div class="row">
+    <div class="col-md-7">
+      <app-payment-methods></app-payment-methods>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <app-payment-partner></app-payment-partner>
+    </div>
+  </div>
+</ng-container>
+<div class="row">
+  <div class="col-md-12"></div>
+</div>

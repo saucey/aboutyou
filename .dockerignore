@@ -1,0 +1,8 @@
+dist
+temp
+npm-debug.log
+.gitlab-ci
+.idea
+.storybook
+.vscode
+node_modules

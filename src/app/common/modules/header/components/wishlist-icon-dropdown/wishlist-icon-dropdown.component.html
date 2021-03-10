@@ -1,0 +1,58 @@
+<app-header-icon-dropdown
+  #dropdown
+  [class.is-filled]="itemCount > 0"
+  [class.is-empty]="itemCount == 0"
+  [customClass]="customClass"
+  icon="heart-inactive"
+  [label]="'GLOBAL.header.icons.wishlist.label' | translate"
+  (iconClick)="handleToWishlistClick()"
+  [badgeCount]="itemCount"
+>
+  <div class="fly-out-container">
+    <div *ngIf="isWishListEmpty$ | async" class="empty-basket">
+      <div class="info" [innerHTML]="'GLOBAL.header.icons.wishlist.empty.info' | translate"></div>
+      <mat-divider></mat-divider>
+      <div
+        class="empty-basket-action-call"
+        [innerHTML]="
+          'GLOBAL.header.icons.wishlist.empty.actionCall'
+            | translate: { iconLocation: '/assets/icons/heart-inactive.svg' }
+        "
+      ></div>
+      <app-button class="action" variant="secondary-outline" (click)="handleToWishlistClick()">
+        {{ 'GLOBAL.header.icons.wishlist.navigation.toWishlist' | translate }}
+      </app-button>
+    </div>
+
+    <div class="has-articles-container" *ngIf="(isWishListEmpty$ | async) === false">
+      <div class="fly-out-title">
+        <div [innerHTML]="'GLOBAL.header.icons.wishlist.flyOutTitle' | translate"></div>
+        <mat-divider></mat-divider>
+      </div>
+
+      <div class="product-items-container">
+        <app-basket-list-item
+          class="articles-list"
+          *ngFor="let wishlistItem of itemsToShow$ | async"
+          [isMobile]="true"
+          [currency]="currency"
+          [item]="wishlistItem"
+          [isFlyoutMode]="true"
+          [useSecondImage]="true"
+          (click)="onClickBasketItem($event, wishlistItem)"
+        >
+        </app-basket-list-item>
+        <div
+          class="more-items-label"
+          *ngIf="itemCount > 10"
+          [innerHTML]="'GLOBAL.header.icons.wishlist.moreItemsAvailable' | translate: { amount: itemCount - 10 }"
+        ></div>
+      </div>
+      <div class="options-wrapper">
+        <app-button class="action" variant="secondary-outline" (click)="handleToWishlistClick()">
+          {{ 'GLOBAL.header.icons.wishlist.navigation.toWishlist' | translate }}
+        </app-button>
+      </div>
+    </div>
+  </div>
+</app-header-icon-dropdown>

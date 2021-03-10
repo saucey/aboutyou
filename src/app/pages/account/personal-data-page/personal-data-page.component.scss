@@ -1,0 +1,102 @@
+@import '../../..//common/styles/index';
+:host {
+  h2 {
+    margin-bottom: 30px;
+    font-size: FONT_SIZES(extraLarge);
+    font-weight: 500;
+    line-height: 1.33;
+    letter-spacing: -0.8px;
+    color: COLOR(grey-600);
+  }
+  .navigation {
+    .items {
+      font-size: FONT_SIZES(medium);
+      line-height: 1.43;
+      color: COLOR(grey-600);
+      display: block;
+      padding: 17px 0;
+      cursor: pointer;
+
+      &.active {
+        background-color: COLOR(grey-075);
+        a {
+          font-weight: normal;
+          line-height: 1.43;
+          letter-spacing: normal;
+          cursor: pointer;
+
+          &:after {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  .details {
+    margin: 30px 0px 30px 0px;
+  }
+
+  button {
+    border-radius: unset;
+    width: 100%;
+  }
+
+  ::ng-deep mat-accordion {
+    .mat-expansion-panel {
+      box-shadow: none;
+      padding: 14px 0px 14px;
+      margin: 0px;
+      border-bottom: 1px solid COLOR(grey-200);
+    }
+    .mat-expansion-panel-header {
+      .mat-expansion-panel-header-title {
+        font-size: FONT_SIZES(extraMedium);
+        line-height: 1.5;
+        color: COLOR(grey-600);
+      }
+
+      padding: 0px;
+    }
+    .mat-expansion-panel-body {
+      padding: 0;
+    }
+  }
+
+  .logout {
+    padding: 16px 0px 35px;
+    font-size: FONT_SIZES(extraMedium);
+    line-height: 1.5;
+    color: COLOR(grey-600);
+    border-bottom: 1px solid COLOR(grey-200);
+  }
+
+  .gender {
+    margin-top: 20px;
+    margin-bottom: 24px;
+    ::ng-deep mat-radio-button {
+      margin-right: 30px;
+      .mat-radio-inner-circle {
+        background-color: COLOR(black);
+      }
+      .mat-radio-outer-circle {
+        border-color: COLOR(black);
+        border-width: 1px;
+      }
+    }
+  }
+
+  .send-btn {
+    padding: 16px;
+  }
+  ::ng-deep app-button {
+    width: 100%;
+  }
+
+  ::ng-deep .custom-frame {
+    & .mat-checkbox-background,
+    .mat-checkbox-frame {
+      border-radius: 70% !important;
+    }
+  }
+}

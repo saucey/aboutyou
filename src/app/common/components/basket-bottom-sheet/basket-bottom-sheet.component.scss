@@ -1,0 +1,24 @@
+@import '../../styles/index';
+
+.basket-bottom-sheet {
+  .title {
+    font-size: FONT_SIZES(base);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 24px;
+    color: COLOR(grey-600);
+    margin: 10px 0 16px 0;
+    width: calc(100% - 20px);
+  }
+  ::ng-deep button {
+    font-weight: 900;
+    margin-bottom: 12px;
+  }
+  .icon-link {
+    position: absolute;
+    right: 18px;
+    top: 20px;
+    z-index: 3;
+  }
+}

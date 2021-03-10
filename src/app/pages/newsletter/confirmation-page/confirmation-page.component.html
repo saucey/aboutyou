@@ -1,0 +1,47 @@
+<app-stage
+  headline="{{ 'NEWSLETTER.title' | translate }}"
+  subHeadline="{{ 'NEWSLETTER.teaser' | translate }}"
+></app-stage>
+
+<div class="container" *ngIf="success">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <div class="icon-wrapper">
+        <app-icon [active]="true" type="icon" icon="checkmark-circle" scale="4"></app-icon>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 offset-md-3 text-center">
+      <h2>{{ 'NEWSLETTER.confirmation.success.title' | translate }}</h2>
+      <p>{{ 'NEWSLETTER.confirmation.success.description' | translate }}</p>
+      <div class="action">
+        <app-button variant="primary">{{ 'NEWSLETTER.confirmation.buttonTitle' | translate }}</app-button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" *ngIf="error">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <div class="icon-wrapper">
+        <app-icon type="icon" icon="warning" scale="4"></app-icon>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 offset-md-3 text-center">
+      <h2>{{ 'NEWSLETTER.confirmation.failure.title' | translate }}</h2>
+      <p>
+        {{ 'NEWSLETTER.confirmation.failure.description' | translate }}
+      </p>
+
+      <div class="action">
+        <app-button variant="primary">{{ 'NEWSLETTER.confirmation.buttonTitle' | translate }}</app-button>
+      </div>
+    </div>
+  </div>
+</div>

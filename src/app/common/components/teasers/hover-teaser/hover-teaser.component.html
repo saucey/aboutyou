@@ -1,0 +1,41 @@
+<div class="row hover-teaser-tiles">
+  <ng-container *ngFor="let tile of tiles">
+    <div [ngClass]="mapColumnsClass(tile.desktopColumnCount)">
+      <div class="tile">
+        <div class="img-wrapper" [ngStyle]="setBgImage(tile)"></div>
+        <div class="bg-wrapper"></div>
+        <div class="text-wrapper" [ngClass]="tile.attributes.textboxAlign">
+          <app-text
+            *ngIf="tile.attributes.sublineFirst"
+            [tag]="tile.subline.size"
+            [color]="tile.subline.color"
+            [label]="tile.subline.text"
+          >
+          </app-text>
+          <app-text [tag]="tile.headline.size" [color]="tile.headline.color" [label]="tile.headline.text"> </app-text>
+          <app-text
+            *ngIf="!tile.attributes.sublineFirst"
+            [tag]="tile.subline.size"
+            [color]="tile.subline.color"
+            [label]="tile.subline.text"
+          ></app-text>
+          <app-button
+            *ngIf="tile.cta.tag === 'button' && !tile.attributes.ctaHidden"
+            [variant]="tile.cta.style"
+            href="tile.cta.link.href"
+          >
+            {{ tile.cta.text }}
+          </app-button>
+          <a
+            *ngIf="tile.cta.tag === 'link' && !tile.attributes.ctaHidden"
+            [ngClass]="tile.cta.style"
+            href="tile.cta.link.href"
+            target="tile.cta.link.target"
+          >
+            {{ tile.cta.text }}
+          </a>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

@@ -1,0 +1,46 @@
+<app-header-icon-dropdown
+  #dropdown
+  [customClass]="customClass"
+  icon="profile"
+  [routerLink]="['/account' | localize]"
+  [label]="'GLOBAL.header.icons.myAccount.label' | translate"
+>
+  <div class="options-wrapper" (click)="preventClick($event)">
+    <ng-container *ngIf="isAuthenticated; then logout; else login"></ng-container>
+    <ng-template #login>
+      <div
+        class="option"
+        [innerHTML]="'GLOBAL.header.icons.myAccount.loggedOutUser.login' | translate"
+        (click)="handleLoginClick()"
+      ></div>
+      <div
+        class="option"
+        (click)="handleRegistrationClick()"
+        [innerHTML]="'GLOBAL.header.icons.myAccount.loggedOutUser.register' | translate"
+      ></div>
+    </ng-template>
+    <ng-template #logout>
+      <div
+        class="option"
+        [innerHTML]="'GLOBAL.header.icons.myAccount.loggedInUser.personalData' | translate"
+        [routerLink]="['/account/personal-data' | localize]"
+      ></div>
+      <div
+        class="option"
+        [innerHTML]="'GLOBAL.header.icons.myAccount.loggedInUser.reservations' | translate"
+        [routerLink]="['/account/reservations' | localize]"
+      ></div>
+
+      <div
+        class="option"
+        [innerHTML]="'GLOBAL.header.icons.myAccount.loggedInUser.orders' | translate"
+        [routerLink]="['/account/orders' | localize]"
+      ></div>
+      <div
+        class="option"
+        (click)="handleLogoutClick()"
+        [innerHTML]="'GLOBAL.header.icons.myAccount.loggedInUser.logout' | translate: { username: user?.firstName }"
+      ></div>
+    </ng-template>
+  </div>
+</app-header-icon-dropdown>

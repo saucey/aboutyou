@@ -1,0 +1,43 @@
+{
+  "tslint.rulesDirectory": "./node_modules/codelyzer",
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "git.ignoreLimitWarning": true,
+  "editor.formatOnSave": true,
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/test": true
+   },
+  "files.exclude": {
+    "documentation": true,
+    "**/package-lock.json": false,
+    "**/documentation.json": true,
+    "**/.cache/": true,
+    "dist": false,
+    "tmp": true,
+    "out-tsc": true,
+    "bazel-out": true,
+    "node_modules": true,
+    "**/chrome-profiler-events*.json": true,
+    "**/speed-measure-plugin*.json": true,
+    ".idea": true,
+    "**/.project": true,
+    "**/.classpath": true,
+    "**/.c9/": true,
+    "**/*.launch": true,
+    "**/.settings/": true,
+    "**/*.sublime-workspace": true,
+    ".sass-cache": true,
+    "connect.lock": true,
+    "coverage": true,
+    "libpeerconnection.log": true,
+    "**/npm-debug.log": true,
+    "**/yarn-error.log": true,
+    "**/testem.log": true,
+    "typings": true,
+    "**/.history/": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/bin": false,
+    "temp": false
+  }
+}

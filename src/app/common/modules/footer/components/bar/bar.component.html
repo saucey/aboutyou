@@ -1,0 +1,24 @@
+<div class="footer-bar-wrapper" [ngClass]="{ reduced: reduced }">
+  <div class="container footer-bar">
+    <div class="row py-3">
+      <div class="col-12 col-lg-8 menu">
+        <ul>
+          <li><a [routerLink]="'/impressum' | localize" [innerText]="'FOOTER.imprint' | translate"></a></li>
+          <li><a [routerLink]="'/datenschutz' | localize" [innerText]="'FOOTER.privacy' | translate"></a></li>
+          <li><a [routerLink]="''" [innerText]="'FOOTER.dataProcessing' | translate"></a></li>
+          <li><a [routerLink]="'/agb' | localize" [innerText]="'FOOTER.conditions' | translate"></a></li>
+          <li><a [routerLink]="'/widerrufsrecht' | localize" [innerText]="'FOOTER.revocation' | translate"></a></li>
+          <li><a [routerLink]="'/versandkosten' | localize" [innerText]="'FOOTER.shipping' | translate"></a></li>
+        </ul>
+      </div>
+
+      <div class="col-12 col-lg-4 copyright-star-wrapper">
+        <div class="copyright" [innerText]="'FOOTER.copyrightText' | translate"></div>
+        <div class="startext">
+          <span [innerText]="'FOOTER.priceText' | translate"></span>
+          <a [routerLink]="'/versandkosten' | localize" [innerText]="'FOOTER.shipping' | translate"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,87 @@
+<div class="container">
+  <app-header [title]="'ACCOUNT.pages.personal.settings' | translate"></app-header>
+
+  <div class="row">
+    <div class="col-md-4 navigation" *ngIf="!isMobile">
+      <h2>{{ 'ACCOUNT.pages.personal.settings' | translate }}</h2>
+      <ul>
+        <li class="items" [ngClass]="{ active: isPersonalPage() }" (click)="changeSubPageTo(subPageTypes.Personal)">
+          <a>{{ 'ACCOUNT.pages.personal.title' | translate }}</a>
+        </li>
+        <li class="items" [ngClass]="{ active: isNewsletterPage() }" (click)="changeSubPageTo(subPageTypes.Newsletter)">
+          <a>{{ 'ACCOUNT.pages.newsletter.title' | translate }}</a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-7 ">
+      <div class="tab-content d-none d-md-block">
+        <div class="content" *ngIf="isPersonalPage()">
+          <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+            <h2 *ngIf="!isMobile">{{ 'ACCOUNT.pages.personal.title' | translate }}</h2>
+            <div class="details">
+              <app-personal-form [profileForm]="profileForm"></app-personal-form>
+            </div>
+            <app-button variant="accept" *ngIf="!isMobile" [disabled]="profileForm.invalid">
+              <ng-container>{{ 'ACCOUNT.pages.personal.save' | translate }}</ng-container>
+            </app-button>
+          </form>
+        </div>
+        <div class="content" *ngIf="isNewsletterPage()">
+          <form [formGroup]="newsletterForm" (ngSubmit)="onSubmit()">
+            <h2 *ngIf="!isMobile">{{ 'ACCOUNT.pages.newsletter.title' | translate }}</h2>
+            <div class="details">
+              <app-newsletter-form [profileForm]="newsletterForm"></app-newsletter-form>
+            </div>
+            <app-button
+              variant="accept"
+              *ngIf="!isMobile && !isNewsletterSubscribed"
+              [disabled]="newsletterForm.invalid"
+            >
+              <ng-container>{{ 'ACCOUNT.pages.personal.save' | translate }}</ng-container>
+            </app-button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <mat-accordion *ngIf="isMobile" class="my-special-class" multi="true">
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{ 'ACCOUNT.pages.personal.title' | translate }}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="gender" *ngIf="isMobile">
+          <mat-radio-group aria-label="Select an option" formControlName="gender">
+            <mat-radio-button value="f">{{ 'ACCOUNT.pages.personal.gender.female' | translate }}</mat-radio-button>
+            <mat-radio-button value="m">{{ 'ACCOUNT.pages.personal.gender.male' | translate }}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <app-personal-form [profileForm]="profileForm"></app-personal-form>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{ 'ACCOUNT.pages.newsletter.title' | translate }}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>
+          <app-newsletter-form [profileForm]="newsletterForm"></app-newsletter-form>
+        </p>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <div class="row send-btn">
+      <app-button variant="accept" *ngIf="isMobile" [disabled]="profileForm.invalid || newsletterForm.invalid">
+        <ng-container>{{ 'ACCOUNT.pages.personal.save' | translate }}</ng-container>
+      </app-button>
+    </div>
+    <div class="row logout" *ngIf="isMobile" (click)="handleLogoutClick()">
+      <div class="col-12">
+        <span>{{ 'GLOBAL.sidebar.user.loggedInUser.logout' | translate }}</span>
+      </div>
+    </div>
+  </form>
+</div>

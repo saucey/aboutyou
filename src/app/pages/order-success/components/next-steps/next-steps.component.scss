@@ -1,0 +1,92 @@
+@import '../../../..//common/styles/';
+
+.next-steps {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h2 {
+    font-size: FONT_SIZES(extraLarge);
+    margin: 64px 20px 32px;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin: 8px;
+
+    app-icon {
+      height: 80px;
+      width: 80px;
+      margin-bottom: 8px;
+    }
+
+    span {
+      padding: 0px 50px 0px 50px;
+      font-size: FONT_SIZES(medium);
+      text-align: center;
+    }
+  }
+
+  .arrow {
+    display: flex;
+
+    margin: 8px 0;
+
+    app-icon {
+      transform: rotate(180deg);
+
+      height: 24px;
+      width: 24px;
+      min-height: 24px;
+      min-width: 24px;
+
+      margin-top: 28px;
+    }
+  }
+
+  // Mobile styles.
+  @include MEDIA_QUERY_MAX(sm) {
+    ul {
+      flex-direction: column;
+
+      margin-left: 32px;
+      margin-right: 32px;
+    }
+
+    .step {
+      flex-direction: row;
+
+      app-icon {
+        height: 64px;
+        width: 64px;
+        min-height: 64px;
+        min-width: 64px;
+
+        margin-right: 16px;
+        margin-bottom: 0;
+      }
+
+      span {
+        text-align: left;
+
+        margin-top: 8px;
+      }
+    }
+
+    .arrow {
+      app-icon {
+        transform: rotate(270deg);
+        margin-top: 0;
+        margin-left: 26px;
+      }
+    }
+  }
+}

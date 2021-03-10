@@ -1,0 +1,109 @@
+@import './src/app/common/styles/index.scss';
+
+.accordion-item {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 224px;
+  min-width: 224px;
+  margin-right: 12px;
+  border: solid 1px COLOR(grey-150);
+  align-items: center;
+  padding: 15px;
+
+  @include MEDIA_QUERY(md) {
+    padding: 0;
+    flex-direction: row;
+    min-width: auto;
+    margin-right: 0;
+    border: none;
+    align-items: flex-start;
+  }
+
+  cursor: pointer;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Opera and Firefox */
+  margin-bottom: 30px;
+
+  .icon {
+    width: 56px;
+    height: 56px;
+    flex: 0 0 56px;
+    text-align: center;
+    margin-bottom: 12px;
+
+    @include MEDIA_QUERY(md) {
+      margin-bottom: 0;
+      margin-right: 16px;
+    }
+
+    ::ng-deep i {
+      margin-top: 24px;
+    }
+  }
+
+  .content {
+    .title {
+      font-size: FONT_SIZES(medium);
+      line-height: 1.43;
+      letter-spacing: normal;
+      text-align: center;
+      color: #262626;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      @include MEDIA_QUERY(md) {
+        color: COLOR(grey-600);
+        padding: 18px 0;
+        text-align: left;
+        height: auto;
+        justify-content: flex-start;
+        align-items: flex-start;
+      }
+    }
+
+    .text {
+      font-size: FONT_SIZES(medium);
+      font-weight: 300;
+      line-height: 1.43;
+      color: COLOR(grey-600);
+      overflow: hidden;
+      transition: all 0.2s;
+      height: 0;
+      margin-top: 8px;
+      text-align: center;
+
+      @include MEDIA_QUERY(md) {
+        margin-top: 0;
+        text-align: left;
+      }
+    }
+  }
+
+  .arrow span {
+    transition: all 0.2s;
+    transform: rotate(0deg);
+    display: inline-block;
+  }
+
+  &.active {
+    .arrow span {
+      transform: rotate(180deg) translateY(10px);
+    }
+  }
+
+  .arrow {
+    margin: 0px;
+    margin-top: 8px;
+
+    @include MEDIA_QUERY(md) {
+      margin: 18px 0;
+    }
+  }
+}

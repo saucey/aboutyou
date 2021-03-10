@@ -1,0 +1,63 @@
+<div class="category-tree">
+  <ng-container *ngIf="!!parent; then parentLink; else resetLink"></ng-container>
+  <ng-template #parentLink>
+    <a class="parent-link" *ngIf="!!parent" [routerLink]="parent.path | localize" (click)="onParentRowClick($event)">
+      <i class="back-icon"></i>
+      <span>
+        {{ parent.shortSlug }}
+      </span>
+    </a>
+  </ng-template>
+  <ng-template #resetLink>
+    <a *ngIf="canNavigateToRoot && selectedItem" class="parent-link" (click)="onResetLinkClick($event)">
+      <i class="back-icon"></i>
+      <span>
+        {{ goBackLabel }}
+      </span>
+    </a>
+  </ng-template>
+
+  <!-- UP TO TABLET -->
+  <div class="d-block d-lg-none">
+    <ng-container *ngIf="selectedItem; else noSelectedItemMobile">
+      <h1 class="current-category">{{ selectedItem.shortSlug }}</h1>
+      <div class="horizontalScrollList">
+        <app-button *ngFor="let category of children" variant="default" (click)="onChildRowClick($event, category)">{{
+          category.shortSlug
+        }}</app-button>
+      </div>
+    </ng-container>
+    <ng-template #noSelectedItemMobile>
+      <div class="horizontalScrollList">
+        <app-button *ngFor="let category of items" variant="default" (click)="onChildRowClick($event, category)">{{
+          category.shortSlug
+        }}</app-button>
+      </div>
+    </ng-template>
+  </div>
+
+  <!-- DESKTOP -->
+  <div [ngClass]="['d-none', 'd-lg-block', selectedItem && children.length ? 'bottom-border' : '']">
+    <ng-container *ngIf="selectedItem; else noSelectedItemDesktop">
+      <div *ngIf="children.length" class="sub-category">{{ subCategoryLabel }}</div>
+      <a
+        class="child-link"
+        *ngFor="let category of children"
+        [routerLink]="category.path | localize"
+        (click)="onChildRowClick($event, category)"
+      >
+        <span>{{ category.shortSlug }}</span>
+      </a>
+    </ng-container>
+    <ng-template #noSelectedItemDesktop>
+      <a
+        class="child-link"
+        *ngFor="let category of items"
+        [routerLink]="category.path | localize"
+        (click)="onChildRowClick($event, category)"
+      >
+        <span>{{ category.shortSlug }}</span>
+      </a>
+    </ng-template>
+  </div>
+</div>

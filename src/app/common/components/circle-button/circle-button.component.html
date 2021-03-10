@@ -1,0 +1,4 @@
+<button [style.border-color]="borderColor ? borderColor : 'transparent'">
+  <div *ngIf="tooltip" class="tooltip">{{ tooltip }}</div>
+  <span><ng-content></ng-content></span>
+</button>

@@ -1,0 +1,54 @@
+<div class="container osp">
+  <div class="order-header">
+    {{ 'OSP.headline' | translate }}
+  </div>
+  <div class="row d-flex flex-column align-items-center">
+    <div class="col-12 d-flex justify-content-center">
+      <app-icon [icon]="'checkmark-circle'" [active]="true" [scale]="4"></app-icon>
+    </div>
+    <div class="col-12 messages">
+      <div class="greeting">{{ 'OSP.successGreeting' | translate }}</div>
+      <div class="order" [innerHTML]="'OSP.orderNumber' | translate: { orderId: orderId }"></div>
+      <div class="message">{{ 'OSP.message.line1' | translate }}</div>
+      <div class="message pt-3">{{ 'OSP.message.line2' | translate }}</div>
+      <div class="message">{{ 'OSP.message.line3' | translate }}</div>
+    </div>
+    <div class="col-12 action">
+      <app-button (click)="goToOrdersPage()" variant="primary">
+        {{ 'OSP.actions.goToOrders' | translate }}
+      </app-button>
+    </div>
+    <div class="col-12 action">
+      <app-button (click)="goToHome()" variant="secondary-outline">
+        {{ 'OSP.actions.continueShopping' | translate }}
+      </app-button>
+    </div>
+
+    <app-next-steps></app-next-steps>
+
+    <app-registration-container></app-registration-container>
+
+    <div class="trusted-shop-gift-wrapper">
+      <!-- TODO: Provide actual data from the checkout. -->
+      <app-trusted-shop
+        [checkoutData]="{
+          orderNumber: '2016-05-21_001',
+          buyerEmail: 'my-customer@mail.test',
+          orderAmount: '1000.95',
+          orderCurrency: 'EUR'
+        }"
+        type="checkout"
+      ></app-trusted-shop>
+
+      <app-personal-gift-banner></app-personal-gift-banner>
+    </div>
+  </div>
+  <app-subscribe-newsletter
+    [subline]="'HOME.NEWSLETTER.subline' | translate"
+    [headline]="'HOME.NEWSLETTER.headline' | translate"
+    [placeholder]="'HOME.NEWSLETTER.placeholder' | translate"
+    [submit]="'HOME.NEWSLETTER.submit' | translate"
+    [disclaimer]="'HOME.NEWSLETTER.disclaimer' | translate"
+    [source]="'Footer'"
+  ></app-subscribe-newsletter>
+</div>

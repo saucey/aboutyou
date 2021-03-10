@@ -1,0 +1,48 @@
+<form [formGroup]="searchForm">
+  <mat-form-field [floatLabel]="'never'">
+    <button class="search-button" matPrefix (click)="onSubmitSearch()"></button>
+    <input
+      type="text"
+      matInput
+      [matAutocomplete]="autoGroup"
+      [placeholder]="placeholder"
+      formControlName="autoCompleteInput"
+      #inputField
+      #matAutocompleteTrigger
+      (keydown.enter)="handleSubmit($event)"
+    />
+    <button class="clear-button" *ngIf="inputField.value" matSuffix (click)="clearSearch()"></button>
+    <mat-autocomplete #autoGroup="matAutocomplete">
+      <ng-container *ngFor="let group of suggestionsGroupOptions">
+        <mat-optgroup *ngIf="group.suggestions.length" [label]="group.suggestionGroupName">
+          <app-link class="d-block d-lg-none" (click)="handleSubmit($event)" variant="primary">{{
+            viewAllLabel
+          }}</app-link>
+          <mat-option
+            *ngFor="let suggestion of group.suggestions"
+            [value]="suggestion.mainText"
+            (onSelectionChange)="onSelectionChange(suggestion)"
+          >
+            <div class="option-wrapper">
+              <img class="image" *ngIf="suggestion.image" [src]="suggestion.image" />
+              <div class="texts">
+                <div class="mainText" [innerHTML]="suggestion.mainText | highlight: inputField.value"></div>
+                <div class="boldText" *ngIf="suggestion.boldTextGroup">
+                  <div class="red" *ngIf="suggestion.boldTextGroup.redText">
+                    {{ suggestion.boldTextGroup.redText | currency: currency }}
+                  </div>
+                  <div class="black" *ngIf="suggestion.boldTextGroup.blackText">
+                    {{ suggestion.boldTextGroup.blackText | currency: currency }}
+                  </div>
+                  <div class="struck" *ngIf="suggestion.boldTextGroup.struckText">
+                    {{ suggestion.boldTextGroup.struckText | currency: currency }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-option>
+        </mat-optgroup>
+      </ng-container>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>

@@ -1,0 +1,62 @@
+<a [href]="'/p/' + activeId" (click)="onOuterLinkClick($event)">
+  <div class="grid-tile">
+    <ng-container [ngSwitch]="type">
+      <!-- single_tile -->
+      <div *ngSwitchCase="'single_bundle_tile'" class="single_bundle_tile">
+        <div class="single-bundle" *ngFor="let element of elements">
+          <img
+            [src]="element.attributes.images[0].attributes | cdn: { size: 'medium' }"
+            (click)="onClickHandler($event)"
+          />
+          <span class="look-title">{{ element.attributes.name }}</span>
+          <span class="shop-the-look" (click)="onClickHandler($event)">
+            <span>{{ shopTheLookLabel }}</span>
+            <app-icon icon="chevron-right"></app-icon>
+          </span>
+          <app-circle-button *ngIf="showWishlistButton" (click)="onWishlistIconClick($event)">
+            <app-icon icon="heart-inactive" *ngIf="!isWishlisted"></app-icon>
+            <app-icon icon="heart-active" *ngIf="isWishlisted"></app-icon>
+          </app-circle-button>
+        </div>
+      </div>
+
+      <!-- double_bundle_tile -->
+      <div *ngSwitchCase="'double_bundle_tile'" class="double_bundle_tile">
+        <div class="left-section" [style.background]="" *ngFor="let element of elements">
+          <img
+            [src]="element.attributes.images[0].attributes | cdn: { size: 'medium' }"
+            (click)="onClickHandler($event)"
+          />
+        </div>
+        <div class="right-section" [style.background]="" *ngFor="let element of elements">
+          <div class="bundle" [style.background]="element.attributes.backgroundColor">
+            <ngb-carousel [interval]="500000" (slide)="onChange($event)">
+              <ng-template
+                ngbSlide
+                *ngFor="let product of element.attributes.products"
+                [id]="product.attributes.productId.toString()"
+              >
+                <div class="content-wrapper element">
+                  <img
+                    (swipeleft)="onSwipeLeft()"
+                    (swiperight)="onSwipeRight()"
+                    (click)="onClickHandler($event)"
+                    [src]="product.attributes.image | cdn: { size: 'medium', brightness: 0.9 }"
+                  />
+                </div>
+              </ng-template>
+            </ngb-carousel>
+            <span class="shop-the-look">{{ shopTheLookLabel }}</span>
+            <span class="look-title">{{ element.attributes.name }}</span>
+            <div class="discover-link" (click)="onClickHandler($event)">
+              <span>
+                {{ discoverLabel }}
+              </span>
+              <app-icon icon="chevron-right"></app-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</a>

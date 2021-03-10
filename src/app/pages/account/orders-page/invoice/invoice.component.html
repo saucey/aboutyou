@@ -1,0 +1,13 @@
+<div class="row payment" *ngIf="currentOrder.payment">
+  <div class="col-5 payment-infos-labels">
+    {{ 'ACCOUNT.pages.orders.order.detail.payment.method' | translate }}
+  </div>
+  <div class="col-7 payment-infos">
+    {{ 'ACCOUNT.pages.orders.order.detail.payment.types.' + currentOrder.payment[0].key | translate }}
+  </div>
+</div>
+<div class="row invoice-download">
+  <button type="button" class="col-12 " (click)="downloadInvoice()">
+    {{ 'ACCOUNT.pages.orders.order.detail.payment.invoice' | translate }}
+  </button>
+</div>

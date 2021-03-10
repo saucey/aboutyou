@@ -1,0 +1,30 @@
+@import '../../../../..//common/styles/index';
+
+.sidebar {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: $z-header-sidebar;
+  top: $header-desktop-reduced-height;
+  background: rgba(0, 0, 0, 0.29);
+
+  .sidebar-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    transition: all 0.3s ease-in;
+    height: 100%;
+    background: white;
+
+    @include MEDIA_QUERY(md) {
+      width: 50%;
+      align-self: flex-start;
+    }
+
+    .scroll-wrapper {
+      overflow-y: auto;
+      height: calc(100vh - 185px);
+    }
+  }
+}

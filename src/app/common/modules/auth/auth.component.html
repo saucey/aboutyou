@@ -1,0 +1,59 @@
+<!-- LOGIN FORM -->
+<ng-container *ngIf="isLoginPopupDisplayed$ | async">
+  <ng-container *ngIf="isDesktop">
+    <div class="backdrop" (click)="closeLoginPopup()"></div>
+
+    <div class="login-box">
+      <app-icon icon="close" (click)="closeLoginPopup()" width="24px" height="24px"></app-icon>
+      <iframe
+        sandbox="allow-scripts allow-popups allow-same-origin allow-forms allow-top-navigation"
+        [src]="embeddedLoginRedirectUrl"
+        width="100%"
+        height="90%"
+        scrolling="no"
+      ></iframe>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="!isDesktop">
+    <div class="container" class="mobile-overlay">
+      <iframe
+        sandbox="allow-scripts allow-popups allow-same-origin allow-forms allow-top-navigation"
+        [src]="embeddedLoginRedirectUrl"
+        width="100%"
+        height="100%"
+        scrolling="no"
+      ></iframe>
+    </div>
+  </ng-container>
+</ng-container>
+
+<!-- REGISTRATION-FORM -->
+<ng-container *ngIf="isRegistrationPopupDisplayed$ | async">
+  <ng-container *ngIf="isDesktop">
+    <div class="backdrop" (click)="closeRegistrationPopup()"></div>
+
+    <div class="login-box">
+      <app-icon icon="close" (click)="closeRegistrationPopup()" width="24px" height="24px"></app-icon>
+      <iframe
+        sandbox="allow-scripts allow-popups allow-same-origin allow-forms allow-top-navigation"
+        [src]="embeddedRegistrationRedirectUrl"
+        width="100%"
+        height="90%"
+        scrolling="no"
+      ></iframe>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="!isDesktop">
+    <div class="container" class="mobile-overlay">
+      <iframe
+        sandbox="allow-scripts allow-popups allow-same-origin allow-forms allow-top-navigation"
+        [src]="embeddedRegistrationRedirectUrl"
+        width="100%"
+        height="100%"
+        scrolling="no"
+      ></iframe>
+    </div>
+  </ng-container>
+</ng-container>

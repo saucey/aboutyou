@@ -1,0 +1,125 @@
+@import '../../../styles/index';
+
+::ng-deep .hover-teaser-tiles {
+  .col-md-12 .img-wrapper {
+    height: 880px;
+  }
+  .col-md-6 .img-wrapper {
+    height: 660px;
+  }
+  .col-md-4 .img-wrapper {
+    height: 424px;
+  }
+
+  .img-wrapper {
+    width: 100%;
+    position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .text-wrapper,
+  .bg-wrapper {
+    transition: opacity 0.3s;
+  }
+
+  .bg-wrapper {
+    position: absolute;
+    margin: 15px 15px;
+    padding: 0 10%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+  }
+
+  .tile {
+    margin: 15px 0;
+
+    .text-wrapper {
+      position: absolute;
+      margin: 0 15px;
+      color: black;
+      padding: 0 10%;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex-wrap: wrap;
+      opacity: 0;
+
+      &.text-left {
+        padding-right: 27.5%;
+        app-button {
+          margin-left: 0;
+        }
+      }
+
+      &.text-center {
+        padding-left: 13.75%;
+        padding-right: 13.75%;
+        app-button {
+          margin-left: 26%;
+        }
+      }
+
+      &.text-right {
+        padding-left: 27.5%;
+        app-button {
+          margin-left: 50%;
+        }
+      }
+
+      app-button {
+        padding-top: 15px;
+        width: 50%;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        opacity: 0.8;
+        font-size: 18px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.33;
+        letter-spacing: 0.5px;
+      }
+
+      h2 {
+        font-size: 18px;
+        line-height: 1.33;
+        letter-spacing: 0.5px;
+      }
+
+      h1 {
+        font-size: 44px;
+        line-height: 1.11;
+        letter-spacing: -2px;
+      }
+    }
+
+    &:hover {
+      .bg-wrapper {
+        opacity: 0.77;
+        background: #35073f;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .text-wrapper {
+        opacity: 1;
+      }
+    }
+  }
+}

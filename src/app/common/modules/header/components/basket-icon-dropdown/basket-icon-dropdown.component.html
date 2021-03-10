@@ -1,0 +1,61 @@
+<app-header-icon-dropdown
+  #dropdown
+  [class.is-filled]="itemCount > 0"
+  [class.is-empty]="itemCount == 0"
+  [customClass]="customClass"
+  icon="bag"
+  [label]="'GLOBAL.header.icons.basket.label' | translate"
+  (iconClick)="handleToBasketClick()"
+  [badgeCount]="itemCount"
+>
+  <div class="fly-out-container">
+    <div *ngIf="!itemCount" class="empty-basket">
+      <div class="info" [innerHTML]="'GLOBAL.header.icons.basket.empty.info' | translate"></div>
+      <mat-divider></mat-divider>
+      <div
+        class="empty-basket-action-call"
+        [innerHTML]="'GLOBAL.header.icons.basket.empty.actionCall' | translate"
+      ></div>
+      <app-button class="action" variant="secondary-outline" (click)="handleToBasketClick()">
+        {{ 'GLOBAL.header.icons.basket.navigation.toBasket' | translate }}
+      </app-button>
+    </div>
+
+    <div class="has-articles-container" *ngIf="itemCount > 0">
+      <div class="fly-out-title">
+        <div [innerHTML]="'GLOBAL.header.icons.basket.flyOutTitle' | translate: { itemCount: itemCount }"></div>
+        <mat-divider></mat-divider>
+      </div>
+      <div class="product-items-container">
+        <app-basket-list-item
+          class="articles-list"
+          *ngFor="let basketItem of basketItemsMax10"
+          [isMobile]="true"
+          [currency]="currency"
+          [item]="basketItem"
+          [isFlyoutMode]="true"
+          [useSecondImage]="true"
+          (click)="onClickBasketItem($event, basketItem)"
+        >
+        </app-basket-list-item>
+        <div
+          class="more-items-label"
+          *ngIf="basketItems.length > 10"
+          [innerHTML]="'GLOBAL.header.icons.basket.moreItemsAvailable' | translate: { amount: basketItems.length - 10 }"
+        ></div>
+      </div>
+      <div class="options-wrapper">
+        <div class="costs">
+          <span> {{ 'GLOBAL.header.icons.basket.cost' | translate }} <br /> </span>
+          <span class="costs-amount">{{ basketCost.withTax | currency: currency }}</span>
+        </div>
+        <app-button (click)="handleToCheckoutClick()" variant="purchase" [disabled]="disablePurchaseButton$ | async">
+          {{ 'GLOBAL.header.icons.basket.navigation.toCheckout' | translate }}
+        </app-button>
+        <app-button class="action" variant="secondary-outline" (click)="handleToBasketClick()">
+          {{ 'GLOBAL.header.icons.basket.navigation.toBasket' | translate }}
+        </app-button>
+      </div>
+    </div>
+  </div>
+</app-header-icon-dropdown>

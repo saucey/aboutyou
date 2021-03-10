@@ -1,0 +1,135 @@
+<app-skeleton-detail-list *ngIf="isLoading"></app-skeleton-detail-list>
+
+<div [ngClass]="{ container: isMobile }" *ngIf="!isLoading">
+  <app-header
+    [title]="'ACCOUNT.pages.orders.order.detail.orderId' | translate: { id: currentReservation.reservationId }"
+    *ngIf="isMobile"
+  ></app-header>
+  <div class="order-title" *ngIf="!isMobile">
+    <div>
+      <span>
+        {{
+          'ACCOUNT.pages.reservations.order.title'
+            | translate: { date: currentReservation.reservationDate | date: 'dd.MM.yyyy' }
+        }}
+      </span>
+    </div>
+  </div>
+
+  <div class="detail-container">
+    <div class="d-none d-md-block order-id">
+      <span>
+        {{ 'ACCOUNT.pages.reservations.order.detail.orderId' | translate: { id: currentReservation.reservationId } }}
+      </span>
+    </div>
+
+    <div class="address">
+      <div class="address-card">
+        <div class="address-card-title">
+          <span>
+            {{ 'ACCOUNT.pages.reservations.order.detail.address.combinedTitle' | translate }}
+          </span>
+        </div>
+        <div class="address-card-body">
+          <div>
+            <div>{{ currentReservation.branch.name }}</div>
+            <div>{{ currentReservation.branch.address }}</div>
+            <div>
+              <span class="postal-code">{{ currentReservation.branch.postalCode }}</span
+              >{{ currentReservation.branch.city }}
+            </div>
+          </div>
+        </div>
+        <div (click)="isCollapsed = !isCollapsed" class="collapse-open-hours">
+          <span *ngIf="isCollapsed">
+            {{ 'ACCOUNT.pages.reservations.order.detail.address.moreInfos.moreInfosText' | translate }}
+            <app-icon icon="chevron-down"></app-icon>
+          </span>
+          <span *ngIf="!isCollapsed">
+            {{ 'ACCOUNT.pages.reservations.order.detail.address.moreInfos.lessInfosText' | translate }}
+            <app-icon icon="chevron-up"></app-icon>
+          </span>
+        </div>
+        <div [ngbCollapse]="isCollapsed">
+          <div class="collapse-text">
+            <div class="more-infos-title">
+              {{ 'ACCOUNT.pages.reservations.order.detail.address.moreInfos.openHours' | translate }}
+            </div>
+            <div>{{ 'Montag - Samstag' }}</div>
+            <div>{{ '09:30 Uhr - 20:00 Uhr' }}</div>
+          </div>
+          <mat-divider class="divider-address"></mat-divider>
+          <div class="collapse-text">
+            <div class="more-infos-title">
+              {{ 'ACCOUNT.pages.reservations.order.detail.address.moreInfos.moreInfos.label' | translate }}
+            </div>
+            <div>{{ 'ACCOUNT.pages.reservations.order.detail.address.moreInfos.moreInfos.text' | translate }}</div>
+          </div>
+
+          <mat-divider class="divider-address"></mat-divider>
+          <div class="contact">
+            <div class="collapse-text">
+              <div class="more-infos-title">
+                {{ 'ACCOUNT.pages.reservations.order.detail.address.moreInfos.contact.label' | translate }}
+              </div>
+              <div>{{ 'ACCOUNT.pages.reservations.order.detail.address.moreInfos.contact.text' | translate }}</div>
+            </div>
+            <div class="phone">
+              <a href="tel:{{ 'ACCOUNT.pages.orders.noOrder.contact.phone' | translate }}">
+                {{ 'ACCOUNT.pages.orders.noOrder.contact.phone' | translate }}
+                <span><app-icon icon="phone" width="18px" height="18px"></app-icon></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="compass-icon" *ngIf="isMobile">
+        <app-icon icon="compass-arrow" scale="1.5" (click)="openMapDialog($event)"></app-icon>
+      </div>
+    </div>
+
+    <div class="products-lists">
+      <div class="products-list-container">
+        <div class="products-title">
+          {{
+            'ACCOUNT.pages.reservations.order.detail.product.pickupText'
+              | translate
+                : {
+                    pickupDateStart: currentReservation.reservationDate | date: 'dd.MM',
+                    pickupDateEnd: getFinalPickUpDay(currentReservation.reservationDate) | date: 'dd.MM'
+                  }
+          }}
+        </div>
+        <div class="status" *ngIf="isMobile">
+          {{ 'ACCOUNT.status' | translate }}
+          <span [ngClass]="{ cancelled: isCancelled(currentReservation) }">
+            {{ getOrderStatus(currentReservation.status) }}</span
+          >
+        </div>
+        <ng-container *ngFor="let product of currentReservation.items">
+          <app-product-item [product]="product" [currency]="currency"></app-product-item>
+        </ng-container>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="total-price">
+      <div>
+        <div class="total-price-label">
+          <div>
+            {{ 'ACCOUNT.pages.reservations.order.detail.totalPrice' | translate }}
+          </div>
+        </div>
+        <div class="tax-label">
+          <span>
+            {{ 'ACCOUNT.pages.reservations.order.detail.tax' | translate }}
+          </span>
+        </div>
+      </div>
+      <div class="sum">
+        <span>
+          {{ currentReservation.totalPrice | currency: currency }}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

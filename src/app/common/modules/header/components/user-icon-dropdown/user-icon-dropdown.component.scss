@@ -1,0 +1,39 @@
+@import 'src/app/common/styles/index.scss';
+:host {
+  display: contents;
+}
+
+.options-wrapper {
+  .option {
+    padding: 0 1rem;
+    font-size: FONT_SIZES(small);
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease-in;
+    position: relative;
+
+    &::after {
+      content: '';
+      height: 1px;
+      background: COLOR(grey-150);
+      position: absolute;
+      widows: calc(100% - 2rem);
+      left: 1rem;
+      right: 1rem;
+      margin: auto;
+      bottom: 0;
+    }
+
+    &:hover {
+      background: COLOR(grey-075);
+    }
+
+    &:last-of-type {
+      &::after {
+        background: none;
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+.payment-partner {
+  margin-top: 73px;
+
+  h6 {
+    font-weight: 900;
+  }
+  ::ng-deep i {
+    width: 158px;
+    position: relative;
+    left: -7px;
+
+    &.mydepot {
+      margin-top: 75px;
+      left: -15px;
+    }
+    &.cumulus {
+      margin-top: 22px;
+    }
+    &.payback {
+      margin-top: 33px;
+    }
+  }
+}

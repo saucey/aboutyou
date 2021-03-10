@@ -1,0 +1,241 @@
+@import '../../../styles/index';
+
+:host {
+  .stage-module ::ng-deep {
+    .single .carousel-indicators {
+      display: none;
+    }
+
+    .img-wrapper {
+      width: 100%;
+      position: relative;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+
+      @include MEDIA_QUERY(xs) {
+        height: 360px;
+      }
+
+      @include MEDIA_QUERY(md) {
+        height: 384px;
+      }
+
+      @include MEDIA_QUERY(lg) {
+        height: 640px;
+      }
+    }
+
+    .carousel-inner,
+    .carousel-indicators {
+      overflow: hidden;
+    }
+
+    .carousel-item {
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 1.2s ease-in-out, visibility 1.2s;
+      z-index: $z-teasers-carousel-item;
+      display: flex;
+    }
+
+    @include MEDIA_QUERY(xs) {
+      .carousel-caption.desktop {
+        display: none !important;
+      }
+
+      .carousel-caption.mobile {
+        display: flex !important;
+      }
+    }
+
+    .carousel-caption.desktop {
+      width: 100%;
+      height: 100%;
+      color: black;
+      padding: 0 10%;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      flex-direction: column; /* NEW */
+      justify-content: center;
+      flex-wrap: wrap;
+
+      &.text-left {
+        padding-right: 55%;
+
+        app-button {
+          margin-left: 0;
+        }
+      }
+
+      &.text-center {
+        padding-left: 27.5%;
+        padding-right: 27.5%;
+
+        app-button {
+          margin-left: 25%;
+        }
+      }
+
+      &.text-right {
+        padding-left: 55%;
+
+        app-button {
+          margin-left: 50%;
+        }
+      }
+
+      app-button {
+        width: 50%;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        opacity: 0.8;
+        font-size: 24px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.33;
+        letter-spacing: 0.5px;
+      }
+
+      h2 {
+        font-size: 24px;
+        line-height: 1.33;
+        letter-spacing: 0.5px;
+      }
+
+      h1 {
+        font-size: 72px;
+        line-height: 1.11;
+        letter-spacing: -2px;
+      }
+    }
+
+    .carousel-item.active {
+      opacity: 1;
+      visibility: visible;
+      z-index: $z-teasers-carousel-item-active;
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+      z-index: $z-teasers-carousel-control;
+      display: none;
+    }
+
+    .carousel-indicators {
+      z-index: $z-teasers-carousel-indicators;
+
+      li {
+        width: 8px;
+        border: none;
+        height: 8px;
+        border: solid 1px COLOR(grey-150);
+        background: #ffffff;
+        border-radius: 50%;
+        margin: 0 4px;
+        box-sizing: inherit;
+        opacity: 1;
+
+        &.active {
+          background: #222222;
+        }
+      }
+    }
+
+    // mobile style
+    .carousel-caption.mobile {
+      padding: 0 10%;
+      position: absolute;
+      bottom: 48px;
+      top: unset;
+      left: 0;
+      right: 0;
+      display: flex;
+      flex-direction: column; /* NEW */
+      justify-content: center;
+      flex-wrap: wrap;
+
+      app-text {
+        h1 {
+          // important is used because this is a special requirement for mobile caption, that is currently not implemented in CMS System.
+          color: white !important;
+        }
+      }
+    }
+
+    .gradient.mobile {
+      position: absolute;
+      bottom: 0px;
+      height: 140px;
+      top: unset;
+      left: 0;
+      right: 0;
+      display: flex;
+      flex-direction: column; /* NEW */
+      justify-content: center;
+      flex-wrap: wrap;
+
+      background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.54) 100%); /* FF3.6-15 */
+      background: -webkit-linear-gradient(
+        top,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.54) 100%
+      ); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.54) 100%
+      ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#8a000000', GradientType=0); /* IE6-9 */
+    }
+
+    @include MEDIA_QUERY(xs) {
+      .gradient.mobile {
+        display: flex !important;
+      }
+    }
+    @include MEDIA_QUERY(lg) {
+      .gradient.mobile {
+        display: none !important;
+      }
+    }
+
+    @include MEDIA_QUERY(sm) {
+      .carousel-caption.desktop {
+        display: none !important;
+      }
+
+      .carousel-caption.mobile {
+        display: flex !important;
+      }
+    }
+
+    @include MEDIA_QUERY(md) {
+      .carousel-caption.mobile {
+        display: flex !important;
+      }
+      .carousel-caption.desktop {
+        display: none !important;
+      }
+    }
+
+    @include MEDIA_QUERY(lg) {
+      .carousel-caption.mobile {
+        display: none !important;
+      }
+      .carousel-caption.desktop {
+        display: flex !important;
+      }
+    }
+  }
+}

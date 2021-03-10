@@ -1,0 +1,58 @@
+@import '../../../..//common/styles';
+
+.wrapper {
+  letter-spacing: normal;
+  font-stretch: normal;
+  font-style: normal;
+
+  app-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  @include MEDIA_QUERY(md) {
+    margin-top: 26px;
+    margin-bottom: 42px;
+  }
+}
+.header-desktop {
+  cursor: pointer;
+  margin: 0;
+  .header {
+    display: flex;
+    .icon {
+      margin-top: 2px;
+    }
+    .header-label {
+      margin-left: 4px;
+      line-height: 1.43;
+      color: COLOR(grey-600);
+      height: 20px;
+      font-size: FONT_SIZES(medium);
+    }
+  }
+}
+.header-mobile {
+  position: relative;
+  margin-bottom: 20px;
+  .arrow-container {
+    padding-top: 3px;
+    padding-left: 18px;
+    height: 24px;
+  }
+  .title {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    div {
+      text-align: center;
+      color: COLOR(black);
+      line-height: 1.33;
+      font-weight: 500;
+      font-size: FONT_SIZES(extraMedium);
+      height: 24px;
+    }
+  }
+}

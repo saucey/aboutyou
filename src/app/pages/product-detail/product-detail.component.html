@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="wrapper">
+    <div class="row" *ngIf="previousRoutePath">
+      <div class="col-12">
+        <a [routerLink]="previousRouteUrl" [queryParams]="previousRouteUrlParams" class="back-link">
+          <span class="d-none d-md-inline">
+            <app-icon icon="chevron-left" scale="1.5"></app-icon>
+          </span>
+          <span class="d-inline d-md-none">
+            <app-icon icon="arrow-left" scale="1"></app-icon>
+          </span>
+          <label *ngIf="previousRoutePath === '**'">{{ 'PRODUCT_DETAIL.backToListing' | translate }}</label>
+          <label *ngIf="previousRoutePath !== '**'">{{ 'PRODUCT_DETAIL.backToAnything' | translate }}</label>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-md-7">
+      <app-product-detail-carousel
+        *ngIf="productImagesPreloaded"
+        [images]="productImages"
+        [isMobile]="isMobile"
+        [isWishlisted]="isItemInWishlist$ | async"
+        (addToWishlist)="addToWishlist()"
+      ></app-product-detail-carousel>
+      <app-skeleton-carousel *ngIf="!productImagesPreloaded"></app-skeleton-carousel>
+    </div>
+
+    <div class="col-12 col-md-5">
+      <app-product-detail-overview
+        *ngIf="product"
+        [product]="product"
+        [currency]="currency"
+      ></app-product-detail-overview>
+      <app-skeleton-overview *ngIf="!product"></app-skeleton-overview>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-md-7">
+      <app-product-detail-attributes
+        *ngIf="product"
+        [product]="product"
+        [isMobile]="isMobile"
+        [currency]="currency"
+      ></app-product-detail-attributes>
+      <app-product-detail-accordion *ngIf="product" [product]="product"></app-product-detail-accordion>
+      <app-skeleton-content *ngIf="!product"></app-skeleton-content>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <app-recommendations-slider [product]="product"></app-recommendations-slider>
+    </div>
+  </div>
+  <app-subscribe-newsletter
+    [subline]="'HOME.NEWSLETTER.subline' | translate"
+    [headline]="'HOME.NEWSLETTER.headline' | translate"
+    [placeholder]="'HOME.NEWSLETTER.placeholder' | translate"
+    [submit]="'HOME.NEWSLETTER.submit' | translate"
+    [disclaimer]="'HOME.NEWSLETTER.disclaimer' | translate"
+    [source]="'Footer'"
+  ></app-subscribe-newsletter>
+</div>

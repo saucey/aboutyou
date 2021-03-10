@@ -1,0 +1,158 @@
+<ng-container *ngIf="item && isMobile; then mobilePanel; else desktopPanel"></ng-container>
+
+<ng-template #desktopPanel>
+  <div class="basket-list-item-container">
+    <div class="image" (click)="onHandleBasketItemClick()">
+      <img [src]="imageSrc" [class.not-available]="noItemAvailable" />
+      <div class="sold-out" *ngIf="noItemAvailable">
+        {{ 'BASKET.outOfStock' | translate }}
+      </div>
+    </div>
+
+    <div class="content-container">
+      <div class="details" (click)="onHandleBasketItemClick()" [class.not-available]="noItemAvailable">
+        <h1 class="title">
+          {{ item.mappedProduct.custom.productTitle }}
+        </h1>
+        <div *ngIf="isFlyoutMode" class="amount">
+          {{ 'BASKET.itemQuantity' | translate: { quantity: item.quantity } }}
+        </div>
+        <div class="dimensions">
+          {{ item.mappedProduct.custom.dimensions }}
+        </div>
+        <div *ngIf="item.mappedProduct.custom.energyLabel" class="energy-flag-container">
+          <app-energy-flag [type]="item.mappedProduct.custom.energyLabel"></app-energy-flag>
+        </div>
+      </div>
+
+      <div class="actions">
+        <div class="icon-link" (click)="onHandleDeleteItem()" *ngIf="!isFlyoutMode">
+          <app-icon [icon]="'trash'" [scale]="1"></app-icon>
+          <span>{{ 'GLOBAL.productItem.actions.delete' | translate }}</span>
+        </div>
+        <div class="icon-link" (click)="onHandleAddWishlistItem($event)">
+          <app-icon [icon]="wishlistIcon$ | async" [scale]="1"></app-icon>
+          <span>{{ 'GLOBAL.productItem.actions.addToWishlist' | translate }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-container" [class.not-available]="noItemAvailable">
+      <div *ngIf="!isFlyoutMode">
+        <app-quantity-picker
+          (valueChange)="onHandleQuantityChange($event)"
+          [limit]="item.availableQuantity"
+          [value]="quantity"
+          [editable]="false"
+          [disabled]="disabled || noItemAvailable"
+        ></app-quantity-picker>
+      </div>
+
+      <div class="price-container">
+        <div>
+          <label class="discount" *ngIf="item.mappedProduct.percentageDiscount">
+            <app-product-tag-box variant="primary">
+              - {{ item.mappedProduct.percentageDiscount * 100 | number }} %
+            </app-product-tag-box>
+          </label>
+          <label class="pack-size" *ngIf="item.mappedProduct.custom.packSize">
+            <app-product-tag-box>
+              {{ 'PRODUCT_DETAIL.packSizeLabel' | translate: { value: item.mappedProduct.custom.packSize } }}
+            </app-product-tag-box>
+          </label>
+
+          <label class="price" *ngIf="!totalOldPrice">{{ totalCurrentPrice | currency: currency }}</label>
+          <span *ngIf="totalOldPrice">
+            <label class="price reduced-price">{{ totalCurrentPrice | currency: currency }}</label>
+            <label class="striked-price">{{ totalOldPrice | currency: currency }}</label>
+          </span>
+        </div>
+        <div *ngIf="item.mappedProduct.referenceLabel" class="base-price-label">
+          {{ item.mappedProduct.referenceLabel }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="plus-product-error-msg"
+    *ngIf="!isFlyoutMode && !plusProductThresholdReached && item.mappedProduct.custom.isPlus"
+  >
+    {{ 'BASKET.costContainer.errorItem' | translate }}
+  </div>
+</ng-template>
+
+<!-- Mobile panel-->
+<ng-template #mobilePanel>
+  <div class="basket-list-item-container">
+    <div class="image" (click)="onHandleBasketItemClick()">
+      <img [src]="imageSrc" [class.not-available]="noItemAvailable" />
+      <div class="sold-out" *ngIf="noItemAvailable">
+        {{ 'BASKET.outOfStock' | translate }}
+      </div>
+    </div>
+
+    <div class="content-container-mobile" [class.not-available]="noItemAvailable">
+      <div class="details" (click)="onHandleBasketItemClick()">
+        <div class="title">
+          <h1>
+            {{ item.mappedProduct.custom.productTitle }}
+          </h1>
+        </div>
+        <div *ngIf="isFlyoutMode" class="amount">
+          {{ 'BASKET.itemQuantity' | translate: { quantity: item.quantity } }}
+        </div>
+        <div *ngIf="item.mappedProduct.custom.dimensions" class="dimensions">
+          {{ item.mappedProduct.custom.dimensions }}
+        </div>
+        <div class="price-container">
+          <app-energy-flag
+            *ngIf="!isFlyoutMode && item.mappedProduct.custom.energyLabel"
+            [type]="item.mappedProduct.custom.energyLabel"
+          ></app-energy-flag>
+
+          <label class="price" *ngIf="!totalOldPrice">{{ totalCurrentPrice | currency: currency }}</label>
+          <span *ngIf="totalOldPrice">
+            <label class="price reduced-price">{{ totalCurrentPrice | currency: currency }}</label>
+            <label class="striked-price">{{ totalOldPrice | currency: currency }}</label>
+          </span>
+        </div>
+      </div>
+
+      <div class="labels">
+        <label class="discount" *ngIf="item.mappedProduct.percentageDiscount">
+          <app-product-tag-box variant="primary">
+            - {{ item.mappedProduct.percentageDiscount * 100 | number }} %
+          </app-product-tag-box>
+        </label>
+        <label class="pack-size" *ngIf="item.mappedProduct.custom.packSize">
+          <app-product-tag-box>
+            {{ 'PRODUCT_DETAIL.packSizeLabel' | translate: { value: item.mappedProduct.custom.packSize } }}
+          </app-product-tag-box>
+        </label>
+      </div>
+      <div class="quantity-picker" *ngIf="!isFlyoutMode">
+        <app-quantity-picker
+          (valueChange)="onHandleQuantityChange($event)"
+          [limit]="item.availableQuantity"
+          [value]="quantity"
+          [editable]="false"
+          [disabled]="disabled || noItemAvailable"
+        ></app-quantity-picker>
+      </div>
+    </div>
+    <app-dropdown-regular [isExpanded]="isExpanded" *ngIf="!isFlyoutMode">
+      <div class="item" (click)="onAddItemToWishlist()">
+        {{ 'BASKET.addTo' | translate }}
+      </div>
+      <div class="item" (click)="onHandleDeleteItem()">
+        {{ 'BASKET.remove' | translate }}
+      </div>
+    </app-dropdown-regular>
+  </div>
+  <div
+    class="plus-product-error-msg"
+    *ngIf="!isFlyoutMode && !plusProductThresholdReached && item.mappedProduct.custom.isPlus"
+  >
+    {{ 'BASKET.costContainer.errorItem' | translate }}
+  </div>
+</ng-template>

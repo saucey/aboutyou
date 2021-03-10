@@ -1,0 +1,65 @@
+<div class="confirmation-reservation-wrapper">
+  <h1 [ngClass]="{ isMobile: isMobile$ | async }">{{ 'RESERVATION_CONFIRMATION_PAGE.title' | translate }}</h1>
+  <app-icon class="checkmark" type="icon" icon="checkmark-circle" scale="4"></app-icon>
+
+  <span class="confirmation-reservation-wrapper__text-info">{{
+    'RESERVATION_CONFIRMATION_PAGE.thankyou' | translate
+  }}</span>
+  <span class="confirmation-reservation-wrapper__text-info addition"
+    >{{ 'RESERVATION_CONFIRMATION_PAGE.reservationNumber' | translate }} <span>1234567890</span></span
+  >
+  <div class="confirmation-reservation-wrapper__button-wrapper">
+    <div class="top-button">
+      <app-button variant="primary" (click)="goToAccountReservations()">
+        <span>
+          {{ 'RESERVATION_CONFIRMATION_PAGE.action1' | translate }}
+        </span>
+      </app-button>
+    </div>
+    <app-button variant="secondary" (click)="goToHome()">
+      <span>
+        {{ 'RESERVATION_CONFIRMATION_PAGE.action2' | translate }}
+      </span>
+    </app-button>
+  </div>
+  <span class="strip">{{ 'RESERVATION_CONFIRMATION_PAGE.strip' | translate }}</span>
+  <div class="container">
+    <div class="confirmation-reservation-wrapper__notification-wrapper" [ngClass]="{ isMobile: isMobile$ | async }">
+      <div
+        class="confirmation-reservation-wrapper__gernal-notification-wrapper"
+        [ngClass]="{ isMobile: isMobile$ | async }"
+      >
+        <div class="confirmation-reservation-wrapper__gernal-notification-wrapper--icon-arrow-wrapper">
+          <app-icon class="bag" type="icon" icon="bag" scale="4"></app-icon>
+          <img src="/assets/icons/arrow-left.svg" alt="arrow-down" *ngIf="isMobile$ | async" />
+        </div>
+        <p>{{ 'RESERVATION_CONFIRMATION_PAGE.notification1' | translate }}</p>
+      </div>
+      <div class="arrow-left-wrapper" [ngClass]="{ isMobile: isMobile$ | async }" *ngIf="(isMobile$ | async) === false">
+        <img src="/assets/icons/arrow-left.svg" alt="arrow-right" [ngClass]="{ isMobile: isMobile$ | async }" />
+      </div>
+      <div
+        class="confirmation-reservation-wrapper__gernal-notification-wrapper"
+        [ngClass]="{ isMobile: isMobile$ | async }"
+      >
+        <div class="confirmation-reservation-wrapper__gernal-notification-wrapper--icon-arrow-wrapper">
+          <app-icon class="letter" type="icon" icon="letter" scale="4"></app-icon>
+          <img src="/assets/icons/arrow-left.svg" alt="arrow-down" *ngIf="isMobile$ | async" />
+        </div>
+        <p>{{ 'RESERVATION_CONFIRMATION_PAGE.notification2' | translate }}</p>
+      </div>
+      <div class="arrow-left-wrapper" [ngClass]="{ isMobile: isMobile$ | async }" *ngIf="(isMobile$ | async) === false">
+        <img src="/assets/icons/arrow-left.svg" alt="arrow-right" [ngClass]="{ isMobile: isMobile$ | async }" />
+      </div>
+      <div
+        class="confirmation-reservation-wrapper__gernal-notification-wrapper"
+        [ngClass]="{ isMobile: isMobile$ | async }"
+      >
+        <div class="confirmation-reservation-wrapper__gernal-notification-wrapper--icon-arrow-wrapper">
+          <app-icon class="store" type="icon" icon="store" scale="4"></app-icon>
+        </div>
+        <p>{{ 'RESERVATION_CONFIRMATION_PAGE.notification3' | translate }}</p>
+      </div>
+    </div>
+  </div>
+</div>
